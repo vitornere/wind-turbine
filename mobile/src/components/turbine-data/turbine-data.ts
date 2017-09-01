@@ -1,18 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
-/**
- * Generated class for the TurbineDataComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'turbine-data',
   templateUrl: 'turbine-data.html'
 })
-export class TurbineDataComponent {
+export class TurbineDataComponent implements OnDestroy {
 
   turbine_datas: [{}];
+  updateData: any;
+  clickMessage = 'Teste';
 
   constructor() {
     this.turbine_datas =
@@ -25,7 +21,7 @@ export class TurbineDataComponent {
         {
           'image_src': 'assets/img/voltagem.jpg',
           'title': 'Voltagem da turbina',
-          'subtitle': Math.floor(Math.random() * 220)          
+          'subtitle': Math.floor(Math.random() * 220)
         },
         {
           'image_src': 'assets/img/tensao.jpg',
@@ -38,11 +34,24 @@ export class TurbineDataComponent {
           'subtitle': 10
         },
       ]
+    this.updateData = this.setUpdateData();
   }
-  clickMessage = 'Teste';
+  ngOnDestroy(): void {
+    if (this.updateData) {
+      clearInterval(this.updateData);
+    }
+  }
 
   onClickMe() {
     this.clickMessage += 'You are my hero!';
     console.log('clickMessage');
+  }
+
+  setUpdateData() {
+    setInterval(() => {
+      this.turbine_datas.forEach((item) => {
+        item['subtitle'] = Math.floor(Math.random() * 220);
+      });
+    }, 2000);
   }
 }
