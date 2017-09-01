@@ -1,6 +1,6 @@
 
-<ion-card>
-  <img src="{{ image_src }}"/>
-  <div class="card-title">{{ title }}</div>
-  <div class="card-subtitle">{{ subtitle }}</div>
+<ion-card *ngFor="let item of turbine_datas" (click)="onClickMe()" >
+  <img src="{{ item.image_src }}"/>
+  <div class="card-title">{{ item.title }}</div>
+  <div class="card-subtitle">{{ item.subtitle }}</div>
 </ion-card>

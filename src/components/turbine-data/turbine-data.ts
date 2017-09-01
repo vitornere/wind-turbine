@@ -12,14 +12,37 @@ import { Component } from '@angular/core';
 })
 export class TurbineDataComponent {
 
-  image_src: string = 'assets/img/';
-  title: string = '';
-  subtitle: number = 0;
+  turbine_datas: [{}];
 
   constructor() {
-    this.image_src += 'wind.jpg';
-    this.title = 'Velocidade do Vento';
-    this.subtitle = 4;
+    this.turbine_datas =
+      [
+        {
+          'image_src': 'assets/img/wind.jpg',
+          'title': 'Velocidade do Vento',
+          'subtitle': 4
+        },
+        {
+          'image_src': 'assets/img/voltagem.jpg',
+          'title': 'Voltagem da turbina',
+          'subtitle': Math.floor(Math.random() * 220)          
+        },
+        {
+          'image_src': 'assets/img/tensao.jpg',
+          'title': 'Tensao',
+          'subtitle': 10
+        },
+        {
+          'image_src': 'assets/img/MPPT.png',
+          'title': 'MPPT',
+          'subtitle': 10
+        },
+      ]
   }
+  clickMessage = 'Teste';
 
+  onClickMe() {
+    this.clickMessage += 'You are my hero!';
+    console.log('clickMessage');
+  }
 }
