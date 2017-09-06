@@ -53,13 +53,15 @@ export class TurbineDataComponent implements OnDestroy {
 
   setUpdateData() {
     setInterval(() => {
+      var wind = Math.floor(Math.random() * (9 - 1) + 1);
+      var tension = Math.floor(Math.random() * (150 - 1) + 1);
+      var flow = Math.floor(Math.random() * (10 - 1) + 1);
+      var power = tension * flow;
+
       this.turbine_datas.forEach((item) => {
-        var wind = Math.floor(Math.random() * (9 - 1) + 1);
-        var tension = Math.floor(Math.random() * (150 - 1) + 1);
-        var flow = Math.floor(Math.random() * (10 - 1) + 1);
-        var power = tension * flow;
+
         console.log(flow + ' x ' + tension + " = " + power);
-        
+
         if (item['title'] === 'Velocidade do Vento') {
           item['subtitle'] = wind + item['unity'];
         } else
