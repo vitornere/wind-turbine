@@ -1,6 +1,10 @@
 
 <ion-card *ngFor="let item of turbine_datas" (click)="onClickMe()" >
-  <img src="{{ item.image_src }}"/>
-  <div class="card-title">{{ item.title }}</div>
-  <div class="card-subtitle">{{ item.subtitle }}</div>
+  <ion-item>
+    <ion-avatar item-start>
+      <img class="img_card" src="{{ item.image_src }}"/>
+    </ion-avatar>
+    <h2 class="card-title">{{ item.title }}</h2>
+    <p class="card-subtitle">{{ item.subtitle }}</p>
+  </ion-item>
 </ion-card>
