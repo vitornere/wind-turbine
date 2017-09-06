@@ -16,22 +16,26 @@ export class TurbineDataComponent implements OnDestroy {
         {
           'image_src': 'assets/img/wind.jpg',
           'title': 'Velocidade do Vento',
-          'subtitle': 4
+          'subtitle': 4,
+          'unity': ' m/s'
         },
         {
           'image_src': 'assets/img/voltagem.jpg',
-          'title': 'Voltagem da turbina',
-          'subtitle': Math.floor(Math.random() * 220)
+          'title': 'Voltagem da Turbina',
+          'subtitle': Math.floor(Math.random() * 220),
+          'unity': ' V'
         },
         {
           'image_src': 'assets/img/tensao.jpg',
-          'title': 'Tensao',
-          'subtitle': 10
+          'title': 'Tensão',
+          'subtitle': 10,
+          'unity': ' A'
         },
         {
           'image_src': 'assets/img/MPPT.png',
           'title': 'MPPT',
-          'subtitle': 10
+          'subtitle': 10,
+          'unity': ' W'
         },
       ]
     this.updateData = this.setUpdateData();
@@ -50,7 +54,7 @@ export class TurbineDataComponent implements OnDestroy {
   setUpdateData() {
     setInterval(() => {
       this.turbine_datas.forEach((item) => {
-        item['subtitle'] = Math.floor(Math.random() * 220);
+        item['subtitle'] = Math.floor(Math.random() * 220) + item['unity'];
       });
     }, 2000);
   }

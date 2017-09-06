@@ -3,10 +3,12 @@ turbine-data {
     position: relative;
     text-align: center;
     height: 120px;
+    background: #F2F2F2 !important;
   }
 
   ion-item {
     height: 100px;
+    background: #F2F2F2 !important;
   }
 
   img.img_card {
@@ -30,6 +32,7 @@ turbine-data {
     position: absolute;
     top: 52%;
     width: 100%;
+    margin-left: 15%;
     color: #fff;
     text-shadow: 2px 2px 1px black;
   }
