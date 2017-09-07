@@ -2,13 +2,13 @@ turbine-data {
   ion-card {
     position: relative;
     text-align: center;
-    height: 120px;
+    height: max-content;
     background: #F2F2F2 !important;
   }
 
   ion-item {
-    height: 100px;
-    background: #F2F2F2 !important;
+    height: 200px;
+    background: #FF0000 !important;
   }
 
   img.img_card {
@@ -21,18 +21,19 @@ turbine-data {
     position: right;
     margin-bottom: 30px;
     top: 20%;
-    font-size: 20px;
+    font-size: 1em;
     width: 100%;
     font-weight: bold;
     color: #001B4A;
   }
 
   .card-subtitle {
-    font-size: 45px;
+    font-size: 2em;
     position: absolute;
-    top: 52%;
+    top: 40%;
     width: 100%;
-    margin-left: 15%;
+    font-weight: bold;
+    margin-left: 30%;
     color: #488aff;
   }
 
