@@ -46,9 +46,9 @@ export class TurbineDataComponent implements OnDestroy {
     }
   }
 
-  onClickMe() {
-    this.clickMessage += 'You are my hero!';
-    console.log('clickMessage');
+  onClickMe(item, position) {
+    console.log(item);
+    console.log(position);
   }
 
   setUpdateData() {
@@ -59,20 +59,21 @@ export class TurbineDataComponent implements OnDestroy {
       var power = tension * flow;
 
       this.turbine_datas.forEach((item) => {
-
-        console.log(flow + ' x ' + tension + " = " + power);
-
-        if (item['title'] === 'Velocidade do Vento') {
-          item['subtitle'] = wind + item['unity'];
-        } else
-        if (item['title'] === 'Tensão') {
-          item['subtitle'] = tension + item['unity'];
-        } else
-        if (item['title'] === 'Corrente') {
-          item['subtitle'] = flow + item['unity'];
-        } else 
-        if (item['title'] === 'Potência') {
-          item['subtitle'] = power + item['unity'];
+        switch (item['title']) {
+          case 'Velocidade do Vento':
+            item['subtitle'] = wind + item['unity'];
+            break;
+          case 'Tensão':
+            item['subtitle'] = tension + item['unity'];
+            break;
+          case 'Corrente':
+            item['subtitle'] = flow + item['unity'];
+            break;
+          case 'Potência':
+            item['subtitle'] = power + item['unity'];
+            break;
+          default:
+            break;
         }
       });
     }, 2000);
