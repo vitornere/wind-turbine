@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { HistoryPage } from './../pages/history/history';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { GraphicPage } from './../pages/graphic/graphic';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,10 +19,11 @@ import { HistoryGraphicComponent } from './../components/history-graphic/history
     MyApp,
     AboutPage,
     HistoryPage,
+    GraphicPage,
     HomePage,
     TabsPage,
     TurbineDataComponent,
-    HistoryGraphicComponent
+    HistoryGraphicComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { HistoryGraphicComponent } from './../components/history-graphic/history
     HistoryPage,
     HomePage,
     TabsPage,
+    GraphicPage,
     TurbineDataComponent,
     HistoryGraphicComponent
   ],
