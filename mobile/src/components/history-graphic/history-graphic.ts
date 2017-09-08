@@ -13,8 +13,18 @@ import { Component, Input } from '@angular/core';
 export class HistoryGraphicComponent {
 
   @Input()
+  id: number;
+  @Input()  
   titulo: string;
+  @Input()  
+  imageSrc: string;
 
+  periodos = [
+    'diario',
+    'semanal',
+    'mensal',
+    'anual'
+  ]
 
   constructor() {
     console.log("Esta no history grafic");
