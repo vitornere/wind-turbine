@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TurbineDataComponent } from '../components/turbine-data/turbine-data';
+import { HistoryGraphicComponent } from './../components/history-graphic/history-graphic';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TurbineDataComponent } from '../components/turbine-data/turbine-data';
     HistoryPage,
     HomePage,
     TabsPage,
-    TurbineDataComponent
+    TurbineDataComponent,
+    HistoryGraphicComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { TurbineDataComponent } from '../components/turbine-data/turbine-data';
     HistoryPage,
     HomePage,
     TabsPage,
-    TurbineDataComponent
+    TurbineDataComponent,
+    HistoryGraphicComponent
   ],
   providers: [
     StatusBar,
