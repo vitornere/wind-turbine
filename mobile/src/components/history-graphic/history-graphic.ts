@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the HistoryGraphicComponent component.
@@ -12,11 +12,12 @@ import { Component } from '@angular/core';
 })
 export class HistoryGraphicComponent {
 
-  text: string;
+  @Input()
+  titulo: string;
+
 
   constructor() {
-    console.log('Hello HistoryGraphicComponent Component');
-    this.text = 'Hello World';
+    console.log("Esta no history grafic");
   }
 
 }
