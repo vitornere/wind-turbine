@@ -1,0 +1,61 @@
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
+  </ion-item>
+</ion-list>
+
+<ion-card>
+    <ion-fab right>
+        <button ion-fab>
+              <ion-icon name="arrow-round-down"></ion-icon>
+            </button>
+      </ion-fab>
+  <ion-item>
+    <ion-avatar item-start>
+      <img class="img_card" src="assets/img/wind.png" />
+    </ion-avatar>
+    <h2>Velocidade do vento</h2>
+    <p>Diaria</p>
+  </ion-item>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRb6ude7PkPQXEdr5VxWeXqP1dJivQkeELP27ByBiezBOWD3c8">
+
+
+</ion-card>
+
+<ion-card>
+    <ion-fab right>
+        <button ion-fab>
+              <ion-icon name="arrow-round-down"></ion-icon>
+            </button>
+      </ion-fab>
+  <ion-item>
+    <ion-avatar item-start>
+      <img class="img_card" src="assets/img/wind.png" />
+    </ion-avatar>
+    <h2>Velocidade do vento</h2>
+    <p>Anual</p>
+  </ion-item>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRb6ude7PkPQXEdr5VxWeXqP1dJivQkeELP27ByBiezBOWD3c8">
+
+
+</ion-card>
+
+
+<ion-card>
+    <ion-fab right>
+        <button ion-fab>
+                  <ion-icon name="arrow-round-down"></ion-icon>
+                </button>
+      </ion-fab>
+  <ion-item>
+    <ion-avatar item-start>
+      <img class="img_card" src="assets/img/wind.png" />
+    </ion-avatar>
+    <h2>Velocidade do vento</h2>
+    <p>Mensal</p>
+  </ion-item>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRb6ude7PkPQXEdr5VxWeXqP1dJivQkeELP27ByBiezBOWD3c8">
+
+
+</ion-card>
