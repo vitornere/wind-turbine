@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('wind-turbine App', () => {
+describe('bancada-online App', () => {
   let page: AppPage;
 
   beforeEach(() => {
