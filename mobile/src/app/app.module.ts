@@ -13,6 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TurbineDataComponent } from '../components/turbine-data/turbine-data';
 import { HistoryGraphicComponent } from './../components/history-graphic/history-graphic';
+import { ChartComponent } from '../components/chart/chart';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,12 @@ import { HistoryGraphicComponent } from './../components/history-graphic/history
     TabsPage,
     TurbineDataComponent,
     HistoryGraphicComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ChartsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +42,8 @@ import { HistoryGraphicComponent } from './../components/history-graphic/history
     TabsPage,
     GraphicPage,
     TurbineDataComponent,
-    HistoryGraphicComponent
+    HistoryGraphicComponent,
+    ChartComponent
   ],
   providers: [
     StatusBar,
