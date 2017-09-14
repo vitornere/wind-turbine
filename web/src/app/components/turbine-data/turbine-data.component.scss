@@ -1,0 +1,23 @@
+.card .card-content p {
+    color:#001B4A;
+    font-weight: bold;
+    font-size: 20px;    
+}
+
+.card .card-action span {
+    color: #488aff;
+    font-size: 24px;
+}
+
+.card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 175px;
+    width: 175px;
+    left: 50%;
+    transform: translateX(-50%);
+}
