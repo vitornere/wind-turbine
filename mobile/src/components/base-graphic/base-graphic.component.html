@@ -1,4 +1,4 @@
-<ion-card *ngFor="let periodo of periodos" >
+<ion-card>
   <ion-fab right>
     <button ion-fab>
       <ion-icon name="arrow-round-down"></ion-icon>
@@ -9,7 +9,6 @@
       <img class="img_card" src={{imageSrc}} />
     </ion-avatar>
     <h2>{{ titulo }}</h2>
-    <p>{{ periodo }}</p>
   </ion-item>
   <chart></chart>
 </ion-card>

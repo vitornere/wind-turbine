@@ -1,3 +1,5 @@
+import { TurbineDataComponent } from './../components/turbine-data/turbine-data.component';
+import { BaseGraphicComponent } from './../components/base-graphic/base-graphic.component';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -7,13 +9,11 @@ import { AboutPage } from '../pages/about/about';
 import { HistoryPage } from './../pages/history/history';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { GraphicPage } from './../pages/graphic/graphic';
+import { GraphicPage } from './../pages/graphic/graphic.page';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { TurbineDataComponent } from '../components/turbine-data/turbine-data';
-import { HistoryGraphicComponent } from './../components/history-graphic/history-graphic';
-import { ChartComponent } from '../components/chart/chart';
+import { ChartComponent } from '../components/chart/chart.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     HomePage,
     TabsPage,
     TurbineDataComponent,
-    HistoryGraphicComponent,
+    BaseGraphicComponent,
     ChartComponent,
   ],
   imports: [
@@ -42,7 +42,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     TabsPage,
     GraphicPage,
     TurbineDataComponent,
-    HistoryGraphicComponent,
+    BaseGraphicComponent,
     ChartComponent
   ],
   providers: [

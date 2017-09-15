@@ -11,7 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-graphic',
-  templateUrl: 'graphic.html',
+  templateUrl: 'graphic.page.html',
 })
 export class GraphicPage {
 

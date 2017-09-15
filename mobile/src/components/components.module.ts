@@ -1,16 +1,13 @@
+import { TurbineDataComponent } from './turbine-data/turbine-data.component';
+import { BaseGraphicComponent } from './base-graphic/base-graphic.component';
 import { NgModule } from '@angular/core';
-import { TurbineDataComponent } from './turbine-data/turbine-data';
-import { HistoryGraphicComponent } from './history-graphic/history-graphic';
-import { SearchDataComponent } from './search-data/search-data';
-import { ChartComponent } from './chart/chart';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
-	declarations: [TurbineDataComponent, HistoryGraphicComponent,
-    SearchDataComponent,
+	declarations: [TurbineDataComponent, BaseGraphicComponent,
     ChartComponent],
 	imports: [],
-	exports: [TurbineDataComponent, HistoryGraphicComponent,
-    SearchDataComponent,
+	exports: [TurbineDataComponent, BaseGraphicComponent,
     ChartComponent]
 })
 export class ComponentsModule { }

@@ -1,11 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { GraphicPage } from './../../pages/graphic/graphic';
+import { GraphicPage } from './../../pages/graphic/graphic.page';
 
 @Component({
   selector: 'turbine-data',
-  templateUrl: 'turbine-data.html'
+  templateUrl: 'turbine-data.component.html'
 })
 export class TurbineDataComponent implements OnDestroy {
 
