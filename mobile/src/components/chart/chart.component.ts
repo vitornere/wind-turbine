@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the ChartComponent component.
@@ -12,9 +12,16 @@ import { Component } from '@angular/core';
 })
 export class ChartComponent {
 
+  today = new Date();
+
+  @Input()
+  initDate: number = this.today.getFullYear();
+  @Input()  
+  finalDAte: number = this.today.getFullYear();
+
   public lineChartData:Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56,], label: '2010' },
-    { data: [65, 52, 30, 11, 36, 51, 12, 63, 59, 80, 81, 10,], label: '2011' },
+    { data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56,], label: this.initDate },
+    { data: [65, 52, 30, 11, 36, 51, 12, 63, 59, 80, 81, 10,], label: this.finalDAte },
   ];
 
   public lineChartLabels:Array<any> = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -33,6 +40,11 @@ export class ChartComponent {
     this.lineChartData = lineChartData;
   }
  
+
+  constructor() {
+    console.log(this.initDate); 
+    console.log(this.initDate.toString)   
+  }
   public chartClicked(e:any):void {
     console.log(e);
   }
