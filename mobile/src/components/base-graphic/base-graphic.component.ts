@@ -7,10 +7,10 @@ import { Component, Input } from '@angular/core';
  * for more info on Angular Components.
  */
 @Component({
-  selector: 'history-graphic',
-  templateUrl: 'history-graphic.html'
+  selector: 'base-graphic',
+  templateUrl: 'base-graphic.component.html'
 })
-export class HistoryGraphicComponent {
+export class BaseGraphicComponent {
 
   @Input()
   id: number;
@@ -18,13 +18,6 @@ export class HistoryGraphicComponent {
   titulo: string;
   @Input()  
   imageSrc: string;
-
-  periodos = [
-    'diario',
-    'semanal',
-    'mensal',
-    'anual'
-  ]
 
   constructor() {
     console.log("Esta no history grafic");
