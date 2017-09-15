@@ -1,12 +1,39 @@
-language: node_js
-node_js:
-  - "6.10"
+matrix:
+  include:
+    - language: python
+      env: BUILD_TYPE=api
+      python: 3.6
+      before_script:
+        - cd api
+      script:
+        - pip install -r requirements.txt 
+        - django manage.py migrate
 
-before_install:
-  - sudo apt-get update -qq
-  - npm install -g ionic cordova
-  - ionic -v
-  - cd mobile
+    - language: node_js
+      env: BUILD_TYPE=mobile
+      node_js:
+        - "6.10"
 
-install:
-  - npm install
+      before_install:
+        - sudo apt-get update -qq
+        - npm install -g ionic cordova
+        - ionic -v
+        - cd mobile
+
+      install:
+        - npm install
+
+    - language: node_js
+      env: BUILD_TYPE=web
+      node_js:
+        - "6.10"
+
+      before_install:
+        - cd web
+
+      install:
+        - npm install
+
+notifications:
+  email:
+    - yourname@gmail.com
