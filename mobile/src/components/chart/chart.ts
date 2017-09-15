@@ -12,23 +12,25 @@ import { Component } from '@angular/core';
 })
 export class ChartComponent {
 
-  text: string;
   public lineChartData:Array<any> = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
+    { data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56,], label: '2010' },
+    { data: [65, 52, 30, 11, 36, 51, 12, 63, 59, 80, 81, 10,], label: '2011' },
   ];
 
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels:Array<any> = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                                      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
   public lineChartType:string = 'line';
-  public pieChartType:string = 'pie';
- 
-  // Pie
-  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData:number[] = [300, 500, 100];
- 
-  public randomizeType():void {
-    this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
-    this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
+
+  public randomize():void {
+    let lineChartData:Array<any> = new Array(this.lineChartData.length);
+    for (let i = 0; i < this.lineChartData.length; i++) {
+      lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
+      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+        lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+      }
+    }
+    console.log('aq')
+    this.lineChartData = lineChartData;
   }
  
   public chartClicked(e:any):void {
