@@ -1,6 +1,11 @@
 <div class="col-md-6">
 
-  <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType"
-    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+  <canvas baseChart 
+    [datasets]="lineChartData" 
+    [labels]="lineChartLabels" 
+    [options]="lineChartOptions" 
+    [chartType]="lineChartType"
+    (chartHover)="chartHovered($event)" 
+    (chartClick)="chartClicked($event)">
   </canvas>
 </div>
