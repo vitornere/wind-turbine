@@ -1,21 +1,15 @@
-.content {
-  background: #1a2580;
-  color: #fff;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 15%;
-  min-width: 250px;
-  z-index: 9999;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+nav {
+  background-color: #F2F2F2;
+  }
+.nav-wrapper { 
+   margin-left: 10px;
 }
- 
-ul {
-  font-size: 18px;
-  line-height: 3;
-  font-weight: 400;
-  padding-top: 50px;
-  list-style: none;
+  
+nav .brand-logo {
+  color: #424242;
+}
+  
+nav ul a {
+  color: #001B4A;
+  font-weight: bold;
 }
