@@ -1,20 +1,20 @@
 <ion-item>
-  <ion-label>Primerio intervalo</ion-label>
-  <ion-datetime displayFormat="YYYY" min="2016" [(ngModel)]="initYear" placeholder="{{initYear}}"></ion-datetime>
+  <ion-label>Primerio ano</ion-label>
+  <ion-datetime displayFormat="YYYY" min="2010" [(ngModel)]="initYear" placeholder="{{initYear}}"></ion-datetime>
 </ion-item> 
 <ion-item>
-  <ion-label>Segundo intervalo</ion-label>
-  <ion-datetime displayFormat="YYYY" min="2016" [(ngModel)]="finalYear" placeholder="{{finalYear}}" ></ion-datetime>
+  <ion-label>Segundo ano</ion-label>
+  <ion-datetime displayFormat="YYYY" min="2010" [(ngModel)]="finalYear" placeholder="{{finalYear}}" ></ion-datetime>
 </ion-item> 
 
 <div class="button-centering">
-  <button ion-button round (click)="updateYear()" >Finalizar</button>
+  <button ion-button round (click)="updateYear()">Gerar Gráfico</button>
 </div>
-
 
 <div class="col-md-6">
 
   <canvas baseChart width="300" height="300" 
+    [hidden]="!showChart"
     [datasets]="lineChartData" 
     [labels]="lineChartLabels" 
     [options]="lineChartOptions" 

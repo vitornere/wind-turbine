@@ -13,21 +13,33 @@ import { Component, Input } from '@angular/core';
 export class ChartComponent {
 
   today = new Date();
+  showChart = false;
 
   @Input()
   initYear: number = this.today.getFullYear();
   @Input()
   finalYear: number = this.today.getFullYear();
 
+  firstYear = { 
+    data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 
+    label: this.initYear 
+  }  
+  
+  secondYear = { 
+    data: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 
+    label: this.finalYear 
+  }  
+  
   public lineChartData: Array<any> = [
-    { data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], label: this.initYear },
-    { data: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1,], label: this.finalYear },
+    this.firstYear,
+    this.secondYear
   ];
 
   public lineChartLabels: Array<any> = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
   public lineChartType: string = 'line';
 
+  
   public chartHovered(e: any): void {
     console.log(e);
   }
@@ -48,6 +60,8 @@ export class ChartComponent {
     lineChartData[1].label = this.finalYear;
     console.log(lineChartData[0]);
     this.lineChartData = lineChartData;
+
+    this.showChart=true;
   }
 
 } 
