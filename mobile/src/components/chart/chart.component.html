@@ -24,3 +24,14 @@
   </canvas>
 
 </div>
+<div class="col-md-6" [hidden]="!showChart">
+  <h1>Estatísticas</h1>
+  <div class="row">
+      <div class="col-1">
+          <font class="colourTable bold">Mês com maior Pico: </font>
+        </div>
+        <div class="col col-offset-25">
+          <h1>{{highStatMonth}}</h1>
+        </div>
+  </div>
+</div>
