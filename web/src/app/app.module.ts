@@ -9,9 +9,9 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
+    SideBarComponent,
     NavBarComponent,
-    TurbineDataComponent,
-    SideBarComponent
+    TurbineDataComponent
   ],
   imports: [
     BrowserModule
