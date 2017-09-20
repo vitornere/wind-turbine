@@ -35,9 +35,9 @@ export class ChartComponent {
   public chartClicked(e: any): void {
     console.log(e);
   }
-  public randomize(): void {
+  public updateYear(): void {
     let lineChartData: Array<any> = new Array(this.lineChartData.length);
-    
+
     for (let i = 0; i < this.lineChartData.length; i++) {
       lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
       for (let j = 0; j < this.lineChartData[i].data.length; j++) {
