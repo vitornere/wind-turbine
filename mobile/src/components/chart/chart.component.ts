@@ -14,26 +14,32 @@ export class ChartComponent {
 
   today = new Date();
   showChart = false;
-  highStatMonth: string;
-  lowStatMonth: string;
-  defaultHigh = 0;
-  defaultLow = 220;
-  highStat: number = this.defaultHigh;
-  lowStat: number = this.defaultLow;
 
   @Input()
-  initYear: number = this.today.getFullYear();
+  inputInitYear: number = this.today.getFullYear();
   @Input()
-  finalYear: number = this.today.getFullYear();
+  inputFinalYear: number = this.today.getFullYear();
 
   firstYear = {
     data: [5, 25000, 30000, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    label: this.initYear
+    label: this.inputInitYear,
+    stats : {
+      highStat : 0, 
+      highStatLabel: "",
+      lowStat: 0,
+      lowStatLabel: ""
+    }
   }
 
   secondYear = {
     data: [1230000, 1130000, 30000, 930000, 830000, 730000, 630000, 530000, 430000, 330000, 1230000, 3330000],
-    label: this.finalYear
+    label: this.inputFinalYear,
+    stats : {
+      highStat : 0, 
+      highStatLabel: "",
+      lowStat: 0,
+      lowStatLabel: ""
+    }
   }
 
   public lineChartData: Array<any> = [
@@ -52,19 +58,29 @@ export class ChartComponent {
   public chartClicked(e: any): void {
     console.log(e);
   }
-  public statsChart(year: any): void {
+  public statsChart(year: any): any{
+    let highStat = 0;
+    let lowStat = 1000;
+    let highStatLabel;
+    let lowStatLabel;
 
     for (let i = 0; i < year.data.length; i++) {
-      if (year.data[i] > this.highStat) {
-        this.highStat = year.data[i];
-        this.highStatMonth = this.lineChartLabels[i];
+      if (year.data[i] > highStat) {
+        highStat = year.data[i];
+        highStatLabel = this.lineChartLabels[i];
 
       }
-      if (year.data[i] < this.lowStat) {
-        this.lowStat = year.data[i];
-        this.lowStatMonth = this.lineChartLabels[i];
+      if (year.data[i] < lowStat) {
+        lowStat = year.data[i];
+        lowStatLabel = this.lineChartLabels[i];
       }
     }
+    return {
+        highStat : highStat, 
+        highStatLabel: highStatLabel,
+        lowStat: lowStat,
+        lowStatLabel: lowStatLabel
+      }
   }
 
   public updateYear(): void {
@@ -76,18 +92,17 @@ export class ChartComponent {
         lineChartData[i].data[j] = Math.floor((Math.random() * 300) + 1);
       }
     }
-    lineChartData[0].label = this.initYear;
-    lineChartData[1].label = this.finalYear;
+    lineChartData[0].label = this.inputInitYear;
+    lineChartData[1].label = this.inputFinalYear;
 
     this.firstYear = lineChartData[0];
     this.secondYear = lineChartData[1];
 
     this.lineChartData = lineChartData;
 
-    this.highStat = this.defaultHigh;
-    this.lowStat = this.defaultLow;
+    this.firstYear.stats = this.statsChart(this.firstYear);
+    this.secondYear.stats = this.statsChart(this.secondYear);
 
-    this.statsChart(this.firstYear);
     this.statsChart(this.secondYear);
 
     this.showChart = true;
