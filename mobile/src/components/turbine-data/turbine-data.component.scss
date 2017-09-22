@@ -7,22 +7,18 @@ turbine-data {
   }
 
   ion-item {
-    height: 200px;
     background: #FF0000 !important;
   }
 
   img.img_card {
-    height: 65px;
-    width: 65px;
+    height: 55px;
+    width: 55px;
     border-radius: 0%;
   }
 
   .card-title {
     position: right;
-    margin-bottom: 30px;
-    top: 20%;
-    font-size: 1em;
-    width: 100%;
+    font-size: 1.3em;
     font-weight: bold;
     color: #001B4A;
   }
@@ -30,7 +26,7 @@ turbine-data {
   .card-subtitle {
     font-size: 2em;
     position: absolute;
-    top: 40%;
+    top: 10%;
     width: 100%;
     font-weight: bold;
     margin-left: 30%;
