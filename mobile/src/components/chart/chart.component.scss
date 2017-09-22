@@ -6,6 +6,55 @@ chart {
     padding-bottom: 15px;
     text-align:center;
 }
-.colourTable {
-    color: #001B4A;
+.tg  {
+    border-collapse:collapse;
+    border-spacing:0;
+    border-color:#999;
+    border:none;
+    margin: 0 auto;
+}
+.tg td{
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:0px;
+    overflow:hidden;
+    word-break:normal;
+    border-color:#999;
+    color:#444;
+    background-color:#F7FDFA;
+}
+.tg th{
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:0px;
+    overflow:hidden;
+    word-break:normal;
+    border-color:#999;
+    color:#fff;
+    background-color:#488aff;
+}
+.tg .tg-baqh{
+    text-align:center;
+    vertical-align:top
+}
+.tg .tg-e3zv{
+    font-weight:bold
+}
+.tg .tg-vv7f{
+    background-color:#D2E4FC;
+    font-weight:bold
+}
+.tg .tg-j0tj{
+    background-color:#D2E4FC;
+    text-align:center;
+    vertical-align:top
+}
+
+.div-stats {
+    margin-top: 10%;
 }
