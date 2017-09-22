@@ -26,12 +26,21 @@
 </div>
 <div class="col-md-6" [hidden]="!showChart">
   <h1>Estatísticas</h1>
-  <div class="row">
-      <div class="col-1">
-          <font class="colourTable bold">Mês com maior Pico: </font>
-        </div>
-        <div class="col col-offset-25">
-          <h1>{{highStatMonth}}</h1>
-        </div>
+  <div class="div-stats">
+  <table class="tg">
+    <tr>
+      <th class="tg-baqh" colspan="3">{{initYear}}</th>
+    </tr>
+    <tr>
+      <td class="tg-vv7f">Mês com maior pico</td>
+      <td class="tg-j0tj">{{highStatMonth}}</td>
+      <td class="tg-j0tj">{{highStat}}</td>
+    </tr>
+    <tr>
+      <td class="tg-e3zv">Mês com o menor pico</td>
+      <td class="tg-baqh">{{lowStatMonth}}</td>
+      <td class="tg-baqh">{{lowStat}}</td>
+    </tr>
+  </table>
   </div>
 </div>
