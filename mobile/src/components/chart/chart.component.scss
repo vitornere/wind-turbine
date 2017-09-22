@@ -15,7 +15,7 @@ chart {
 }
 .tg td{
     font-family:Arial, sans-serif;
-    font-size:14px;
+    font-size:16px;
     padding:10px 5px;
     border-style:solid;
     border-width:0px;
@@ -27,8 +27,8 @@ chart {
 }
 .tg th{
     font-family:Arial, sans-serif;
-    font-size:14px;
-    font-weight:normal;
+    font-size:20px;
+    font-weight:bold;
     padding:10px 5px;
     border-style:solid;
     border-width:0px;
@@ -36,7 +36,6 @@ chart {
     word-break:normal;
     border-color:#999;
     color:#fff;
-    background-color:#488aff;
 }
 .tg .tg-baqh{
     text-align:center;
@@ -54,7 +53,28 @@ chart {
     text-align:center;
     vertical-align:top
 }
-
+.tg .tg-vv7fp{
+    background-color:#FfC1Ce;
+    font-weight:bold
+}
+.tg .tg-j0tjp{
+    background-color:#FfC1Ce;
+    text-align:center;
+    vertical-align:top
+}
 .div-stats {
     margin-top: 10%;
+}
+
+#th-blue {
+    background-color:#488aff;
+}
+#th-ligh-pink {
+    background-color:#FfC1Ce;
+}
+#th-pink {
+    background-color:#FF6182;
+}
+#pad-title {
+    margin-left: 4%;
 }

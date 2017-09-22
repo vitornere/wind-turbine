@@ -25,16 +25,16 @@
 
 </div>
 <div class="col-md-6" [hidden]="!showChart">
-  <h1>Estatísticas</h1>
+  <h1 id="pad-title">Estatísticas</h1>
   <div class="div-stats">
   <table class="tg">
     <tr>
-      <th class="tg-baqh" colspan="3">{{initYear}}</th>
+      <th class="tg-baqh" id="th-pink" colspan="3">{{initYear}}</th>
     </tr>
     <tr>
-      <td class="tg-vv7f">Mês com maior pico</td>
-      <td class="tg-j0tj">{{highStatMonth}}</td>
-      <td class="tg-j0tj">{{highStat}}</td>
+      <td class="tg-vv7fp">Mês com maior pico</td>
+      <td class="tg-j0tjp">{{highStatMonth}}</td>
+      <td class="tg-j0tjp">{{highStat}}</td>
     </tr>
     <tr>
       <td class="tg-e3zv">Mês com o menor pico</td>
@@ -43,4 +43,21 @@
     </tr>
   </table>
   </div>
+  <div class="div-stats">
+    <table class="tg">
+      <tr>
+        <th class="tg-baqh" id="th-blue" colspan="3">{{finalYear}}</th>
+      </tr>
+      <tr>
+        <td class="tg-vv7f">Mês com maior pico</td>
+        <td class="tg-j0tj">{{highStatMonth}}</td>
+        <td class="tg-j0tj">{{highStat}}</td>
+      </tr>
+      <tr>
+        <td class="tg-e3zv">Mês com o menor pico</td>
+        <td class="tg-baqh">{{lowStatMonth}}</td>
+        <td class="tg-baqh">{{lowStat}}</td>
+      </tr>
+    </table>
+    </div>
 </div>
