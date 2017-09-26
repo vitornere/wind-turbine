@@ -1,0 +1,26 @@
+.card .card-content p {
+    color:#001B4A;
+    font-weight: bold;
+    font-size: 20px;    
+}
+
+.card .card-action span {
+    color: #488aff;
+    font-size: 24px;
+}
+
+.card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    right: 0;
+    margin-top: 8px;
+    bottom: 0;
+    height: 170px;
+    width: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.card .card-action:last-child {
+    background-color: #F2F2F2;
+}
