@@ -1,26 +1,30 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Bancada Online
 
-## How to use this template
+## Install and run
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+Node and npm from https://nodejs.org/en/download/
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+JDK 8 from http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html
 
-### With the Ionic CLI:
+SDK from https://developer.android.com/studio/index.html?hl=pt-br
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+Visual Studio Code from https://code.visualstudio.com/download
+
+## Extensions VSCode recommended
+- vscode-icons from Roberto Huertas
+- TSLint from egamma
+- rxjs-snippets from prashant
+- Angular V4 Typescript from johnpapa
+- Auto Import from steoates
+- Cordova Tools from Visual Studio Mobile Tools
+- Ionic 2
+
+# After git clone
 
 ```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
+$ npm install
+$ ionic serve -l
 ```
-
-Then, to run it, cd into `myTabs` and run:
-
 ```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+$ ionic cordova run --device
 ```
-
-Substitute ios for android if not on a Mac.
-

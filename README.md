@@ -1,5 +1,5 @@
 ## Bancada Online
 
-Projeto da disciplina Projeto Integrador 2 da Universidade de Brasília, Campus Gama, Destinada ao desenvolvimento de um sistema de monitoramento do Aerogerador Vertical. 
+Projeto da disciplina Projeto Integrador 2 da Universidade de Brasília, Campus Gama, Destinada ao desenvolvimento de um sistema de monitoramento do *Aerogerador* *Vertical*. 
 
-![Build Status](https://travis-ci.org/vitornere/wind-turbine.svg?branch=master)
+[![Build Status](https://travis-ci.org/vitornere/wind-turbine.svg?branch=master)](https://travis-ci.org/vitornere/wind-turbine)
