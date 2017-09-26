@@ -5,9 +5,10 @@ matrix:
       python: 3.6
       before_script:
         - cd api
+        - pip install -r requirements.txt
+        - python manage.py migrate
       script:
-        - pip install -r requirements.txt 
-        - django manage.py migrate
+        - python manage.py test
 
     - language: node_js
       env: BUILD_TYPE=mobile
@@ -17,7 +18,6 @@ matrix:
       before_install:
         - sudo apt-get update -qq
         - npm install -g ionic cordova
-        - ionic -v
         - cd mobile
 
       install:
@@ -29,10 +29,8 @@ matrix:
         - "6.10"
 
       before_install:
-        - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         - sudo apt-get update -qq
-        - sudo apt-get install -qq google-chrome-stable
+        - npm install -g @angular/cli
         - cd web
 
       install:
