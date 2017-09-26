@@ -26,3 +26,18 @@ nav {
   margin-top: 4px;
   margin-bottom: 4px;
 }
+
+button:focus {
+  background-color: #F2F2F2;
+}
+
+
+md-sidenav {
+  width: 300px; 
+}
+
+@media screen and (max-width: 600px) {
+  md-sidenav {
+    width: 225px; 
+  }
+}
