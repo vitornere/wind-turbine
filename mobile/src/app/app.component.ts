@@ -8,7 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class BancadaOnline {
 
   rootPage: any = TabsPage;
 
