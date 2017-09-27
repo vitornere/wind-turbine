@@ -6,5 +6,6 @@ router = routers.DefaultRouter()
 router.register(r'turbine-data', views.TurbineDataViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls), name='turbine-data')
+    url(r'^', include(router.urls), name='turbine-data'),
+    url(r'^turbine-data/last', views.getLastTurbineData, name='turbine-data-last')
 ]
