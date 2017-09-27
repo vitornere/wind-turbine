@@ -6,12 +6,14 @@ import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform
 
 import { AppComponent } from './app.component';
 import { TurbineDataComponent } from './components/turbine-data/turbine-data.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TurbineDataComponent,
-    SideBarComponent
+    SideBarComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
