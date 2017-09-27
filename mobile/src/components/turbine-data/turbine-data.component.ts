@@ -1,8 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
+import { NavController } from 'ionic-angular';
+
+import { GraphicPage } from './../../pages/graphic/graphic.page';
 
 @Component({
   selector: 'turbine-data',
-  templateUrl: 'turbine-data.html'
+  templateUrl: 'turbine-data.component.html'
 })
 export class TurbineDataComponent implements OnDestroy {
 
@@ -10,28 +13,32 @@ export class TurbineDataComponent implements OnDestroy {
   updateData: any;
   clickMessage = 'Teste';
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
     this.turbine_datas =
       [
         {
+          'id': 0,
           'image_src': 'assets/img/wind.png',
           'title': 'Velocidade do Vento',
           'subtitle': 4,
           'unity': ' m/s'
         },
         {
+          'id': 1,
           'image_src': 'assets/img/volt.png',
           'title': 'Tensão',
           'subtitle': Math.floor(Math.random() * 220),
           'unity': ' V'
         },
         {
+          'id': 2,
           'image_src': 'assets/img/tension.png',
           'title': 'Corrente',
           'subtitle': 10,
           'unity': ' A'
         },
         {
+          'id': 3,
           'image_src': 'assets/img/mppt.png',
           'title': 'Potência',
           'subtitle': 10,
@@ -46,11 +53,9 @@ export class TurbineDataComponent implements OnDestroy {
     }
   }
 
-  onClickMe(item, position) {
-    console.log(item);
-    console.log(position);
+  pushPage(item_turbine:{}, position:number): void {
+    this.navCtrl.push(GraphicPage, item_turbine)
   }
-
   setUpdateData() {
     setInterval(() => {
       var wind = Math.floor(Math.random() * (9 - 1) + 1);

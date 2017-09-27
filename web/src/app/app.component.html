@@ -1,1 +1,24 @@
-<app-nav-bar></app-nav-bar>
+<md-sidenav-container class="example-container">
+  <md-sidenav #sidenav class="example-sidenav">
+    <app-side-bar></app-side-bar>
+  </md-sidenav>
+
+  <header>
+    <nav>
+      <div class="row">
+        <div class="col s4">
+          <button type="button" md-button (click)="sidenav.open()">
+            <i class="material-icons">menu</i>
+          </button>
+        </div>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center">Aerogerador</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section>
+    <app-turbine-data></app-turbine-data>
+  </section>
+</md-sidenav-container>

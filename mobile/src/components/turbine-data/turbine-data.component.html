@@ -1,0 +1,11 @@
+<ion-card *ngFor="let item of turbine_datas; let position = index">
+  <button ion-item color="light" outline (click)="pushPage(item, position)">
+
+      <p class="card-subtitle">{{ item.subtitle }}</p>
+
+    <ion-avatar item-start>
+      <img class="img_card" src="{{ item.image_src }}"/>
+    </ion-avatar>
+</button>
+  <h2 class="card-title">{{ item.title }}</h2>
+</ion-card>

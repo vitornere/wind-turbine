@@ -1,0 +1,63 @@
+<ion-item>
+  <ion-label>Primerio ano</ion-label>
+  <ion-datetime displayFormat="YYYY" min="2010" [(ngModel)]="inputInitYear" placeholder="{{inputInitYear}}"></ion-datetime>
+</ion-item> 
+<ion-item>
+  <ion-label>Segundo ano</ion-label>
+  <ion-datetime displayFormat="YYYY" min="2010" [(ngModel)]="inputFinalYear" placeholder="{{inputFinalYear}}" ></ion-datetime>
+</ion-item> 
+
+<div class="button-centering">
+  <button ion-button round (click)="updateYear()">Gerar Gráfico</button>
+</div>
+
+<div class="col-md-6">
+
+  <canvas baseChart width="300" height="300" 
+    [hidden]="!showChart"
+    [datasets]="lineChartData" 
+    [labels]="lineChartLabels" 
+    [options]="lineChartOptions" 
+    [chartType]="lineChartType"
+    (chartHover)="chartHovered($event)" 
+    (chartClick)="chartClicked($event)">
+  </canvas>
+
+</div>
+<div class="col-md-6" [hidden]="!showChart">
+  <h1 id="pad-title">Estatísticas</h1>
+  <div class="div-stats">
+  <table class="tg">
+    <tr>
+      <th class="tg-baqh" id="th-pink" colspan="3">{{inputInitYear}}</th>
+    </tr>
+    <tr>
+      <td class="tg-vv7fp">Mês com maior pico</td>
+      <td class="tg-j0tjp">{{firstYear.stats.highStatLabel}}</td>
+      <td class="tg-j0tjp">{{firstYear.stats.highStat}}</td>
+    </tr>
+    <tr>
+      <td class="tg-e3zv">Mês com o menor pico</td>
+      <td class="tg-baqh">{{firstYear.stats.lowStatLabel}}</td>
+      <td class="tg-baqh">{{firstYear.stats.lowStat}}</td>
+    </tr>
+  </table>
+  </div>
+  <div class="div-stats">
+    <table class="tg">
+      <tr>
+        <th class="tg-baqh" id="th-blue" colspan="3">{{inputFinalYear}}</th>
+      </tr>
+      <tr>
+        <td class="tg-vv7f">Mês com maior pico</td>
+        <td class="tg-j0tj">{{secondYear.stats.highStatLabel}}</td>
+        <td class="tg-j0tj">{{secondYear.stats.highStat}}</td>
+      </tr>
+      <tr>
+        <td class="tg-e3zv">Mês com o menor pico</td>
+        <td class="tg-baqh">{{secondYear.stats.lowStatLabel}}</td>
+        <td class="tg-baqh">{{secondYear.stats.lowStat}}</td>
+      </tr>
+    </table>
+    </div>
+</div>
