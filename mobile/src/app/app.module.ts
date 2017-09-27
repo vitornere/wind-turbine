@@ -3,8 +3,9 @@ import { BaseGraphicComponent } from './../components/base-graphic/base-graphic.
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http'
+import { BancadaOnline } from './app.component';
+
 import { AboutPage } from '../pages/about/about';
 import { HistoryPage } from './../pages/history/history';
 import { HomePage } from '../pages/home/home';
@@ -19,7 +20,7 @@ import { TurbineDataService } from '../providers/turbine-data-service/turbine-da
 
 @NgModule({
   declarations: [
-    MyApp,
+    BancadaOnline,
     AboutPage,
     HistoryPage,
     GraphicPage,
@@ -31,13 +32,13 @@ import { TurbineDataService } from '../providers/turbine-data-service/turbine-da
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(BancadaOnline),
     ChartsModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    BancadaOnline,
     AboutPage,
     HistoryPage,
     HomePage,
