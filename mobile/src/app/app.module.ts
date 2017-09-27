@@ -3,7 +3,7 @@ import { BaseGraphicComponent } from './../components/base-graphic/base-graphic.
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { BancadaOnline } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { HistoryPage } from './../pages/history/history';
@@ -18,7 +18,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   declarations: [
-    MyApp,
+    BancadaOnline,
     AboutPage,
     HistoryPage,
     GraphicPage,
@@ -30,12 +30,12 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(BancadaOnline),
     ChartsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    BancadaOnline,
     AboutPage,
     HistoryPage,
     HomePage,
