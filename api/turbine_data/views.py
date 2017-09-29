@@ -15,7 +15,16 @@ def getLastTurbineData(response):
             return Response(serialize.data, status.HTTP_200_OK)
         else:
             return Response({}, status.HTTP_200_OK)
-    
+
+@api_view(['GET'])
+def getTurbineDataByDate(response, start_date, finish_date):
+    turbineData = TurbineData.objects.filter(date__year__range=(start_date, finish_date))
+
+    if turbineData is not None:
+        return Response(turbineData.values(), status.HTTP_200_OK)        
+    else:
+        return Response({}, status.HTTP_404_OK)
+
 class TurbineDataViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allow TurbineData to be viewed or edited.
