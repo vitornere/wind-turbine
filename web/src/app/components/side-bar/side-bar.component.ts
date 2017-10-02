@@ -16,8 +16,11 @@ export class SideBarComponent implements OnInit {
   }
 
   home() {
-    console.log('sdalkjdaslkj');
     this.router.navigate(['']);
+  }
+
+  historic() {
+    this.router.navigate(['historic']);
   }
 
 }
