@@ -4,28 +4,71 @@
     <form [formGroup]="firstFormGroup">
       <ng-template mdStepLabel>Escolha as informações</ng-template>
       <md-form-field>
-        <input mdInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        <div class="row">
+          <div id="seletor" class="col s6 offset-s3">
+            <div class="col s12 m6 l3 seletorBotao">
+              <md-checkbox class="example-margin" formControlName="vento" [(ngModel)]="vento">Velocidade do Vento</md-checkbox>
+            </div>
+            <div class="col s12 m6 l3 seletorBotao">
+              <md-checkbox class="example-margin" formControlName="tensao" [(ngModel)]="tensao">Tensão</md-checkbox>
+            </div>
+            <div class="col s12 m6 l3 seletorBotao">
+              <md-checkbox class="example-margin" formControlName="corrente" [(ngModel)]="corrente">Corrente</md-checkbox>
+            </div>
+            <div class="col s12 m6 l3 seletorBotao">
+              <md-checkbox class="example-margin" formControlName="potencia" [(ngModel)]="potencia">Potência</md-checkbox>
+            </div>
+          </div>
+        </div>
       </md-form-field>
       <div>
-        <button md-button mdStepperNext>Próximo</button>
+        
+      </div>
+      <div>
+        <button md-button mdStepperNext [disabled]="!(vento || tensao || corrente || potencia)">Próximo</button>
       </div>
     </form>
   </md-step>
   <md-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template mdStepLabel>Selecione o período</ng-template>
-      <md-form-field>
-        <input mdInput placeholder="Address" formControlName="secondCtrl" required>
-      </md-form-field>
+      <div class="row">
+        <md-form-field class="col s6 offset-s3">
+          <input mdInput [mdDatepicker]="picker" placeholder="Selecione o início">
+          <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+          <md-datepicker #picker></md-datepicker>
+        </md-form-field>
+      </div>
       <div>
         <button md-button mdStepperPrevious>Voltar</button>
         <button md-button mdStepperNext>Próximo</button>
       </div>
     </form>
   </md-step>
+  <md-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template mdStepLabel>Selecione o período</ng-template>
+      <div class="row">
+        <md-form-field class="col s6 offset-s3">
+          <input mdInput [mdDatepicker]="picker1" placeholder="Selecione o fim">
+          <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+          <md-datepicker #picker1></md-datepicker>
+        </md-form-field>
+      </div>
+      <div>
+        <button md-button mdStepperPrevious>Voltar</button>
+        <button md-button mdStepperNext>Próximo</button>
+      </div>
+    </form>
+  </md-step>
+  1
   <md-step>
     <ng-template mdStepLabel>Feito</ng-template>
-    Relatório criado com sucesso!
+    <div class="row">
+      <div class="col s6 offset-s3" style="text-align: center;">
+        <span>Relatório criado com sucesso! </span>
+      </div>
+    </div>
     <div>
       <button md-button mdStepperPrevious>Voltar</button>
     </div>
