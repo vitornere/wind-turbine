@@ -1,5 +1,5 @@
 <button (click)="isLinear=!isLinear" id="toggle-linear">Enable linear</button>
-<md-horizontal-stepper [linear]="isLinear">
+<md-vertical-stepper [linear]="isLinear">
   <md-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template mdStepLabel>Escolha as informações</ng-template>
@@ -31,12 +31,12 @@
   </md-step>
   <md-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template mdStepLabel>Selecione o período</ng-template>
+      <ng-template mdStepLabel>Início do período</ng-template>
       <div class="row">
         <md-form-field class="col s6 offset-s3">
           <input mdInput [mdDatepicker]="picker" placeholder="Selecione o início">
           <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-          <md-datepicker #picker></md-datepicker>
+          <md-datepicker startView="year" touchUi="true" #picker></md-datepicker>
         </md-form-field>
       </div>
       <div>
@@ -47,12 +47,12 @@
   </md-step>
   <md-step [stepControl]="thirdFormGroup">
     <form [formGroup]="thirdFormGroup">
-      <ng-template mdStepLabel>Selecione o período</ng-template>
+      <ng-template mdStepLabel>Fim do período</ng-template>
       <div class="row">
         <md-form-field class="col s6 offset-s3">
           <input mdInput [mdDatepicker]="picker1" placeholder="Selecione o fim">
           <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
-          <md-datepicker #picker1></md-datepicker>
+          <md-datepicker startView="year" touchUi="true" #picker1></md-datepicker>
         </md-form-field>
       </div>
       <div>
@@ -67,10 +67,11 @@
     <div class="row">
       <div class="col s6 offset-s3" style="text-align: center;">
         <span>Relatório criado com sucesso! </span>
+        <i class="material-icons">file_download</i>
       </div>
     </div>
     <div>
       <button md-button mdStepperPrevious>Voltar</button>
     </div>
   </md-step>
-</md-horizontal-stepper>
+</md-vertical-stepper>

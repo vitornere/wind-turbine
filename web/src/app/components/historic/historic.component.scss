@@ -10,3 +10,24 @@
 .seletorBotao {
     text-align: center;
 }
+
+i {
+    font-size: 30px !important;
+    position: relative;
+    margin-left: 10px;
+    top: 10px;
+    border-radius: 50%;
+    background: #FD6868;
+    padding:10px;
+}
+
+i:hover { 
+    background-color: #ffc0c0;
+    transition: 0.5s;
+}
+
+@media only screen and (max-width: 1080px) {
+    .seletorBotao {
+        text-align: left !important;
+    }
+}
