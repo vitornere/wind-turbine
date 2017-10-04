@@ -17,8 +17,8 @@ def getLastTurbineData(response):
             return Response({}, status.HTTP_200_OK)
 
 @api_view(['GET'])
-def getTurbineDataByDate(response, start_date, finish_date):
-    turbineData = TurbineData.objects.filter(date__year__range=(start_date, finish_date))
+def getTurbineDataByDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day ):
+    turbineData = TurbineData.objects.filter(date__year__range=(start_year, finish_year))
 
     if turbineData is not None:
         return Response(turbineData.values(), status.HTTP_200_OK)        
