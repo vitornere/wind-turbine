@@ -14,8 +14,15 @@ export class HistoricComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new ExampleDataSource();
+
+  frequency = [
+    {value: 'horaemhora', viewValue: 'De hora em hora'},
+    {value: 'diaemdia', viewValue: 'Diário'},
+    {value: 'semanaemsemana', viewValue: 'Semanalmente'}
+  ];
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -32,6 +39,9 @@ export class HistoricComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required]
     });
   }
 }

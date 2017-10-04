@@ -2,7 +2,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatSidenavModule, MdButtonModule, MdCheckboxModule, MatStepperModule, MdDatepickerModule, MdNativeDateModule, MdTableModule } from '@angular/material';
+import { MatSidenavModule, MdButtonModule, MdCheckboxModule, MatStepperModule, MdDatepickerModule, MdNativeDateModule, MdTableModule, MdSelectModule } from '@angular/material';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -35,6 +35,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MdNativeDateModule,
     CdkTableModule,
     MdTableModule,
+    MdSelectModule
   ],
   exports: [
     MdButtonModule,

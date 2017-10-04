@@ -61,7 +61,24 @@
       </div>
     </form>
   </md-step>
-  1
+  <md-step [stepControl]="fourthFormGroup">
+      <form [formGroup]="fourthFormGroup">
+        <ng-template mdStepLabel>Frequência dos dados</ng-template>
+        <div class="row">
+          <md-form-field class="col s5 offset-s4">
+              <md-select placeholder="Informa a frequência">
+                  <md-option *ngFor="let frequency of frequency" [value]="frequency.value">
+                    {{ frequency.viewValue }}
+                  </md-option>
+                </md-select>
+          </md-form-field>
+        </div>
+        <div>
+          <button md-button mdStepperPrevious>Voltar</button>
+          <button md-button mdStepperNext>Próximo</button>
+        </div>
+      </form>
+    </md-step>
   <md-step>
     <ng-template mdStepLabel>Feito</ng-template>
     <div class="row">
