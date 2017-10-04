@@ -15,6 +15,8 @@ export class HistoricComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
   displayedColumns = ['position', 'data', 'velocidadeDoVento', 'tensao', 'corrente', 'potencia'];
   dataSource = new ExampleDataSource();
 
