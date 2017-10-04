@@ -15,7 +15,7 @@ export class HistoricComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = ['position', 'data', 'velocidadeDoVento', 'tensao', 'corrente', 'potencia'];
   dataSource = new ExampleDataSource();
 
   frequency = [
@@ -47,33 +47,35 @@ export class HistoricComponent implements OnInit {
 }
 
 export interface Element {
-  name: string;
   position: number;
-  weight: number;
-  symbol: string;
+  data: string;
+  velocidadeDoVento: number;
+  tensao: string;
+  corrente: string;
+  potencia: string;
 }
 
 const data: Element[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+  {position: 1, data: 'Hydrogen', velocidadeDoVento: 1.0079, tensao: 'H', corrente:'teste', potencia:'teste'},
+  {position: 2, data: 'Helium', velocidadeDoVento: 4.0026, tensao: 'He', corrente:'teste', potencia:'teste'},
+  {position: 3, data: 'Lithium', velocidadeDoVento: 6.941, tensao: 'Li', corrente:'teste', potencia:'teste'},
+  {position: 4, data: 'Beryllium', velocidadeDoVento: 9.0122, tensao: 'Be', corrente:'teste', potencia:'teste'},
+  {position: 5, data: 'Boron', velocidadeDoVento: 10.811, tensao: 'B', corrente:'teste', potencia:'teste'},
+  {position: 6, data: 'Carbon', velocidadeDoVento: 12.0107, tensao: 'C', corrente:'teste', potencia:'teste'},
+  {position: 7, data: 'Nitrogen', velocidadeDoVento: 14.0067, tensao: 'N', corrente:'teste', potencia:'teste'},
+  {position: 8, data: 'Oxygen', velocidadeDoVento: 15.9994, tensao: 'O', corrente:'teste', potencia:'teste'},
+  {position: 9, data: 'Fluorine', velocidadeDoVento: 18.9984, tensao: 'F', corrente:'teste', potencia:'teste'},
+  {position: 10, data: 'Neon', velocidadeDoVento: 20.1797, tensao: 'Ne', corrente:'teste', potencia:'teste'},
+  {position: 11, data: 'Sodium', velocidadeDoVento: 22.9897, tensao: 'Na', corrente:'teste', potencia:'teste'},
+  {position: 12, data: 'Magnesium', velocidadeDoVento: 24.305, tensao: 'Mg', corrente:'teste', potencia:'teste'},
+  {position: 13, data: 'Aluminum', velocidadeDoVento: 26.9815, tensao: 'Al', corrente:'teste', potencia:'teste'},
+  {position: 14, data: 'Silicon', velocidadeDoVento: 28.0855, tensao: 'Si', corrente:'teste', potencia:'teste'},
+  {position: 15, data: 'Phosphorus', velocidadeDoVento: 30.9738, tensao: 'P', corrente:'teste', potencia:'teste'},
+  {position: 16, data: 'Sulfur', velocidadeDoVento: 32.065, tensao: 'S', corrente:'teste', potencia:'teste'},
+  {position: 17, data: 'Chlorine', velocidadeDoVento: 35.453, tensao: 'Cl', corrente:'teste', potencia:'teste'},
+  {position: 18, data: 'Argon', velocidadeDoVento: 39.948, tensao: 'Ar', corrente:'teste', potencia:'teste'},
+  {position: 19, data: 'Potassium', velocidadeDoVento: 39.0983, tensao: 'K', corrente:'teste', potencia:'teste'},
+  {position: 20, data: 'Calcium', velocidadeDoVento: 40.078, tensao: 'Ca', corrente:'teste', potencia:'teste'},
 ];
 
 /**

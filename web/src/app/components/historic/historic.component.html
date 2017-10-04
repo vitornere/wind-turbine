@@ -1,21 +1,22 @@
 <button (click)="isLinear=!isLinear" id="toggle-linear">Enable linear</button>
+<div class="container">
 <md-vertical-stepper [linear]="isLinear">
   <md-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template mdStepLabel>Escolha as informações</ng-template>
       <md-form-field>
         <div class="row">
-          <div id="seletor" class="col s6 offset-s3">
-            <div class="col s12 m6 l3 seletorBotao">
+          <div id="seletor">
+            <div class="col s12 m12 l12 seletorBotao">
               <md-checkbox class="example-margin" formControlName="vento" [(ngModel)]="vento">Velocidade do Vento</md-checkbox>
             </div>
-            <div class="col s12 m6 l3 seletorBotao">
+            <div class="col s12 m12 l12 seletorBotao">
               <md-checkbox class="example-margin" formControlName="tensao" [(ngModel)]="tensao">Tensão</md-checkbox>
             </div>
-            <div class="col s12 m6 l3 seletorBotao">
+            <div class="col s12 m12 l12 seletorBotao">
               <md-checkbox class="example-margin" formControlName="corrente" [(ngModel)]="corrente">Corrente</md-checkbox>
             </div>
-            <div class="col s12 m6 l3 seletorBotao">
+            <div class="col s12 m12 l12 seletorBotao">
               <md-checkbox class="example-margin" formControlName="potencia" [(ngModel)]="potencia">Potência</md-checkbox>
             </div>
           </div>
@@ -33,7 +34,7 @@
     <form [formGroup]="secondFormGroup">
       <ng-template mdStepLabel>Início do período</ng-template>
       <div class="row">
-        <md-form-field class="col s6 offset-s3">
+        <md-form-field class="col l4 m6 s8 offset-s0">
           <input mdInput [mdDatepicker]="picker" placeholder="Selecione o início">
           <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
           <md-datepicker startView="year" touchUi="true" #picker></md-datepicker>
@@ -49,7 +50,7 @@
     <form [formGroup]="thirdFormGroup">
       <ng-template mdStepLabel>Fim do período</ng-template>
       <div class="row">
-        <md-form-field class="col s6 offset-s3">
+        <md-form-field class="col l4 m6 s8 offset-s0">
           <input mdInput [mdDatepicker]="picker1" placeholder="Selecione o fim">
           <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
           <md-datepicker startView="year" touchUi="true" #picker1></md-datepicker>
@@ -65,7 +66,7 @@
       <form [formGroup]="fourthFormGroup">
         <ng-template mdStepLabel>Frequência dos dados</ng-template>
         <div class="row">
-          <md-form-field class="col s5 offset-s4">
+          <md-form-field class="col l4 m6 s8 offset-s0">
               <md-select placeholder="Informa a frequência">
                   <md-option *ngFor="let frequency of frequency" [value]="frequency.value">
                     {{ frequency.viewValue }}
@@ -82,7 +83,7 @@
   <md-step>
     <ng-template mdStepLabel>Feito</ng-template>
     <div class="row">
-      <div class="col s6 offset-s3" style="text-align: center;">
+      <div class="col s12 offset-s0" style="text-align: center;">
         <span>Relatório criado com sucesso! </span>
         <i class="material-icons">file_download</i>
       </div>
@@ -92,37 +93,52 @@
     </div>
   </md-step>
 </md-vertical-stepper>
+</div>
+<div class="container">
 <div class="example-container mat-elevation-z8">
   <md-table #table [dataSource]="dataSource">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Position Column -->
+    <!-- posicao Column -->
     <ng-container mdColumnDef="position">
       <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
       <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container mdColumnDef="name">
-      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+    <!-- data Column -->
+    <ng-container mdColumnDef="data">
+      <md-header-cell *mdHeaderCellDef> Data </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.data}} </md-cell>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container mdColumnDef="weight">
-      <md-header-cell *mdHeaderCellDef> Weight </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.weight}} </md-cell>
+    <!-- velocidadeDoVento Column -->
+    <ng-container mdColumnDef="velocidadeDoVento">
+      <md-header-cell *mdHeaderCellDef> Velocidade do Vento </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.velocidadeDoVento}} </md-cell>
     </ng-container>
 
-    <!-- Color Column -->
-    <ng-container mdColumnDef="symbol">
-      <md-header-cell *mdHeaderCellDef> Symbol </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.symbol}} </md-cell>
+    <!-- Tensão Column -->
+    <ng-container mdColumnDef="tensao">
+      <md-header-cell *mdHeaderCellDef> Tensão </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.tensao}} </md-cell>
     </ng-container>
+
+    <!-- Corrente Column -->
+    <ng-container mdColumnDef="corrente">
+        <md-header-cell *mdHeaderCellDef> Corrente </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.corrente}} </md-cell>
+      </ng-container>
+
+    <!-- Potência Column -->
+    <ng-container mdColumnDef="potencia">
+        <md-header-cell *mdHeaderCellDef> Potência </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.potencia}} </md-cell>
+      </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
+</div>
 </div>
