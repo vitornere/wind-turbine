@@ -4,6 +4,7 @@ from .serializers import TurbineDataSerializer
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
+import datetime
 
 @api_view(['GET'])
 def getLastTurbineData(response):
@@ -17,8 +18,15 @@ def getLastTurbineData(response):
             return Response({}, status.HTTP_200_OK)
 
 @api_view(['GET'])
-def getTurbineDataByDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day ):
-    turbineData = TurbineData.objects.filter(date__year__range=(start_year, finish_year))
+def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day ):
+    #turbineData = TurbineData.objects.filter(date__year__range=(start_year, finish_year))
+
+    turbineData = TurbineData.objects.filter(
+        date__range=(
+            datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),
+            datetime.datetime(int(finish_year), int(finish_month), int(finish_day), 23, 59, 59) 
+        )
+    )
 
     if turbineData is not None:
         return Response(turbineData.values(), status.HTTP_200_OK)        
