@@ -4,7 +4,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { HttpModule } from '@angular/http'
 import { AboutPage } from '../pages/about/about';
 import { HistoryPage } from './../pages/history/history';
 import { HomePage } from '../pages/home/home';
@@ -15,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartComponent } from '../components/chart/chart.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { TurbineDataService } from '../providers/turbine-data-service/turbine-data-service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     ChartsModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,7 +50,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TurbineDataService
   ]
 })
 export class AppModule {}
