@@ -53,6 +53,20 @@ def getTurbineDataByMonth(response, year, start_month, finish_month ):
     else:
         return Response({}, status.HTTP_404_OK)
 
+@api_view(['GET'])
+def getTurbineDataByDay(response, start_year, start_month, start_day):
+    turbineData = TurbineData.objects.filter(
+        date__range=(
+            datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),
+            datetime.datetime(int(start_year), int(start_month), int(start_day), 23, 59, 59) 
+        )
+    )
+    if turbineData is not None:
+        return Response(turbineData.values(), status.HTTP_200_OK)        
+    else:
+        return Response({}, status.HTTP_404_OK)
+
+
 class TurbineDataViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allow TurbineData to be viewed or edited.
