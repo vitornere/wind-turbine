@@ -24,3 +24,108 @@
 .card .card-action:last-child {
     background-color: #F2F2F2;
 }
+
+@media only screen  and (max-width: 400px) {
+    .card.small {
+        height: 122px;
+    }
+
+    .card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    right: 0;
+    margin-top: 8px;
+    margin-left: 130px;
+    bottom: 0;
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    }
+
+    .card .card-content p  {
+        margin-top: -60px;
+        position: absolute;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 401px) {
+    .card.small {
+        height: 140px;
+    }
+
+    .card .card-image img {
+        display: block;
+        border-radius: 2px 2px 0 0;
+        position: relative;
+        right: 0;
+        margin-top: 8px;
+        margin-left: 130px;
+        bottom: 0;
+        height: 55px;
+        width: 55px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        }
+
+        .card .card-content p  {
+            margin-top: -60px;
+            position: absolute;
+        }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 701px) and (orientation:landscape) {
+
+.card.small {
+    height: 140px;
+}
+
+.card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    right: 0;
+    margin-top: 8px;
+    margin-left: 130px;
+    bottom: 0;
+    height: 55px;
+    width: 55px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    }
+
+    .card .card-content p  {
+        margin-top: -60px;
+        position: absolute;
+    }
+}
+
+@media only screen and (max-width: 700px) and (orientation:landscape) {
+    .card.small {
+        height: 122px;
+    }
+
+    .card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    right: 0;
+    margin-top: 8px;
+    margin-left: 130px;
+    bottom: 0;
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    }
+
+    .card .card-content p  {
+        margin-top: -60px;
+        position: absolute;
+    }
+}

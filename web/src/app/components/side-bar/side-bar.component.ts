@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() {
-   }
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit() {
+  }
+
+  home() {
+    this.router.navigate(['']);
+  }
+
+  historic() {
+    this.router.navigate(['historic']);
   }
 
 }

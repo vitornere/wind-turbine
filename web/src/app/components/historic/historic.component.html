@@ -1,0 +1,146 @@
+<button (click)="isLinear=!isLinear" id="toggle-linear">Enable linear</button>
+<div class="container">
+  <md-vertical-stepper [linear]="isLinear">
+    <md-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template mdStepLabel>Escolha as informações</ng-template>
+        <md-form-field>
+          <div class="row">
+            <div id="seletor">
+              <div class="col s12 m12 l12 seletorBotao">
+                <md-checkbox class="example-margin" formControlName="vento" [(ngModel)]="vento">Velocidade do Vento</md-checkbox>
+              </div>
+              <div class="col s12 m12 l12 seletorBotao">
+                <md-checkbox class="example-margin" formControlName="tensao" [(ngModel)]="tensao">Tensão</md-checkbox>
+              </div>
+              <div class="col s12 m12 l12 seletorBotao">
+                <md-checkbox class="example-margin" formControlName="corrente" [(ngModel)]="corrente">Corrente</md-checkbox>
+              </div>
+              <div class="col s12 m12 l12 seletorBotao">
+                <md-checkbox class="example-margin" formControlName="potencia" [(ngModel)]="potencia">Potência</md-checkbox>
+              </div>
+            </div>
+          </div>
+        </md-form-field>
+        <div>
+
+        </div>
+        <div>
+          <button md-button mdStepperNext [disabled]="!(vento || tensao || corrente || potencia)">Próximo</button>
+        </div>
+      </form>
+    </md-step>
+    <md-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template mdStepLabel>Início do período</ng-template>
+        <div class="row">
+          <md-form-field class="col l4 m6 s8 offset-s0">
+            <input [min]="minDate" [max]="maxDate" mdInput [mdDatepicker]="picker" placeholder="Selecione o início">
+            <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+            <md-datepicker startView="year" touchUi="true" #picker></md-datepicker>
+          </md-form-field>
+        </div>
+        <div>
+          <button md-button mdStepperPrevious>Voltar</button>
+          <button md-button mdStepperNext>Próximo</button>
+        </div>
+      </form>
+    </md-step>
+    <md-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template mdStepLabel>Fim do período</ng-template>
+        <div class="row">
+          <md-form-field class="col l4 m6 s8 offset-s0">
+            <input [min]="minDate" [max]="maxDate" mdInput [mdDatepicker]="picker1" placeholder="Selecione o fim">
+            <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+            <md-datepicker startView="year" touchUi="true" #picker1></md-datepicker>
+          </md-form-field>
+        </div>
+        <div>
+          <button md-button mdStepperPrevious>Voltar</button>
+          <button md-button mdStepperNext>Próximo</button>
+        </div>
+      </form>
+    </md-step>
+    <md-step [stepControl]="fourthFormGroup">
+      <form [formGroup]="fourthFormGroup">
+        <ng-template mdStepLabel>Frequência dos dados</ng-template>
+        <div class="row">
+          <md-form-field class="col l4 m6 s8 offset-s0">
+            <md-select placeholder="Informa a frequência">
+              <md-option *ngFor="let frequency of frequency" [value]="frequency.value">
+                {{ frequency.viewValue }}
+              </md-option>
+            </md-select>
+          </md-form-field>
+        </div>
+        <div>
+          <button md-button mdStepperPrevious>Voltar</button>
+          <button md-button mdStepperNext>Próximo</button>
+        </div>
+      </form>
+    </md-step>
+    <md-step>
+      <ng-template mdStepLabel>Feito</ng-template>
+      <div class="row">
+        <div class="col s12 offset-s0" style="text-align: center;">
+          <span>Relatório criado com sucesso! </span>
+          <i class="material-icons">file_download</i>
+        </div>
+      </div>
+      <div>
+        <button md-button mdStepperPrevious>Voltar</button>
+      </div>
+    </md-step>
+  </md-vertical-stepper>
+</div>
+<div class="container">
+  <div class="example-container mat-elevation-z8">
+    <md-table #table [dataSource]="dataSource">
+
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- posicao Column -->
+      <ng-container mdColumnDef="position">
+        <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+      </ng-container>
+
+      <!-- data Column -->
+      <ng-container mdColumnDef="data">
+        <md-header-cell *mdHeaderCellDef> Data </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.data}} </md-cell>
+      </ng-container>
+
+      <!-- velocidadeDoVento Column -->
+      <ng-container mdColumnDef="velocidadeDoVento">
+        <md-header-cell *mdHeaderCellDef> Velocidade do Vento </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.velocidadeDoVento}} </md-cell>
+      </ng-container>
+
+      <!-- Tensão Column -->
+      <ng-container mdColumnDef="tensao">
+        <md-header-cell *mdHeaderCellDef> Tensão </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.tensao}} </md-cell>
+      </ng-container>
+
+      <!-- Corrente Column -->
+      <ng-container mdColumnDef="corrente">
+        <md-header-cell *mdHeaderCellDef> Corrente </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.corrente}} </md-cell>
+      </ng-container>
+
+      <!-- Potência Column -->
+      <ng-container mdColumnDef="potencia">
+        <md-header-cell *mdHeaderCellDef> Potência </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.potencia}} </md-cell>
+      </ng-container>
+
+      <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+      <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+    <md-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </md-paginator>
+  </div>
+</div>
