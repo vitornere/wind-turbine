@@ -1,3 +1,23 @@
 page-about {
+.fa {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 25px;
+}
+
+a {
+    transition: .5s;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.5;
+    
+}
+
+ion-card img {
+    width: 80%;
+    margin-left: 20px;
+}
 
 }
