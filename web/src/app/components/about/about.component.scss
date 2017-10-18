@@ -2,6 +2,16 @@
     background-color: #F2F2F2 !important;
 }
 
+a {
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.5;
+    
+}
+
 .white-text {
     color: black !important;
 }
