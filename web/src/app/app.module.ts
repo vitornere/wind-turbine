@@ -1,8 +1,8 @@
+import { CustomMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatSidenavModule, MdButtonModule, MdCheckboxModule, MatStepperModule, MdDatepickerModule, MdNativeDateModule, MdTableModule, MdSelectModule, MatPaginatorModule } from '@angular/material';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -10,7 +10,6 @@ import { TurbineDataComponent } from './components/turbine-data/turbine-data.com
 import { ChartComponent } from './components/chart/chart.component';
 import { HistoricComponent } from './components/historic/historic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CdkTableModule } from '@angular/cdk/table';
 import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
@@ -26,24 +25,12 @@ import { AboutComponent } from './components/about/about.component';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    CustomMaterialModule,
     NoopAnimationsModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MatSidenavModule,
-    MatStepperModule,
     FormsModule,
-    ReactiveFormsModule,
-    MdDatepickerModule,
-    MdNativeDateModule,
-    CdkTableModule,
-    MdTableModule,
-    MdSelectModule,
-    MatPaginatorModule
+    ReactiveFormsModule
   ],
   exports: [
-    MdButtonModule,
-    MdCheckboxModule,
-    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
