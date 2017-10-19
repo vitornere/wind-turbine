@@ -18,7 +18,7 @@ export class TurbineDataService {
   }
 
   public getLastTurbineData(): Observable<TurbineDataModel> {
-    const apiUrl = environment.apiURL + '/turbine-data/last';
+    const apiUrl = environment.apiURL + '/last';
 
     return this.http.get(apiUrl)
       .map(res => res.json());
