@@ -11,6 +11,7 @@ import { ChartComponent } from './components/chart/chart.component';
 import { HistoricComponent } from './components/historic/historic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     TurbineDataComponent,
     SideBarComponent,
     ChartComponent,
-    HistoricComponent
+    HistoricComponent,
+    AboutComponent
   ],
   imports: [
     AppRoutingModule,

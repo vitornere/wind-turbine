@@ -23,4 +23,8 @@ export class SideBarComponent implements OnInit {
     this.router.navigate(['historic']);
   }
 
+  about() {
+    this.router.navigate(['about']);
+  }
+
 }

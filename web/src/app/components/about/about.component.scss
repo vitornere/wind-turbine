@@ -1,0 +1,40 @@
+.blue-grey.darken-1 {
+    background-color: #F2F2F2 !important;
+}
+
+a {
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.5;
+    
+}
+
+.white-text {
+    color: black !important;
+}
+
+.fa-github {
+    font-size: 25px;
+    margin-right: 5px;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+    color: #488aff !important;
+}
+
+img {
+    margin-bottom: -4px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+@media only screen  and (max-width: 700px) {
+    img {
+        margin-top: 10px;
+    }
+}
