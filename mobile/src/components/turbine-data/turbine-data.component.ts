@@ -25,6 +25,7 @@ export class TurbineDataComponent implements OnDestroy {
     private navCtrl: NavController,
     private turbineDataService: TurbineDataService
   ) {
+    /*
     this.turbineDataService.getLastTurbineData()
       .subscribe((res: TurbineDataModel) => {
         this.turbine_datas =
@@ -59,6 +60,39 @@ export class TurbineDataComponent implements OnDestroy {
             },
           ]
       });
+      */
+
+    this.turbine_datas =
+      [
+        {
+          id: 0,
+          image_src: 'assets/img/wind.png',
+          title: 'Velocidade do Vento',
+          subtitle: Math.floor(Math.random() * (9 - 1) + 1),
+          unity: ' m/s'
+        },
+        {
+          id: 1,
+          image_src: 'assets/img/volt.png',
+          title: 'Tensão',
+          subtitle: Math.floor(Math.random() * (150 - 1) + 1),
+          unity: ' V'
+        },
+        {
+          id: 2,
+          image_src: 'assets/img/tension.png',
+          title: 'Corrente',
+          subtitle: Math.floor(Math.random() * (10 - 1) + 1),
+          unity: ' A'
+        },
+        {
+          id: 3,
+          image_src: 'assets/img/mppt.png',
+          title: 'Máxima Potência',
+          subtitle: Math.floor(Math.random() * (10 - 1) + 1),
+          unity: ' W'
+        },
+      ]
 
     this.updateData = this.setUpdateData();
   }
@@ -68,11 +102,12 @@ export class TurbineDataComponent implements OnDestroy {
     }
   }
 
-  pushPage(item_turbine:{}, position:number): void {
+  pushPage(item_turbine: {}, position: number): void {
     this.navCtrl.push(GraphicPage, item_turbine)
   }
   setUpdateData() {
     setInterval(() => {
+      /*
       this.turbineDataService.getLastTurbineData()
         .subscribe((res: TurbineDataModel) => {
           this.turbine_datas[0].subtitle = res.wind_speed;
@@ -80,6 +115,11 @@ export class TurbineDataComponent implements OnDestroy {
           this.turbine_datas[2].subtitle = res.electric_current;
           this.turbine_datas[3].subtitle = res.mppt;
         });
+      */
+      this.turbine_datas[0].subtitle = Math.floor(Math.random() * (9 - 1) + 1);
+      this.turbine_datas[1].subtitle = Math.floor(Math.random() * (150 - 1) + 1);
+      this.turbine_datas[2].subtitle = Math.floor(Math.random() * (10 - 1) + 1);
+      this.turbine_datas[3].subtitle = this.turbine_datas[2].subtitle + this.turbine_datas[3].subtitle;
     }, 2000);
   }
 }

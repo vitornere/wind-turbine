@@ -1,3 +1,5 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomMaterialModule } from './material.module';
 import { TurbineDataComponent } from './../components/turbine-data/turbine-data.component';
 import { BaseGraphicComponent } from './../components/base-graphic/base-graphic.component';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -32,9 +34,11 @@ import { TurbineDataService } from '../providers/turbine-data-service/turbine-da
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(BancadaOnline),
     ChartsModule,
-    HttpModule
+    HttpModule,
+    CustomMaterialModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
