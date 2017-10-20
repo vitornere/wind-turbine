@@ -1,7 +1,15 @@
-
 export class TurbineDataModel {
-  wind_speed: number;
-  electric_voltage: number;
-  electric_current: number;
-  mppt: number;
+  id: number;
+  image_src: string;
+  title: string;
+  subtitle: number;
+  unity: string;
+
+  constructor(id: number, image_src: string, title: string, subtitle: number, unity: string) {
+    this.id = id;
+    this.image_src = image_src;
+    this.title = title;
+    this.subtitle = subtitle;
+    this.unity = unity;
+  }
 }
