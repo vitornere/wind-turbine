@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import {DataSource} from '@angular/cdk/collections';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 
 @Component({
   selector: 'app-historic',
@@ -21,9 +23,9 @@ export class HistoricComponent implements OnInit {
   dataSource = new ExampleDataSource();
 
   frequency = [
-    {value: 'horaemhora', viewValue: 'De hora em hora'},
-    {value: 'diaemdia', viewValue: 'Diário'},
-    {value: 'semanaemsemana', viewValue: 'Semanalmente'}
+    { value: 'horaemhora', viewValue: 'De hora em hora' },
+    { value: 'diaemdia', viewValue: 'Diário' },
+    { value: 'semanaemsemana', viewValue: 'Semanalmente' }
   ];
 
   constructor(private _formBuilder: FormBuilder) { }
@@ -46,6 +48,45 @@ export class HistoricComponent implements OnInit {
       fourthCtrl: ['', Validators.required]
     });
   }
+
+  // Ignore tslint and use "" not ''
+  download() {
+    const data = [
+      {
+        name: "Test 1",
+        age: 13,
+        average: 8.2,
+        approved: true,
+        description: "using data here"
+      },
+      {
+        name: "Test 2",
+        age: 11,
+        average: 8.2,
+        approved: true,
+        description: "using data here"
+      },
+      {
+        name: "Test 4",
+        age: 10,
+        average: 8.2,
+        approved: true,
+        description: "using data here"
+      },
+    ];
+    const header = ["name", "age", "average", "approved", "description"];
+    const options = {
+      fieldSeparator: ';',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true,
+      showTitle: true,
+      headers: (header),
+      title: 'teste'
+
+    };
+    new Angular2Csv(data, 'turbine_data', options);
+  }
 }
 
 export interface Element {
@@ -58,26 +99,26 @@ export interface Element {
 }
 
 const data: Element[] = [
-  {position: 1, data: 'Hydrogen', velocidadeDoVento: 1.0079, tensao: 'H', corrente:'teste', potencia:'teste'},
-  {position: 2, data: 'Helium', velocidadeDoVento: 4.0026, tensao: 'He', corrente:'teste', potencia:'teste'},
-  {position: 3, data: 'Lithium', velocidadeDoVento: 6.941, tensao: 'Li', corrente:'teste', potencia:'teste'},
-  {position: 4, data: 'Beryllium', velocidadeDoVento: 9.0122, tensao: 'Be', corrente:'teste', potencia:'teste'},
-  {position: 5, data: 'Boron', velocidadeDoVento: 10.811, tensao: 'B', corrente:'teste', potencia:'teste'},
-  {position: 6, data: 'Carbon', velocidadeDoVento: 12.0107, tensao: 'C', corrente:'teste', potencia:'teste'},
-  {position: 7, data: 'Nitrogen', velocidadeDoVento: 14.0067, tensao: 'N', corrente:'teste', potencia:'teste'},
-  {position: 8, data: 'Oxygen', velocidadeDoVento: 15.9994, tensao: 'O', corrente:'teste', potencia:'teste'},
-  {position: 9, data: 'Fluorine', velocidadeDoVento: 18.9984, tensao: 'F', corrente:'teste', potencia:'teste'},
-  {position: 10, data: 'Neon', velocidadeDoVento: 20.1797, tensao: 'Ne', corrente:'teste', potencia:'teste'},
-  {position: 11, data: 'Sodium', velocidadeDoVento: 22.9897, tensao: 'Na', corrente:'teste', potencia:'teste'},
-  {position: 12, data: 'Magnesium', velocidadeDoVento: 24.305, tensao: 'Mg', corrente:'teste', potencia:'teste'},
-  {position: 13, data: 'Aluminum', velocidadeDoVento: 26.9815, tensao: 'Al', corrente:'teste', potencia:'teste'},
-  {position: 14, data: 'Silicon', velocidadeDoVento: 28.0855, tensao: 'Si', corrente:'teste', potencia:'teste'},
-  {position: 15, data: 'Phosphorus', velocidadeDoVento: 30.9738, tensao: 'P', corrente:'teste', potencia:'teste'},
-  {position: 16, data: 'Sulfur', velocidadeDoVento: 32.065, tensao: 'S', corrente:'teste', potencia:'teste'},
-  {position: 17, data: 'Chlorine', velocidadeDoVento: 35.453, tensao: 'Cl', corrente:'teste', potencia:'teste'},
-  {position: 18, data: 'Argon', velocidadeDoVento: 39.948, tensao: 'Ar', corrente:'teste', potencia:'teste'},
-  {position: 19, data: 'Potassium', velocidadeDoVento: 39.0983, tensao: 'K', corrente:'teste', potencia:'teste'},
-  {position: 20, data: 'Calcium', velocidadeDoVento: 40.078, tensao: 'Ca', corrente:'teste', potencia:'teste'},
+  { position: 1, data: 'Hydrogen', velocidadeDoVento: 1.0079, tensao: 'H', corrente: 'teste', potencia: 'teste' },
+  { position: 2, data: 'Helium', velocidadeDoVento: 4.0026, tensao: 'He', corrente: 'teste', potencia: 'teste' },
+  { position: 3, data: 'Lithium', velocidadeDoVento: 6.941, tensao: 'Li', corrente: 'teste', potencia: 'teste' },
+  { position: 4, data: 'Beryllium', velocidadeDoVento: 9.0122, tensao: 'Be', corrente: 'teste', potencia: 'teste' },
+  { position: 5, data: 'Boron', velocidadeDoVento: 10.811, tensao: 'B', corrente: 'teste', potencia: 'teste' },
+  { position: 6, data: 'Carbon', velocidadeDoVento: 12.0107, tensao: 'C', corrente: 'teste', potencia: 'teste' },
+  { position: 7, data: 'Nitrogen', velocidadeDoVento: 14.0067, tensao: 'N', corrente: 'teste', potencia: 'teste' },
+  { position: 8, data: 'Oxygen', velocidadeDoVento: 15.9994, tensao: 'O', corrente: 'teste', potencia: 'teste' },
+  { position: 9, data: 'Fluorine', velocidadeDoVento: 18.9984, tensao: 'F', corrente: 'teste', potencia: 'teste' },
+  { position: 10, data: 'Neon', velocidadeDoVento: 20.1797, tensao: 'Ne', corrente: 'teste', potencia: 'teste' },
+  { position: 11, data: 'Sodium', velocidadeDoVento: 22.9897, tensao: 'Na', corrente: 'teste', potencia: 'teste' },
+  { position: 12, data: 'Magnesium', velocidadeDoVento: 24.305, tensao: 'Mg', corrente: 'teste', potencia: 'teste' },
+  { position: 13, data: 'Aluminum', velocidadeDoVento: 26.9815, tensao: 'Al', corrente: 'teste', potencia: 'teste' },
+  { position: 14, data: 'Silicon', velocidadeDoVento: 28.0855, tensao: 'Si', corrente: 'teste', potencia: 'teste' },
+  { position: 15, data: 'Phosphorus', velocidadeDoVento: 30.9738, tensao: 'P', corrente: 'teste', potencia: 'teste' },
+  { position: 16, data: 'Sulfur', velocidadeDoVento: 32.065, tensao: 'S', corrente: 'teste', potencia: 'teste' },
+  { position: 17, data: 'Chlorine', velocidadeDoVento: 35.453, tensao: 'Cl', corrente: 'teste', potencia: 'teste' },
+  { position: 18, data: 'Argon', velocidadeDoVento: 39.948, tensao: 'Ar', corrente: 'teste', potencia: 'teste' },
+  { position: 19, data: 'Potassium', velocidadeDoVento: 39.0983, tensao: 'K', corrente: 'teste', potencia: 'teste' },
+  { position: 20, data: 'Calcium', velocidadeDoVento: 40.078, tensao: 'Ca', corrente: 'teste', potencia: 'teste' },
 ];
 
 /**
@@ -92,5 +133,5 @@ export class ExampleDataSource extends DataSource<any> {
     return Observable.of(data);
   }
 
-  disconnect() {}
+  disconnect() { }
 }
