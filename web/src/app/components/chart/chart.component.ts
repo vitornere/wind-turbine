@@ -14,7 +14,10 @@ Highcharts.setOptions({
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('chart') public chartEl: ElementRef;
+  @ViewChild('vento') public chartEl1: ElementRef;
+  @ViewChild('tensao') public chartEl2: ElementRef;
+  @ViewChild('corrente') public chartEl3: ElementRef;
+  @ViewChild('potencia') public chartEl4: ElementRef;
 
   private _chart: any;
 
@@ -45,15 +48,45 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
         }]
     };
 
-    if (this.chartEl && this.chartEl.nativeElement) {
+    if (this.chartEl1 && this.chartEl1.nativeElement) {
         opts.chart = {
             type: 'spline',
-            renderTo: this.chartEl.nativeElement,
+            renderTo: this.chartEl1.nativeElement,
             height: 300
         };
 
         this._chart = new Highcharts.Chart(opts);
     }
+
+    if (this.chartEl2 && this.chartEl2.nativeElement) {
+      opts.chart = {
+          type: 'spline',
+          renderTo: this.chartEl2.nativeElement,
+          height: 300
+      };
+
+      this._chart = new Highcharts.Chart(opts);
+  }
+
+  if (this.chartEl3 && this.chartEl3.nativeElement) {
+    opts.chart = {
+        type: 'spline',
+        renderTo: this.chartEl3.nativeElement,
+        height: 300
+    };
+
+    this._chart = new Highcharts.Chart(opts);
+}
+
+if (this.chartEl4 && this.chartEl4.nativeElement) {
+  opts.chart = {
+      type: 'spline',
+      renderTo: this.chartEl4.nativeElement,
+      height: 300
+  };
+
+  this._chart = new Highcharts.Chart(opts);
+}
   }
 
   public ngOnDestroy() {
