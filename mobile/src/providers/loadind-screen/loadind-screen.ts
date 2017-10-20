@@ -12,7 +12,9 @@ export class LoadindScreenProvider {
 
   constructor(
     private loadingCtrl: LoadingController
-  ) {  }
+  ) { 
+    this.loaded = false;
+   }
 
   showLoading(message) {
     this.loading = this.loadingCtrl.create({

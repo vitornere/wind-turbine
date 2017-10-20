@@ -28,6 +28,7 @@ export class TurbineDataComponent implements OnDestroy {
     private loadingCtrl: LoadindScreenProvider
   ) {
     this.loadingCtrl.showLoading('Procurando servidor... Entre no Wifi da Bancada Online. Senha: aerogerador.');
+    this.turbine_datas = null;
     /*
     this.turbine_datas =
       [
@@ -76,9 +77,11 @@ export class TurbineDataComponent implements OnDestroy {
   setUpdateData() {
     setInterval(() => {
       this.turbineDataService.getLastTurbineData()
-        .then((res: TurbineDataModel) => {
-          if (res instanceof TurbineDataModel) {
-            if (this.turbine_datas) {
+        .then(res => {
+          if (res != null) {
+            const values = res as TurbineDataModel;
+
+            if (this.turbine_datas != null) {
               this.turbine_datas[0].subtitle = res.wind_speed;
               this.turbine_datas[1].subtitle = res.electric_voltage;
               this.turbine_datas[2].subtitle = res.electric_current;
@@ -114,14 +117,14 @@ export class TurbineDataComponent implements OnDestroy {
                     subtitle: res.mppt,
                     unity: ' W'
                   },
-                ]
+                ];
             }
 
             if(this.loadingCtrl.isLoading()) {
               this.loadingCtrl.dismiss();
             }
           } else {
-            if(!this.loadingCtrl.isLoading) {
+            if(this.loadingCtrl.isLoading() == false) {
               this.loadingCtrl.showLoading('Procurando servidor... Entre no Wifi da Bancada Online. Senha: aerogerador.');
             }
           }

@@ -23,7 +23,7 @@ export class TurbineDataService {
     return this.http.get(apiUrl)
       .toPromise()
       .then(res => res.json() as TurbineDataModel)
-      .catch(() => false);
+      .catch(() => null);
   }
 
   private delay(ms: number) {
