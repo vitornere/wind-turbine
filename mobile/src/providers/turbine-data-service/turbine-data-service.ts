@@ -1,7 +1,7 @@
 import { TurbineDataModel } from './../../models/turbine-data.model';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
 import { environment } from "../../environment/environment.dev";
 
@@ -17,10 +17,16 @@ export class TurbineDataService {
   constructor(public http: Http) {
   }
 
-  public getLastTurbineData(): Observable<TurbineDataModel> {
+  public getLastTurbineData() {
     const apiUrl = environment.apiURL + '/last';
 
     return this.http.get(apiUrl)
-      .map(res => res.json());
+      .toPromise()
+      .then(res => res.json() as TurbineDataModel)
+      .catch(() => false);
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }

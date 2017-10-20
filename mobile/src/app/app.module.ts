@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartComponent } from '../components/chart/chart.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { TurbineDataService } from '../providers/turbine-data-service/turbine-data-service';
+import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-screen';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { TurbineDataService } from '../providers/turbine-data-service/turbine-da
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TurbineDataService
+    TurbineDataService,
+    LoadindScreenProvider
   ]
 })
 export class AppModule {}

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://unpkg.com/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
   <meta charset="UTF-8">
   <title>Ionic App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
 
-  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
-  <link rel="manifest" href="manifest.json">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="theme-color" content="#4e8ef7">
 
   <!-- cordova.js required for cordova apps -->
@@ -29,6 +30,7 @@
 
 </head>
 <body>
+  <script src="../node_modules/chart.js/src/chart.js"></script>
 
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
@@ -43,6 +45,5 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
-  <script src="node_modules/chart.js/src/chart.js"></script>
 </body>
 </html>
