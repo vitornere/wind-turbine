@@ -13,4 +13,89 @@
 </ion-header>
 
 <ion-content>
+    <ion-card>
+        
+          <ion-card-header>
+            Selecione o dado desejado:
+          </ion-card-header>
+        
+          <ion-card-content>
+              <ion-list radio-group no-lines>
+                  <ion-item>
+                    <ion-label>Velocidade do Vento</ion-label>
+                    <ion-checkbox></ion-checkbox>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Tensão</ion-label>
+                    <ion-checkbox></ion-checkbox>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Corrente</ion-label>
+                    <ion-checkbox></ion-checkbox>
+                  </ion-item>
+                  <ion-item>
+                      <ion-label>Máxima Potência</ion-label>
+                      <ion-checkbox></ion-checkbox>
+                    </ion-item>
+                </ion-list>
+          </ion-card-content>
+        
+        </ion-card>
+        <ion-card>
+            
+              <ion-card-header>
+                Selecione o período desejado:
+              </ion-card-header>
+            
+              <ion-card-content>
+                  <ion-item>
+                      <ion-label>Início</ion-label>
+                      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="event.timeStarts"></ion-datetime>
+                    </ion-item>
+                
+                    <ion-item>
+                      <ion-label>Fim</ion-label>
+                      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="event.timeEnds"></ion-datetime>
+                    </ion-item>
+              </ion-card-content>
+            
+            </ion-card>
+
+            <ion-card>
+                
+                  <ion-card-header>
+                    Selecione o frequência desejado:
+                  </ion-card-header>
+                
+                  <ion-card-content>
+                      <ion-list radio-group no-lines>
+                          <ion-item>
+                            <ion-label>Hora em hora</ion-label>
+                            <ion-radio></ion-radio>
+                          </ion-item>
+                          <ion-item>
+                            <ion-label>Diária</ion-label>
+                            <ion-radio></ion-radio>
+                          </ion-item>
+                          <ion-item>
+                            <ion-label>Semanal</ion-label>
+                            <ion-radio></ion-radio>
+                          </ion-item>
+                          <ion-item>
+                              <ion-label>Mensal</ion-label>
+                              <ion-radio></ion-radio>
+                          </ion-item>
+                          <ion-item>
+                              <ion-label>Anual</ion-label>
+                              <ion-radio></ion-radio>
+                          </ion-item>
+                      </ion-list>
+                  </ion-card-content>
+                
+                </ion-card>
+
+                <div text-center>
+                <button ion-button color="secondary" icon-left round> <ion-icon name="md-download"></ion-icon>Download</button>
+              </div>
+
 </ion-content>
