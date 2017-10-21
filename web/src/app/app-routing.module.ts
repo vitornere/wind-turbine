@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/home/home.component';
 import { TurbineDataComponent } from './components/turbine-data/turbine-data.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
@@ -9,18 +10,21 @@ import { AboutComponent } from './components/about/about.component';
 const appRoutes: Routes = [
   {
     path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'turbine_data',
     component: TurbineDataComponent
   },
   {
-    path:'historic',
+    path: 'historic',
     component: HistoricComponent
   },
   {
-    path:'about',
+    path: 'about',
     component: AboutComponent
   }
 ];
-
 
 @NgModule({
   imports: [

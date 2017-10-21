@@ -1,58 +1,17 @@
 <div class="row">
-  <div class="col s12 m12 l12">
-    <div class="col s12 m6 l3">
+  <div class="col s12 m12 l12" >
+    <div class="col s12 m6 l3" *ngFor="let item of turbine_data">
       <div class="card small">
         <div class="card-image">
-          <img src="assets/img/wind.png">
+          <img class="img_card" src="{{ item.image_src }}"/>
         </div>
         <div class="card-content">
-          <p>Velocidade do Vento</p>
+          <p>{{ item.title }}</p>
         </div>
         <div class="card-action">
-          <span>7 m/s</span>
-        </div>
-      </div>
-    </div>
-    <div class="col s12 m6 l3">
-      <div class="card small">
-        <div class="card-image">
-          <img src="assets/img/tension.png">
-        </div>
-        <div class="card-content">
-          <p>Tensão</p>
-        </div>
-        <div class="card-action">
-          <span>220 V</span>
-        </div>
-      </div>
-    </div>
-    <div class="col s12 m6 l3">
-      <div class="card small">
-        <div class="card-image">
-          <img src="assets/img/volt.png">
-        </div>
-        <div class="card-content">
-          <p>Corrente</p>
-        </div>
-        <div class="card-action">
-          <span>12 A</span>
-        </div>
-      </div>
-    </div>
-    <div class="col s12 m6 l3">
-      <div class="card small">
-        <div class="card-image">
-          <img src="assets/img/mppt.png">
-        </div>
-        <div class="card-content">
-          <p>Potência</p>
-        </div>
-        <div class="card-action">
-          <span>12 W</span>
+          <span>{{ item.subtitle }}</span>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<app-chart></app-chart>
