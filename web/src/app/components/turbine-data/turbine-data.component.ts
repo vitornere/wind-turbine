@@ -1,6 +1,7 @@
+import { ComunicationApiService } from './../../services/comunication-api.service';
+import { TurbineDataService } from './../../services/turbine-data.service';
 import { Component, OnInit } from '@angular/core';
 import { TurbineDataModel } from '../../models/turbine-data.models';
-import { TurbineDataService } from '../../services/turbine-data.service';
 
 @Component({
   selector: 'app-turbine-data',
@@ -11,8 +12,7 @@ export class TurbineDataComponent implements OnInit {
 
   turbine_data: [TurbineDataModel];
 
-  constructor(
-   ) {
+  constructor(private comunication: ComunicationApiService) {
     this.turbine_data = [
       this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', 151, ' m/s'),
       this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', 115, ' m/s'),

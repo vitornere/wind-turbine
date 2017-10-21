@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { TurbineDataService } from './services/turbine-data.service';
 import { CustomMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
@@ -11,6 +13,10 @@ import { ChartComponent } from './components/chart/chart.component';
 import { HistoricComponent } from './components/historic/historic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './components/about/about.component';
+import { HomeComponent } from './components/home/home.component';
+import { } from '@angular/http';
+
+import { ComunicationApiService } from './services/comunication-api.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,8 @@ import { AboutComponent } from './components/about/about.component';
     SideBarComponent,
     ChartComponent,
     HistoricComponent,
-    AboutComponent
+    AboutComponent,
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,
@@ -32,7 +39,7 @@ import { AboutComponent } from './components/about/about.component';
   ],
   exports: [
   ],
-  providers: [],
+  providers: [TurbineDataService, ComunicationApiService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
