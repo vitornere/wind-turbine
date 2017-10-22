@@ -12,7 +12,7 @@ export class TurbineDataComponent implements OnInit {
 
   turbine_data: [TurbineDataModel];
 
-  constructor(private comunication: ComunicationApiService) {
+  constructor(private turbineDataService: TurbineDataService) {
     this.turbine_data = [
       this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', 151, ' m/s'),
       this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', 115, ' m/s'),

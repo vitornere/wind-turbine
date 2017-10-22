@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { TurbineDataService } from './services/turbine-data.service';
 import { CustomMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +13,8 @@ import { HistoricComponent } from './components/historic/historic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
-import { } from '@angular/http';
+
+import { HttpModule } from '@angular/http';
 
 import { ComunicationApiService } from './services/comunication-api.service';
 
@@ -35,11 +35,12 @@ import { ComunicationApiService } from './services/comunication-api.service';
     CustomMaterialModule,
     NoopAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   exports: [
   ],
-  providers: [TurbineDataService, ComunicationApiService, HttpClient],
+  providers: [TurbineDataService, ComunicationApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
