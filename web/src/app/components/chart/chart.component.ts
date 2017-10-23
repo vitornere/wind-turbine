@@ -19,23 +19,32 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
   @ViewChild('corrente') public chartEl3: ElementRef;
   @ViewChild('potencia') public chartEl4: ElementRef;
 
-  private _chart: any;
+  private chartVento: any;
+  private chartTensao: any;
+  private chartCorrente: any;
+  private chartPotencia: any;
 
   private randomValue() {
     return Math.floor(Math.random() * 10) + 0;
   }
 
   public ngAfterViewInit() {
-    const opts: any = {
+
+    const opts1: any = {
+        title: {
+          text: '',
+        },
         xAxis: {
           type: 'datetime',
           tickPixelInterval: 150
         },
         series: [{
-          name: 'Random data',
+          name: 'Velocidade por segundo',
           data: (function () {
               // generate an array of random data
+              // tslint:disable-next-line:prefer-const
               let data = [],
+                  // tslint:disable-next-line:prefer-const
                   time = (new Date()).getTime(), i;
               for (i = -19; i <= 0; i += 1) {
                   data.push({
@@ -48,57 +57,163 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
         }]
     };
 
+    const opts2: any = {
+      title: {
+        text: '',
+      },
+      xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
+      },
+      series: [{
+        name: 'Voltagem por segundo',
+        data: (function () {
+            // generate an array of random data
+            // tslint:disable-next-line:prefer-const
+            let data = [],
+                // tslint:disable-next-line:prefer-const
+                time2 = (new Date()).getTime(), i;
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time2 + i * 1000,
+                    y: Math.floor(Math.random() * 10) + 0
+                });
+            }
+            return data;
+        }())
+      }]
+    };
+
+    const opts3: any = {
+      title: {
+        text: '',
+      },
+      xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
+      },
+      series: [{
+        name: 'Corrente por segundo',
+        data: (function () {
+            // generate an array of random data
+            // tslint:disable-next-line:prefer-const
+            let data = [],
+                // tslint:disable-next-line:prefer-const
+                time2 = (new Date()).getTime(), i;
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time2 + i * 1000,
+                    y: Math.floor(Math.random() * 10) + 0
+                });
+            }
+            return data;
+        }())
+      }]
+    };
+
+    const opts4: any = {
+      title: {
+        text: '',
+      },
+      xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
+      },
+      series: [{
+        name: 'Potência por segundo',
+        data: (function () {
+            // generate an array of random data
+            // tslint:disable-next-line:prefer-const
+            let data = [],
+                // tslint:disable-next-line:prefer-const
+                time2 = (new Date()).getTime(), i;
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time2 + i * 1000,
+                    y: Math.floor(Math.random() * 10) + 0
+                });
+            }
+            return data;
+        }())
+      }]
+    };
+
+  const charOpt: any = [
+    opts1,
+    opts2,
+    opts3,
+    opts4
+  ];
+
     if (this.chartEl1 && this.chartEl1.nativeElement) {
-        opts.chart = {
+      charOpt[0].chart = {
             type: 'spline',
             renderTo: this.chartEl1.nativeElement,
             height: 300
         };
 
-        this._chart = new Highcharts.Chart(opts);
+        this.chartVento = new Highcharts.Chart(charOpt[0]);
     }
 
     if (this.chartEl2 && this.chartEl2.nativeElement) {
-      opts.chart = {
-          type: 'spline',
-          renderTo: this.chartEl2.nativeElement,
-          height: 300
-      };
+      charOpt[1].chart = {
+            type: 'spline',
+            renderTo: this.chartEl2.nativeElement,
+            height: 300
+        };
 
-      this._chart = new Highcharts.Chart(opts);
-  }
+        this.chartTensao = new Highcharts.Chart(charOpt[1]);
+    }
 
-  if (this.chartEl3 && this.chartEl3.nativeElement) {
-    opts.chart = {
-        type: 'spline',
-        renderTo: this.chartEl3.nativeElement,
-        height: 300
-    };
+    if (this.chartEl3 && this.chartEl3.nativeElement) {
+      charOpt[2].chart = {
+            type: 'spline',
+            renderTo: this.chartEl3.nativeElement,
+            height: 300
+        };
 
-    this._chart = new Highcharts.Chart(opts);
-}
+        this.chartCorrente = new Highcharts.Chart(charOpt[2]);
+    }
 
-if (this.chartEl4 && this.chartEl4.nativeElement) {
-  opts.chart = {
-      type: 'spline',
-      renderTo: this.chartEl4.nativeElement,
-      height: 300
-  };
+    if (this.chartEl4 && this.chartEl4.nativeElement) {
+      charOpt[3].chart = {
+            type: 'spline',
+            renderTo: this.chartEl4.nativeElement,
+            height: 300
+        };
 
-  this._chart = new Highcharts.Chart(opts);
-}
+        this.chartPotencia = new Highcharts.Chart(charOpt[3]);
+    }
   }
 
   public ngOnDestroy() {
-    this._chart.destroy();
+    this.chartVento.destroy();
+    this.chartTensao.destroy();
+    this.chartCorrente.destroy();
+    this.chartPotencia.destroy();
   }
 
   constructor() {
-    const me = this;
+    const currentChart = this;
 
     setInterval(function () {
-      if (me._chart) {
-        me._chart['series'][0].addPoint([(new Date()).getTime(), me.randomValue()], true, true);
+      if (currentChart.chartVento) {
+        currentChart.chartVento['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
+      }
+    }, 2000);
+    setInterval(function () {
+      if (currentChart.chartTensao) {
+        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
+      }
+    }, 2000);
+    setInterval(function () {
+      if (currentChart.chartCorrente) {
+        currentChart.chartCorrente['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
+      }
+    }, 2000);
+    setInterval(function () {
+      if (currentChart.chartPotencia) {
+        currentChart.chartPotencia['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
       }
     }, 2000);
   }
