@@ -1,13 +1,13 @@
-<md-sidenav-container class="example-container">
-  <md-sidenav #sidenav class="example-sidenav">
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav class="example-sidenav">
     <app-side-bar></app-side-bar>
-  </md-sidenav>
+  </mat-sidenav>
 
   <header>
     <nav>
       <div class="row">
         <div class="col s4">
-          <button type="button" md-button (click)="sidenav.open()">
+          <button type="button" mat-button (click)="sidenav.open()">
             <i class="material-icons">menu</i>
           </button>
         </div>
@@ -21,4 +21,4 @@
   <section>
     <router-outlet></router-outlet>
   </section>
-</md-sidenav-container>
+</mat-sidenav-container>
