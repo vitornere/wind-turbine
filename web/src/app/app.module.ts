@@ -16,8 +16,6 @@ import { HomeComponent } from './components/home/home.component';
 
 import { HttpModule } from '@angular/http';
 
-import { ComunicationApiService } from './services/comunication-api.service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +38,7 @@ import { ComunicationApiService } from './services/comunication-api.service';
   ],
   exports: [
   ],
-  providers: [TurbineDataService, ComunicationApiService],
+  providers: [TurbineDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
