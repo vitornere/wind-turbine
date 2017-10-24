@@ -24,60 +24,53 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
   private chartCorrente: any;
   private chartPotencia: any;
 
-  private randomValue() {
-    return Math.floor(Math.random() * 10) + 0;
-  }
-
-  private randomValueTesion() {
-    return Math.floor(Math.random() * 120) + 0;
-  }
-
   public ngAfterViewInit() {
 
-    const opts1: any = {
-        credits: {
-          enabled: false
-        },
+    const credits: any = {
+        enabled: false
+    };
+    const title: any = {
+        text: '',
+    };
+    const yAxis: any = {
         title: {
-          text: '',
-        },
-        xAxis: {
-          type: 'datetime',
-          tickPixelInterval: 150
-        },
-        series: [{
-          name: 'Velocidade por segundo',
-          data: (function () {
-              // generate an array of random data
-              // tslint:disable-next-line:prefer-const
-              let data = [],
-                  // tslint:disable-next-line:prefer-const
-                  time = (new Date()).getTime(), i;
-              for (i = -19; i <= 0; i += 1) {
-                  data.push({
-                      x: time + i * 1000,
-                      y: Math.floor(Math.random() * 10) + 0
-                  });
-              }
-              return data;
-          }())
-        }]
+          enabled: false
+        }
+    };
+    const xAxis: any = {
+        type: 'datetime',
+        tickPixelInterval: 150
+    };
+
+    const opts1: any = {
+      credits,
+      title,
+      yAxis,
+      xAxis,
+      series: [{
+        name: 'Velocidade por segundo',
+        data: (function () {
+            // generate an array of random data
+            // tslint:disable-next-line:prefer-const
+            let data = [],
+                // tslint:disable-next-line:prefer-const
+                time = (new Date()).getTime(), i;
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time + i * 1000,
+                    y: Math.floor(Math.random() * 10) + 0
+                });
+            }
+            return data;
+        }())
+      }]
     };
 
     const opts2: any = {
-      credits: {
-        enabled: false
-      },
-      title: {
-        text: '',
-      },
-      yAxis: {
-        values: [0, 25, 50, 75, 100, 125, 150],
-      },
-      xAxis: {
-        type: 'datetime',
-        tickPixelInterval: 150
-      },
+      credits,
+      title,
+      yAxis,
+      xAxis,
       series: [{
         name: 'Voltagem por segundo',
         data: (function () {
@@ -98,16 +91,10 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     };
 
     const opts3: any = {
-      credits: {
-        enabled: false
-      },
-      title: {
-        text: '',
-      },
-      xAxis: {
-        type: 'datetime',
-        tickPixelInterval: 150
-      },
+      credits,
+      title,
+      yAxis,
+      xAxis,
       series: [{
         name: 'Corrente por segundo',
         data: (function () {
@@ -128,16 +115,10 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     };
 
     const opts4: any = {
-      credits: {
-        enabled: false
-      },
-      title: {
-        text: '',
-      },
-      xAxis: {
-        type: 'datetime',
-        tickPixelInterval: 150
-      },
+      credits,
+      title,
+      yAxis,
+      xAxis,
       series: [{
         name: 'Potência por segundo',
         data: (function () {
@@ -212,6 +193,14 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     this.chartPotencia.destroy();
   }
 
+  private randomValue() {
+    return Math.floor(Math.random() * 10) + 0;
+  }
+
+  private randomValueTension() {
+    return Math.floor(Math.random() * 10) + 0;
+  }
+
   constructor() {
     const currentChart = this;
 
@@ -222,7 +211,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     }, 2000);
     setInterval(function () {
       if (currentChart.chartTensao) {
-        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValueTesion()], true, true);
+        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValueTension()], true, true);
       }
     }, 2000);
     setInterval(function () {
