@@ -28,9 +28,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     return Math.floor(Math.random() * 10) + 0;
   }
 
+  private randomValueTesion() {
+    return Math.floor(Math.random() * 120) + 0;
+  }
+
   public ngAfterViewInit() {
 
     const opts1: any = {
+        credits: {
+          enabled: false
+        },
         title: {
           text: '',
         },
@@ -58,8 +65,14 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     };
 
     const opts2: any = {
+      credits: {
+        enabled: false
+      },
       title: {
         text: '',
+      },
+      yAxis: {
+        values: [0, 25, 50, 75, 100, 125, 150],
       },
       xAxis: {
         type: 'datetime',
@@ -76,7 +89,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
             for (i = -19; i <= 0; i += 1) {
                 data.push({
                     x: time2 + i * 1000,
-                    y: Math.floor(Math.random() * 10) + 0
+                    y: Math.floor(Math.random() * 120) + 0
                 });
             }
             return data;
@@ -85,6 +98,9 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     };
 
     const opts3: any = {
+      credits: {
+        enabled: false
+      },
       title: {
         text: '',
       },
@@ -112,6 +128,9 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     };
 
     const opts4: any = {
+      credits: {
+        enabled: false
+      },
       title: {
         text: '',
       },
@@ -203,7 +222,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     }, 2000);
     setInterval(function () {
       if (currentChart.chartTensao) {
-        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
+        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValueTesion()], true, true);
       }
     }, 2000);
     setInterval(function () {
