@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
-
-
 import {
-  MatSidenavModule,
-  MdButtonModule,
   MdCheckboxModule,
-  MatStepperModule,
   MdDatepickerModule,
   MdNativeDateModule,
   MdTableModule,
   MdSelectModule,
-  MatPaginatorModule
+  MatSidenavModule,
+  MatStepperModule,
+  MatPaginatorModule,
+  MatButtonModule,
+  MatCheckboxModule
 } from '@angular/material';
-
 import { PlatformModule } from '@angular/cdk/platform';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -24,16 +22,16 @@ import { CdkTableModule } from '@angular/cdk/table';
   exports: [
     MdTableModule,
     MdSelectModule,
-    MatPaginatorModule,
+    MdCheckboxModule,
     MdDatepickerModule,
     MdNativeDateModule,
-    MdButtonModule,
-    MdCheckboxModule,
+    MatPaginatorModule,
+    MatButtonModule,
     MatSidenavModule,
     MatStepperModule,
     ObserversModule,
     PlatformModule,
-    CdkTableModule
+    CdkTableModule,
   ]
 })
 export class CustomMaterialModule { }

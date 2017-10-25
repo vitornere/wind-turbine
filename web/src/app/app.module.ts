@@ -1,11 +1,11 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { TurbineDataService } from './services/turbine-data.service';
 import { CustomMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {NoConflictStyleCompatibilityMode} from '@angular/material';
 import { AppComponent } from './app.component';
 import { TurbineDataComponent } from './components/turbine-data/turbine-data.component';
 import { ChartComponent } from './components/chart/chart.component';
@@ -15,8 +15,6 @@ import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { HttpModule } from '@angular/http';
-
-import { ComunicationApiService } from './services/comunication-api.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +27,7 @@ import { ComunicationApiService } from './services/comunication-api.service';
     HomeComponent
   ],
   imports: [
+    NoConflictStyleCompatibilityMode,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,7 +39,7 @@ import { ComunicationApiService } from './services/comunication-api.service';
   ],
   exports: [
   ],
-  providers: [TurbineDataService, ComunicationApiService],
+  providers: [TurbineDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,8 +17,13 @@ export class HistoricComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
+  today = new Date();
   minDate = new Date(2000, 0, 1);
-  maxDate = new Date(2020, 0, 1);
+  maxDate = new Date(
+    this.today.getUTCFullYear(),
+    this.today.getUTCMonth(),
+    this.today.getUTCDate()
+  );
   displayedColumns = ['position', 'data', 'velocidadeDoVento', 'tensao', 'corrente', 'potencia'];
   dataSource = new ExampleDataSource();
 
@@ -31,6 +36,8 @@ export class HistoricComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    console.log(this.maxDate);
+    console.log(this.minDate);
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
       vento: new FormControl(),
