@@ -26,6 +26,18 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit() {
 
+    const legend: any = {
+      enabled: false
+  };
+
+    const tooltip: any = {
+      formatter: function () {
+          return '<b>' + this.series.name + '</b><br/>' +
+              Highcharts.numberFormat(this.y, 2) + '<br/>' +
+              Highcharts.dateFormat('%d-%m-%Y %H:%M:%S', this.x); 
+      }
+  };
+
     const credits: any = {
         enabled: false
     };
@@ -45,10 +57,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     const opts1: any = {
       credits,
       title,
-      yAxis,
+      yAxis: {
+        title: {
+            text: 'Velocidade (M/S)'
+        }
+      },
       xAxis,
+      tooltip,
+      legend,
       series: [{
-        name: 'Velocidade por segundo',
+        name: 'Velocidade (M/S)',
         data: (function () {
             // generate an array of random data
             // tslint:disable-next-line:prefer-const
@@ -69,10 +87,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     const opts2: any = {
       credits,
       title,
-      yAxis,
+      yAxis: {
+        title: {
+            text: 'Volts (V)'
+        }
+      },
       xAxis,
+      tooltip,
+      legend,
       series: [{
-        name: 'Voltagem por segundo',
+        name: 'Volts (V)',
         data: (function () {
             // generate an array of random data
             // tslint:disable-next-line:prefer-const
@@ -93,10 +117,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     const opts3: any = {
       credits,
       title,
-      yAxis,
+      yAxis: {
+        title: {
+            text: 'Ampere (A)'
+        }
+      },
       xAxis,
+      tooltip,
+      legend,
       series: [{
-        name: 'Corrente por segundo',
+        name: 'Ampere (A)',
         data: (function () {
             // generate an array of random data
             // tslint:disable-next-line:prefer-const
@@ -117,10 +147,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     const opts4: any = {
       credits,
       title,
-      yAxis,
+      yAxis: {
+        title: {
+            text: 'Watts (W)'
+        }
+      },
       xAxis,
+      legend,
+      tooltip,
       series: [{
-        name: 'Potência por segundo',
+        name: 'Watts (W)',
         data: (function () {
             // generate an array of random data
             // tslint:disable-next-line:prefer-const
