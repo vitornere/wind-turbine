@@ -44,5 +44,14 @@ a {
 li {
   
   list-style-type: none;
-  
+  }
+
+  li a {
+    transition: 0.5s;
+  }
+
+  li a:hover {
+  transition: 0.5s;
+  opacity: .4;
+  cursor: pointer;
   }
