@@ -39,8 +39,8 @@ export class HistoricComponent implements OnInit {
       firstCtrl: ['', Validators.required],
       vento: new FormControl(),
       electric_voltage: new FormControl(),
-      corrente: new FormControl(),
-      potencia: new FormControl()
+      electric_current: new FormControl(),
+      mppt: new FormControl()
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
@@ -55,7 +55,7 @@ export class HistoricComponent implements OnInit {
 
   // Alguém refatora
   firstFormButton() {
-    // ['data', 'wind_speed', 'electric_voltage', 'corrente', 'potencia']
+    // ['data', 'wind_speed', 'electric_voltage', 'electric_current', 'mppt']
     if (this.firstFormGroup.value.vento === true && this.displayedColumns.indexOf('wind_speed') === -1) {
       this.displayedColumns.push('wind_speed');
     } else if (this.firstFormGroup.value.vento === false && this.displayedColumns.indexOf('wind_speed') >= 0) {
@@ -70,17 +70,17 @@ export class HistoricComponent implements OnInit {
       this.displayedColumns.splice(idx, 1);
     }
 
-    if (this.firstFormGroup.value.corrente === true && this.displayedColumns.indexOf('corrente') === -1) {
-      this.displayedColumns.push('corrente');
-    } else if (this.firstFormGroup.value.corrente === false && this.displayedColumns.indexOf('corrente') >= 0) {
-      const idx = this.displayedColumns.indexOf('corrente');
+    if (this.firstFormGroup.value.electric_current === true && this.displayedColumns.indexOf('electric_current') === -1) {
+      this.displayedColumns.push('electric_current');
+    } else if (this.firstFormGroup.value.electric_current === false && this.displayedColumns.indexOf('electric_current') >= 0) {
+      const idx = this.displayedColumns.indexOf('electric_current');
       this.displayedColumns.splice(idx, 1);
     }
 
-    if (this.firstFormGroup.value.potencia === true && this.displayedColumns.indexOf('potencia') === -1) {
-      this.displayedColumns.push('potencia');
-    } else if (this.firstFormGroup.value.potencia === false && this.displayedColumns.indexOf('potencia') >= 0) {
-      const idx = this.displayedColumns.indexOf('potencia');
+    if (this.firstFormGroup.value.mppt === true && this.displayedColumns.indexOf('mppt') === -1) {
+      this.displayedColumns.push('mppt');
+    } else if (this.firstFormGroup.value.mppt === false && this.displayedColumns.indexOf('mppt') >= 0) {
+      const idx = this.displayedColumns.indexOf('mppt');
       this.displayedColumns.splice(idx, 1);
     }
 
@@ -95,8 +95,8 @@ export class HistoricComponent implements OnInit {
         date: '13/12/12',
         wind_speed: 8.2,
         electric_voltage: 12,
-        corrente: 11.22,
-        potencia: 10.1
+        electric_current: 11.22,
+        mppt: 10.1
       }
     ];
     const header = this.displayedColumns;
@@ -121,11 +121,11 @@ export class TurbineDataSourceComunicationAPI extends DataSource<any> {
 }
 
 const data: ElementTableModel[] = [
-  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, corrente: 5, potencia: 445 },
-  { date: '13/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
-  { date: '11/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
-  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
-  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
-  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
-  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
+  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 445 },
+  { date: '13/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
+  { date: '11/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
+  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
+  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
+  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
+  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
 ];
