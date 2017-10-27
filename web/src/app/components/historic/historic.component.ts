@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import { TurbineDataService } from '../../services/turbine-data.service';
 
 @Component({
   selector: 'app-historic',
@@ -25,6 +26,7 @@ export class HistoricComponent implements OnInit {
   displayedColumns: Array<any> = ['date'];
   tableSize: number = data.length;
   dataSource: TurbineDataSourceComunicationAPI = new TurbineDataSourceComunicationAPI();
+  elements_model: ElementTableModel[];
 
   frequency = [
     { value: 'horaemhora', viewValue: 'De hora em hora' },
@@ -32,7 +34,7 @@ export class HistoricComponent implements OnInit {
     { value: 'semanaemsemana', viewValue: 'Semanalmente' }
   ];
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private turbineDataService: TurbineDataService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -86,6 +88,12 @@ export class HistoricComponent implements OnInit {
 
     // Colocar no lugar correto ao Final da Busca
     this.showTable = true;
+    this.turbineDataService.getTurbineDataByCompleteDate().then(
+      res => {
+        this.elements_model = res;
+      }
+    );
+    console.log(this.elements_model);
   }
 
   download() {
@@ -122,10 +130,6 @@ export class TurbineDataSourceComunicationAPI extends DataSource<any> {
 
 const data: ElementTableModel[] = [
   { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 445 },
-  { date: '13/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
-  { date: '11/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
-  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
-  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
-  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
-  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1145 },
+  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 445 },
+  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 445 },
 ];
