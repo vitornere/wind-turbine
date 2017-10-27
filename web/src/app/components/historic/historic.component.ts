@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +11,7 @@ import { Angular2Csv } from 'angular2-csv/Angular2-csv';
   templateUrl: './historic.component.html',
   styleUrls: ['./historic.component.scss']
 })
-export class HistoricComponent implements OnInit {
+export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -19,12 +19,9 @@ export class HistoricComponent implements OnInit {
   fourthFormGroup: FormGroup;
   today = new Date();
   minDate = new Date(2000, 0, 1);
-  maxDate = new Date(
-    this.today.getUTCFullYear(),
-    this.today.getUTCMonth(),
-    this.today.getUTCDate()
-  );
-  displayedColumns = ['position', 'data', 'velocidadeDoVento', 'tensao', 'corrente', 'potencia'];
+  maxDate = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
+  // Preenchido pelo form
+  displayedColumns = [];
   dataSource = new ExampleDataSource();
 
   frequency = [
@@ -35,9 +32,9 @@ export class HistoricComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+  }
   ngOnInit() {
-    console.log(this.maxDate);
-    console.log(this.minDate);
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
       vento: new FormControl(),
@@ -55,45 +52,77 @@ export class HistoricComponent implements OnInit {
       fourthCtrl: ['', Validators.required]
     });
   }
+  ngDoCheck(): void {
+    //console.log('In do check method');
+    //console.log(this.firstFormGroup);
+  }
+  ngOnDestroy(): void {
+    // Ainda não sei usar, mas tem que destruir o observer
+    throw new Error("Method not implemented.");
+  }
 
-  // Ignore tslint and use "" not ''
+  // Alguém refatora
+  firstFormButton() {
+    // ['data', 'velocidadeDoVento', 'tensao', 'corrente', 'potencia']
+    if (this.displayedColumns.indexOf('data') === -1) {
+      this.displayedColumns.push('data');
+    }
+    if (this.firstFormGroup.value.vento === true && this.displayedColumns.indexOf('velocidadeDoVento') === -1) {
+      this.displayedColumns.push('velocidadeDoVento');
+    } else if (this.firstFormGroup.value.vento === false) {
+      const index = this.displayedColumns.indexOf('velocidadeDoVento');
+      this.displayedColumns.splice(index, 1);
+    }
+    if (this.firstFormGroup.value.tensao === true && this.displayedColumns.indexOf('tensao') === -1) {
+      this.displayedColumns.push('tensao');
+    } else if (this.firstFormGroup.value.tensao === false) {
+      const index = this.displayedColumns.indexOf('tensao');
+      this.displayedColumns.splice(index, 1);
+    }
+    if (this.firstFormGroup.value.corrente === true && this.displayedColumns.indexOf('corrente') === -1) {
+      this.displayedColumns.push('corrente');
+    } else if (this.firstFormGroup.value.corrente === false) {
+      const index = this.displayedColumns.indexOf('corrente');
+      this.displayedColumns.splice(index, 1);
+    }
+    if (this.firstFormGroup.value.potencia === true && this.displayedColumns.indexOf('potencia') === -1) {
+      this.displayedColumns.push('potencia');
+    } else if (this.firstFormGroup.value.potencia === false) {
+      const index = this.displayedColumns.indexOf('potencia');
+      this.displayedColumns.splice(index, 1);
+    }
+  }
+
   download() {
     const data = [
       {
-        name: "Test 1",
-        age: 13,
-        average: 8.2,
-        approved: true,
-        description: "using data here"
-      },
-      {
-        name: "Test 2",
-        age: 11,
-        average: 8.2,
-        approved: true,
-        description: "using data here"
-      },
-      {
-        name: "Test 4",
-        age: 10,
-        average: 8.2,
-        approved: true,
-        description: "using data here"
-      },
+        position: 1,
+        data: '13/12/12',
+        velocidadeDoVento: 8.2,
+        tensao: 12,
+        corrente: 11.22,
+        potencia: 10.1
+      }
     ];
-    const header = ["name", "age", "average", "approved", "description"];
+    const header = ['Posição', 'Data', 'Velocidade do Vento', 'Tensao', 'Corrente', 'Potência'];
     const options = {
       fieldSeparator: ';',
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: true,
-      showTitle: true,
       headers: (header),
       title: 'teste'
-
     };
     new Angular2Csv(data, 'turbine_data', options);
   }
+}
+
+export class ExampleDataSource extends DataSource<any> {
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Element[]> {
+    return Observable.of(data);
+  }
+  disconnect() { }
 }
 
 export interface Element {
@@ -107,38 +136,4 @@ export interface Element {
 
 const data: Element[] = [
   { position: 1, data: 'Hydrogen', velocidadeDoVento: 1.0079, tensao: 'H', corrente: 'teste', potencia: 'teste' },
-  { position: 2, data: 'Helium', velocidadeDoVento: 4.0026, tensao: 'He', corrente: 'teste', potencia: 'teste' },
-  { position: 3, data: 'Lithium', velocidadeDoVento: 6.941, tensao: 'Li', corrente: 'teste', potencia: 'teste' },
-  { position: 4, data: 'Beryllium', velocidadeDoVento: 9.0122, tensao: 'Be', corrente: 'teste', potencia: 'teste' },
-  { position: 5, data: 'Boron', velocidadeDoVento: 10.811, tensao: 'B', corrente: 'teste', potencia: 'teste' },
-  { position: 6, data: 'Carbon', velocidadeDoVento: 12.0107, tensao: 'C', corrente: 'teste', potencia: 'teste' },
-  { position: 7, data: 'Nitrogen', velocidadeDoVento: 14.0067, tensao: 'N', corrente: 'teste', potencia: 'teste' },
-  { position: 8, data: 'Oxygen', velocidadeDoVento: 15.9994, tensao: 'O', corrente: 'teste', potencia: 'teste' },
-  { position: 9, data: 'Fluorine', velocidadeDoVento: 18.9984, tensao: 'F', corrente: 'teste', potencia: 'teste' },
-  { position: 10, data: 'Neon', velocidadeDoVento: 20.1797, tensao: 'Ne', corrente: 'teste', potencia: 'teste' },
-  { position: 11, data: 'Sodium', velocidadeDoVento: 22.9897, tensao: 'Na', corrente: 'teste', potencia: 'teste' },
-  { position: 12, data: 'Magnesium', velocidadeDoVento: 24.305, tensao: 'Mg', corrente: 'teste', potencia: 'teste' },
-  { position: 13, data: 'Aluminum', velocidadeDoVento: 26.9815, tensao: 'Al', corrente: 'teste', potencia: 'teste' },
-  { position: 14, data: 'Silicon', velocidadeDoVento: 28.0855, tensao: 'Si', corrente: 'teste', potencia: 'teste' },
-  { position: 15, data: 'Phosphorus', velocidadeDoVento: 30.9738, tensao: 'P', corrente: 'teste', potencia: 'teste' },
-  { position: 16, data: 'Sulfur', velocidadeDoVento: 32.065, tensao: 'S', corrente: 'teste', potencia: 'teste' },
-  { position: 17, data: 'Chlorine', velocidadeDoVento: 35.453, tensao: 'Cl', corrente: 'teste', potencia: 'teste' },
-  { position: 18, data: 'Argon', velocidadeDoVento: 39.948, tensao: 'Ar', corrente: 'teste', potencia: 'teste' },
-  { position: 19, data: 'Potassium', velocidadeDoVento: 39.0983, tensao: 'K', corrente: 'teste', potencia: 'teste' },
-  { position: 20, data: 'Calcium', velocidadeDoVento: 40.078, tensao: 'Ca', corrente: 'teste', potencia: 'teste' },
 ];
-
-/**
- * Data source to provide what data should be rendered in the table. The observable provided
- * in connect should emit exactly the data that should be rendered by the table. If the data is
- * altered, the observable should emit that new set of data on the stream. In our case here,
- * we return a stream that contains only one set of data that doesn't change.
- */
-export class ExampleDataSource extends DataSource<any> {
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]> {
-    return Observable.of(data);
-  }
-
-  disconnect() { }
-}
