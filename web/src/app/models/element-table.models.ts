@@ -1,14 +1,14 @@
 export class ElementTableModel {
-    data: string;
-    velocidadeDoVento: number;
-    tensao: number;
+    date: string;
+    wind_speed: number;
+    electric_voltage: number;
     corrente: number;
     potencia: number;
 
-    constructor(data: string, velocidadeDoVento: number, tensao: number, corrente: number, potencia: number) {
-        data = this.data;
-        velocidadeDoVento = this.velocidadeDoVento;
-        tensao = this.tensao;
+    constructor(date: string, wind_speed: number, electric_voltage: number, corrente: number, potencia: number) {
+        date = this.date;
+        wind_speed = this.wind_speed;
+        electric_voltage = this.electric_voltage;
         corrente = this.corrente;
         potencia = this.potencia;
     }

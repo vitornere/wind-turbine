@@ -1,5 +1,5 @@
 import { ElementTableModel } from './../../models/element-table.models';
-import { Component, ElementRef, ViewChild, OnInit} from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
@@ -22,7 +22,7 @@ export class HistoricComponent implements OnInit {
   today: Date = new Date();
   minDate: Date = new Date(2000, 0, 1); // Setar no dia em que colocar em produção
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
-  displayedColumns: Array<any> = [];
+  displayedColumns: Array<any> = ['date'];
   tableSize: number = data.length;
   dataSource: TurbineDataSourceComunicationAPI = new TurbineDataSourceComunicationAPI();
 
@@ -38,7 +38,7 @@ export class HistoricComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
       vento: new FormControl(),
-      tensao: new FormControl(),
+      electric_voltage: new FormControl(),
       corrente: new FormControl(),
       potencia: new FormControl()
     });
@@ -55,33 +55,33 @@ export class HistoricComponent implements OnInit {
 
   // Alguém refatora
   firstFormButton() {
-    // ['data', 'velocidadeDoVento', 'tensao', 'corrente', 'potencia']
-    if (this.displayedColumns.indexOf('data') === -1) {
-      this.displayedColumns.push('data');
+    // ['data', 'wind_speed', 'electric_voltage', 'corrente', 'potencia']
+    if (this.firstFormGroup.value.vento === true && this.displayedColumns.indexOf('wind_speed') === -1) {
+      this.displayedColumns.push('wind_speed');
+    } else if (this.firstFormGroup.value.vento === false && this.displayedColumns.indexOf('wind_speed') >= 0) {
+      const indexV = this.displayedColumns.indexOf('wind_speed');
+      this.displayedColumns.splice(indexV, 1);
     }
-    if (this.firstFormGroup.value.vento === true && this.displayedColumns.indexOf('velocidadeDoVento') === -1) {
-      this.displayedColumns.push('velocidadeDoVento');
-    } else if (this.firstFormGroup.value.vento === false) {
-      const index = this.displayedColumns.indexOf('velocidadeDoVento');
-      this.displayedColumns.splice(index, 1);
+
+    if (this.firstFormGroup.value.electric_voltage === true && this.displayedColumns.indexOf('electric_voltage') === -1) {
+      this.displayedColumns.push('electric_voltage');
+    } else if (this.firstFormGroup.value.electric_voltage === false && this.displayedColumns.indexOf('electric_voltage') >= 0) {
+      const idx = this.displayedColumns.indexOf('electric_voltage');
+      this.displayedColumns.splice(idx, 1);
     }
-    if (this.firstFormGroup.value.tensao === true && this.displayedColumns.indexOf('tensao') === -1) {
-      this.displayedColumns.push('tensao');
-    } else if (this.firstFormGroup.value.tensao === false) {
-      const index = this.displayedColumns.indexOf('tensao');
-      this.displayedColumns.splice(index, 1);
-    }
+
     if (this.firstFormGroup.value.corrente === true && this.displayedColumns.indexOf('corrente') === -1) {
       this.displayedColumns.push('corrente');
-    } else if (this.firstFormGroup.value.corrente === false) {
-      const index = this.displayedColumns.indexOf('corrente');
-      this.displayedColumns.splice(index, 1);
+    } else if (this.firstFormGroup.value.corrente === false && this.displayedColumns.indexOf('corrente') >= 0) {
+      const idx = this.displayedColumns.indexOf('corrente');
+      this.displayedColumns.splice(idx, 1);
     }
+
     if (this.firstFormGroup.value.potencia === true && this.displayedColumns.indexOf('potencia') === -1) {
       this.displayedColumns.push('potencia');
-    } else if (this.firstFormGroup.value.potencia === false) {
-      const index = this.displayedColumns.indexOf('potencia');
-      this.displayedColumns.splice(index, 1);
+    } else if (this.firstFormGroup.value.potencia === false && this.displayedColumns.indexOf('potencia') >= 0) {
+      const idx = this.displayedColumns.indexOf('potencia');
+      this.displayedColumns.splice(idx, 1);
     }
 
     // Colocar no lugar correto ao Final da Busca
@@ -92,9 +92,9 @@ export class HistoricComponent implements OnInit {
     const data = [
       {
         position: 1,
-        data: '13/12/12',
-        velocidadeDoVento: 8.2,
-        tensao: 12,
+        date: '13/12/12',
+        wind_speed: 8.2,
+        electric_voltage: 12,
         corrente: 11.22,
         potencia: 10.1
       }
@@ -121,11 +121,11 @@ export class TurbineDataSourceComunicationAPI extends DataSource<any> {
 }
 
 const data: ElementTableModel[] = [
-  { data: '10/10/10', velocidadeDoVento: 1.0079, tensao: 110.0, corrente: 5, potencia: 445 },
-  { data: '13/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { data: '11/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, corrente: 5, potencia: 445 },
+  { date: '13/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
+  { date: '11/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
+  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
+  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
+  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
+  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, corrente: 40, potencia: 1145 },
 ];
