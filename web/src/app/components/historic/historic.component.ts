@@ -1,5 +1,5 @@
 import { ElementTableModel } from './../../models/element-table.models';
-import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import { Angular2Csv } from 'angular2-csv/Angular2-csv';
   templateUrl: './historic.component.html',
   styleUrls: ['./historic.component.scss']
 })
-export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy {
+export class HistoricComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -23,6 +23,7 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
   minDate: Date = new Date(2000, 0, 1); // Setar no dia em que colocar em produção
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
   displayedColumns: Array<any> = [];
+  tableSize: number = data.length;
   dataSource: TurbineDataSourceComunicationAPI = new TurbineDataSourceComunicationAPI();
 
   frequency = [
@@ -33,8 +34,6 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
 
   constructor(private _formBuilder: FormBuilder) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  }
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
@@ -52,12 +51,6 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
     this.fourthFormGroup = this._formBuilder.group({
       fourthCtrl: ['', Validators.required]
     });
-  }
-  ngDoCheck(): void {
-  }
-  ngOnDestroy(): void {
-    // Ainda não sei usar, mas tem que destruir o observer
-    throw new Error('Method not implemented.');
   }
 
   // Alguém refatora
@@ -128,11 +121,11 @@ export class TurbineDataSourceComunicationAPI extends DataSource<any> {
 }
 
 const data: ElementTableModel[] = [
-  { position: 1, data: '10/10/10', velocidadeDoVento: 1.0079, tensao: 110.0, corrente: 5, potencia: 445 },
-  { position: 2, data: '13/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { position: 2, data: '11/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { position: 2, data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { position: 2, data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { position: 2, data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
-  { position: 2, data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { data: '10/10/10', velocidadeDoVento: 1.0079, tensao: 110.0, corrente: 5, potencia: 445 },
+  { data: '13/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { data: '11/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
 ];

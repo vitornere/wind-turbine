@@ -1,13 +1,11 @@
 export class ElementTableModel {
-    position: number;
     data: string;
     velocidadeDoVento: number;
     tensao: number;
     corrente: number;
     potencia: number;
 
-    constructor(position: number, data: string, velocidadeDoVento: number, tensao: number, corrente: number, potencia: number) {
-        position = this.position;
+    constructor(data: string, velocidadeDoVento: number, tensao: number, corrente: number, potencia: number) {
         data = this.data;
         velocidadeDoVento = this.velocidadeDoVento;
         tensao = this.tensao;
