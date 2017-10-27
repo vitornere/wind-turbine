@@ -97,26 +97,19 @@ export class HistoricComponent implements OnInit {
   }
 
   download() {
-    const data = [
-      {
-        position: 1,
-        date: '13/12/12',
-        wind_speed: 8.2,
-        electric_voltage: 12,
-        electric_current: 11.22,
-        mppt: 10.1
-      }
-    ];
     const header = this.displayedColumns;
     const options = {
       fieldSeparator: ';',
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: true,
+      showTitle: true,
       headers: (header),
-      title: 'teste'
+      title: this.maxDate.toString()
     };
-    new Angular2Csv(data, 'turbine_data', options);
+    // tslint:disable-next-line:no-unused-expression
+    console.log(this.maxDate);
+    new Angular2Csv(this.elements_model, 'turbine_data' + (this.maxDate.toString()), options);
   }
 }
 
