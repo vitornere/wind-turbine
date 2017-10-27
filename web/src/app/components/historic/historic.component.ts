@@ -8,6 +8,9 @@ import 'rxjs/add/observable/of';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { TurbineDataService } from '../../services/turbine-data.service';
 
+
+let data: ElementTableModel[] = [];
+
 @Component({
   selector: 'app-historic',
   templateUrl: './historic.component.html',
@@ -93,7 +96,9 @@ export class HistoricComponent implements OnInit {
         this.elements_model = res;
       }
     );
-    console.log(this.elements_model);
+    data = this.elements_model;
+    console.log('Sim é um ElementTableModel');
+    console.log(data);
   }
 
   download() {
@@ -108,7 +113,6 @@ export class HistoricComponent implements OnInit {
       title: this.maxDate.toString()
     };
     // tslint:disable-next-line:no-unused-expression
-    console.log(this.maxDate);
     new Angular2Csv(this.elements_model, 'turbine_data' + (this.maxDate.toString()), options);
   }
 }
@@ -120,9 +124,3 @@ export class TurbineDataSourceComunicationAPI extends DataSource<any> {
   }
   disconnect() { }
 }
-
-const data: ElementTableModel[] = [
-  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 445 },
-  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 445 },
-  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 445 },
-];
