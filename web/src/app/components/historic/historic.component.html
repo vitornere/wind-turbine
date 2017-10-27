@@ -94,7 +94,9 @@
     </mat-step>
   </mat-vertical-stepper>
 </div>
-<div class="container">
+
+
+<div class="container" [hidden]="!showTable">
   <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
 

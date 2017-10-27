@@ -1,3 +1,4 @@
+import { ElementTableModel } from './../../models/element-table.models';
 import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
@@ -17,12 +18,12 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  today = new Date();
-  minDate = new Date(2000, 0, 1);
-  maxDate = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
-  // Preenchido pelo form
-  displayedColumns = [];
-  dataSource = new ExampleDataSource();
+  showTable = false;
+  today: Date = new Date();
+  minDate: Date = new Date(2000, 0, 1); // Setar no dia em que colocar em produção
+  maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
+  displayedColumns: Array<any> = [];
+  dataSource: TurbineDataSourceComunicationAPI = new TurbineDataSourceComunicationAPI();
 
   frequency = [
     { value: 'horaemhora', viewValue: 'De hora em hora' },
@@ -53,12 +54,10 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
     });
   }
   ngDoCheck(): void {
-    //console.log('In do check method');
-    //console.log(this.firstFormGroup);
   }
   ngOnDestroy(): void {
     // Ainda não sei usar, mas tem que destruir o observer
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   // Alguém refatora
@@ -91,6 +90,9 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
       const index = this.displayedColumns.indexOf('potencia');
       this.displayedColumns.splice(index, 1);
     }
+
+    // Colocar no lugar correto ao Final da Busca
+    this.showTable = true;
   }
 
   download() {
@@ -104,7 +106,7 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
         potencia: 10.1
       }
     ];
-    const header = ['Posição', 'Data', 'Velocidade do Vento', 'Tensao', 'Corrente', 'Potência'];
+    const header = this.displayedColumns;
     const options = {
       fieldSeparator: ';',
       quoteStrings: '"',
@@ -117,23 +119,20 @@ export class HistoricComponent implements OnInit, OnChanges, DoCheck, OnDestroy 
   }
 }
 
-export class ExampleDataSource extends DataSource<any> {
+export class TurbineDataSourceComunicationAPI extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]> {
+  connect(): Observable<ElementTableModel[]> {
     return Observable.of(data);
   }
   disconnect() { }
 }
 
-export interface Element {
-  position: number;
-  data: string;
-  velocidadeDoVento: number;
-  tensao: string;
-  corrente: string;
-  potencia: string;
-}
-
-const data: Element[] = [
-  { position: 1, data: 'Hydrogen', velocidadeDoVento: 1.0079, tensao: 'H', corrente: 'teste', potencia: 'teste' },
+const data: ElementTableModel[] = [
+  { position: 1, data: '10/10/10', velocidadeDoVento: 1.0079, tensao: 110.0, corrente: 5, potencia: 445 },
+  { position: 2, data: '13/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { position: 2, data: '11/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { position: 2, data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { position: 2, data: '14/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { position: 2, data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
+  { position: 2, data: '15/10/10', velocidadeDoVento: 1.0079, tensao: 220.0, corrente: 40, potencia: 1145 },
 ];

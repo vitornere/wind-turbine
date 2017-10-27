@@ -239,7 +239,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
 
   constructor() {
     const currentChart = this;
-
+/*
     setInterval(function () {
       if (currentChart.chartVento) {
         currentChart.chartVento['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
@@ -260,5 +260,6 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
         currentChart.chartPotencia['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
       }
     }, 2000);
+  */
   }
 }
