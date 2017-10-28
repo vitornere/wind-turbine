@@ -2,8 +2,10 @@ import { ElementTableModel } from './../../models/element-table.models';
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/Rx';
 
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { TurbineDataService } from '../../services/turbine-data.service';
@@ -17,6 +19,9 @@ let dataElement: ElementTableModel[] = [];
   styleUrls: ['./historic.component.scss']
 })
 export class HistoricComponent implements OnInit {
+
+  constructor(private _formBuilder: FormBuilder, private turbineDataService: TurbineDataService) { }
+
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -36,8 +41,6 @@ export class HistoricComponent implements OnInit {
     { value: 'diaemdia', viewValue: 'Diário' },
     { value: 'semanaemsemana', viewValue: 'Semanalmente' }
   ];
-
-  constructor(private _formBuilder: FormBuilder, private turbineDataService: TurbineDataService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -91,13 +94,10 @@ export class HistoricComponent implements OnInit {
 
     // Colocar no lugar correto ao Final da Busca
     this.showTable = true;
-    this.turbineDataService.getTurbineDataByCompleteDate().subscribe(
+    this.turbineDataService.getTurbineDataByCompleteDate().retry(4).subscribe(
       res => this.elements_model = res
     );
     dataElement = this.elements_model;
-    console.log('Sim é um ElementTableModel');
-    console.log(dataElement);
-    console.log(dataExample);
   }
 
   download() {
@@ -119,16 +119,13 @@ export class HistoricComponent implements OnInit {
 export class TurbineDataSourceComunicationAPI extends DataSource<ElementTableModel> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<ElementTableModel[]> {
-    return Observable.of(dataExample);
+    return Observable.of(dataElement)
+                      .retry(4)
+                      .do(data => console.log(dataElement));
   }
   disconnect() { }
 }
 let dataExample: ElementTableModel[] = [
-  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5,  mppt: 1245 },
+  { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5, mppt: 1245 },
   { date: '13/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1345 },
-  { date: '11/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1445 },
-  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1545 },
-  { date: '14/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1845 },
-  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1945 },
-  { date: '15/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1945 }
 ];
