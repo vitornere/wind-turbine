@@ -29,7 +29,7 @@ export class HistoricComponent implements OnInit {
   displayedColumns: Array<any> = ['date'];
   tableSize: number = dataElement.length;
   dataSource: TurbineDataSourceComunicationAPI = new TurbineDataSourceComunicationAPI();
-  elements_model: ElementTableModel[];
+  private elements_model: ElementTableModel[];
 
   frequency = [
     { value: 'horaemhora', viewValue: 'De hora em hora' },
@@ -91,14 +91,13 @@ export class HistoricComponent implements OnInit {
 
     // Colocar no lugar correto ao Final da Busca
     this.showTable = true;
-    this.turbineDataService.getTurbineDataByCompleteDate().then(
-      res => {
-        this.elements_model = res;
-      }
+    this.turbineDataService.getTurbineDataByCompleteDate().subscribe(
+      res => this.elements_model = res
     );
     dataElement = this.elements_model;
     console.log('Sim é um ElementTableModel');
     console.log(dataElement);
+    console.log(dataExample);
   }
 
   download() {
@@ -117,14 +116,14 @@ export class HistoricComponent implements OnInit {
   }
 }
 
-export class TurbineDataSourceComunicationAPI extends DataSource<any> {
+export class TurbineDataSourceComunicationAPI extends DataSource<ElementTableModel> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<ElementTableModel[]> {
     return Observable.of(dataExample);
   }
   disconnect() { }
 }
-const dataExample: ElementTableModel[] = [
+let dataExample: ElementTableModel[] = [
   { date: '10/10/10', wind_speed: 1.0079, electric_voltage: 110.0, electric_current: 5,  mppt: 1245 },
   { date: '13/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1345 },
   { date: '11/10/10', wind_speed: 1.0079, electric_voltage: 220.0, electric_current: 40, mppt: 1445 },

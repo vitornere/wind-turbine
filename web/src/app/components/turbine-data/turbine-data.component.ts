@@ -24,16 +24,18 @@ export class TurbineDataComponent implements OnInit {
 
   ngOnInit() {
   }
+  // Object {wind_speed: 11.1, electric_voltage: 11.1, electric_current: 11.1, mppt: 11.1, date: "2017-10-27T00:14:43.831327Z"}
   setUpdateData(): any {
     setInterval(() => {
-      this.turbineDataService.getLastTurbineData().then(
+      this.turbineDataService.getLastTurbineData()
+        .subscribe(
         res => {
           this.turbine_data[0].subtitle = res.wind_speed;
           this.turbine_data[1].subtitle = res.electric_voltage;
           this.turbine_data[2].subtitle = res.electric_current;
           this.turbine_data[3].subtitle = res.mppt;
         }
-      );
+        );
     }, 2000);
   }
 
