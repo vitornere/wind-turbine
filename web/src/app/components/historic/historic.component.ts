@@ -33,7 +33,7 @@ export class HistoricComponent implements OnInit {
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
   displayedColumns: Array<any> = ['id', 'date'];
   tableSize: number = dataElement.length;
-  dataSource: TurbineDataSourceComunicationAPI = new TurbineDataSourceComunicationAPI();
+  dataSource: TurbineDataSourceComunicationAPI;
   private elements_model: ElementTableModel[];
 
   frequency = [
@@ -101,6 +101,7 @@ export class HistoricComponent implements OnInit {
     console.log(this.elements_model);
     dataElement = this.elements_model;
     this.formatData();
+    this.dataSource = new TurbineDataSourceComunicationAPI();
   }
 
   download() {
@@ -132,9 +133,9 @@ export class HistoricComponent implements OnInit {
     );
   }
 }
-export class TurbineDataSourceComunicationAPI extends DataSource<ElementTableModel> {
+export class TurbineDataSourceComunicationAPI extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<ElementTableModel[]> {
+  connect(): Observable<any> {
     return Observable.of(dataExample)
       .retry(4);
   }
@@ -142,14 +143,7 @@ export class TurbineDataSourceComunicationAPI extends DataSource<ElementTableMod
 }
 
 let dataExample: ElementTableModel[] = [
-  { id: 1, date: '2017-10-28T19:48:07.546132Z', wind_speed: '1.0079', electric_voltage: '110.0', electric_current: '5', mppt: '1245' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
-  { id: 2, date: '2017-10-25T23:13:41.216429Z', wind_speed: '1.0079', electric_voltage: '220.0', electric_current: '40', mppt: '1345' },
+  { id: 1, electric_voltage: '1.0', date: '2017-10-25T19:14:52', electric_current: '1111.0', wind_speed: '1111.0', mppt: '11111.0' },
+  { id: 2, electric_voltage: '1.0', date: '2017-10-25T23:13:41', electric_current: '1.0', wind_speed: '1.0', mppt: '1.0' },
+  { id: 3, electric_voltage: '2.0', date: '2017-10-25T23:13:50', electric_current: '2.0', wind_speed: '2.0', mppt: '2.0' }
 ];

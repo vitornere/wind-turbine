@@ -19,6 +19,7 @@ def getLastTurbineData(response):
 
 @api_view(['GET'])
 def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day , selected_values):
+    selected_values = selected_values.split(',')
     turbineData = TurbineData.objects.filter(
         date__range=(
             datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),
@@ -26,7 +27,7 @@ def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, f
         )
     )
     if turbineData is not None:
-        return Response(turbineData.values(), status.HTTP_200_OK)        
+        return Response(turbineData.values(*selected_values), status.HTTP_200_OK)        
     else:
         return Response({}, status.HTTP_404_OK)
 

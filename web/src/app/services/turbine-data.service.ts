@@ -24,11 +24,7 @@ export class TurbineDataService {
       .catch(err => Observable.throw(err.message));
   }
 
-  public getTurbineDataByCompleteDate(selected_values: Array<any>): Observable<ElementTableModel[]> {
-    // url format
-    // http://localhost:8000/start:2017-01-27&&finish:2017-12-27/
-    console.log('Selected_values::::');
-    console.log(selected_values.toString());
+  public getTurbineDataByCompleteDate(selected_values: Array<any>): Observable<any> {
     const apiUrl = environment.apiURL + '/start:2017-01-27&&finish:2017-12-27::' + selected_values.toString();
     return this.http.get(apiUrl, '')
       .map(res => res.json())
