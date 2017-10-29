@@ -18,7 +18,7 @@ def getLastTurbineData(response):
             return Response({}, status.HTTP_200_OK)
 
 @api_view(['GET'])
-def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day ):
+def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day , selected_values):
     turbineData = TurbineData.objects.filter(
         date__range=(
             datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),

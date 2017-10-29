@@ -14,10 +14,10 @@ export class TurbineDataComponent implements OnInit {
 
   constructor(private turbineDataService: TurbineDataService) {
     this.turbine_data = [
-      this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', 0, ' m/s'),
-      this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', 0, ' m/s'),
-      this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', 0, ' m/s'),
-      this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', 0, ' m/s')
+      this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', '', ' m/s'),
+      this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', '', ' m/s'),
+      this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', '', ' m/s'),
+      this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', '', ' m/s')
     ];
     this.updateData = this.setUpdateData();
   }
@@ -39,7 +39,7 @@ export class TurbineDataComponent implements OnInit {
     }, 2000);
   }
 
-  newTurbineDataObject(id: number, image_src: string, title: string, subtitle: number, unity: string) {
+  newTurbineDataObject(id: number, image_src: string, title: string, subtitle: string, unity: string) {
     return new TurbineDataModel(id, image_src, title, subtitle, unity);
   }
 }

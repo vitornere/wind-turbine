@@ -104,11 +104,17 @@
           The actual rendered columns are set as a property on the row definition" -->
 
       <!-- data Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Nº </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <!-- data Column -->
       <ng-container matColumnDef="date">
         <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
       </ng-container>
-      
+
       <!-- Corrente Column -->
       <ng-container matColumnDef="electric_current">
         <mat-header-cell *matHeaderCellDef> Corrente </mat-header-cell>
@@ -117,7 +123,7 @@
 
       <!-- wind_speed Column -->
       <ng-container matColumnDef="wind_speed">
-        <mat-header-cell *matHeaderCellDef> elocidade do Vento </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Velocidade do Vento </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.wind_speed}} </mat-cell>
       </ng-container>
 
