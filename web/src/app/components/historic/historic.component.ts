@@ -1,3 +1,4 @@
+import { TurbineDataModel } from './../../../../../mobile/src/models/turbine-data.model';
 import { ElementTableModel } from './../../models/element-table.models';
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -35,7 +36,7 @@ export class HistoricComponent implements OnInit {
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
 
   displayedColumns: Array<any> = ['id', 'date'];
-  dataSource: TurbineDataSourceComunicationAPI | null;
+  dataSource: DataSourceAPI | null;
 
   private elements_model: ElementTableModel[];
 
@@ -65,7 +66,7 @@ export class HistoricComponent implements OnInit {
     });
     this.fourthFormGroup = this.formBuilder.group({
       fourthCtrl: ['', Validators.required]
-    });
+    });;
   }
 
   // Alguém refatora
@@ -102,11 +103,14 @@ export class HistoricComponent implements OnInit {
     // Colocar no lugar correto ao Final da Busca
     this.showTable = true;
     this.turbineDataService.getTurbineDataByCompleteDate(this.displayedColumns).retry(4).subscribe(
-      res => this.elements_model = res
+      res => this.elements_model = res,
     );
-    dataElement = this.elements_model;
-    this.formatData();
-    this.dataSource = new TurbineDataSourceComunicationAPI();
+    this.dataSource = new DataSourceAPI(this.elements_model);
+    console.log('This.elements_model:::');
+    console.log(this.elements_model);
+    console.log('This.dataSource:::');
+    console.log(this.dataSource);
+    console.log(typeof this.dataSource);
   }
 
   download() {
@@ -132,7 +136,7 @@ export class HistoricComponent implements OnInit {
 
   formatData() {
     let value = 1;
-    dataExample.map(
+    this.elements_model.map(
       ret => {
         ret.id = value;
         ret.date = ret.date.substr(0, 19);
@@ -141,17 +145,19 @@ export class HistoricComponent implements OnInit {
     );
   }
 }
-export class TurbineDataSourceComunicationAPI extends DataSource<any> {
+export class DataSourceAPI extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
+  constructor(private database: ElementTableModel[]) {
+    super();
+  }
   connect(): Observable<any> {
-    return Observable.of(dataExample)
-      .retry(4);
+
+    console.log('Chegou no Observable');
+    console.log(this.database);
+    console.log(typeof this.database);
+
+    return Observable.of(this.database)
+      .retry(3);
   }
   disconnect() { }
 }
-
-let dataExample: ElementTableModel[] = [
-  { id: 1, electric_voltage: '1.0', date: '2017-10-25T19:14:52', electric_current: '1111.0', wind_speed: '1111.0', mppt: '11111.0' },
-  { id: 2, electric_voltage: '1.0', date: '2017-10-25T23:13:41', electric_current: '1.0', wind_speed: '1.0', mppt: '1.0' },
-  { id: 3, electric_voltage: '2.0', date: '2017-10-25T23:13:50', electric_current: '2.0', wind_speed: '2.0', mppt: '2.0' }
-];
