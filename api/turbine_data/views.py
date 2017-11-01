@@ -19,9 +19,10 @@ def getLastTurbineData(response):
 
 @api_view(['GET'])
 def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day , selected_values):
+    
     selected_values = selected_values.split(',')
     turbineData = TurbineData.objects.filter(
-        date__range=(
+        date__range=(   
             datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),
             datetime.datetime(int(finish_year), int(finish_month), int(finish_day), 23, 59, 59) 
         )

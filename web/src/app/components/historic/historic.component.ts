@@ -20,43 +20,50 @@ let dataElement: ElementTableModel[] = [];
 })
 export class HistoricComponent implements OnInit {
 
-  constructor(private _formBuilder: FormBuilder, private turbineDataService: TurbineDataService) { }
+  constructor(private formBuilder: FormBuilder, private turbineDataService: TurbineDataService) { }
 
   isLinear = false;
+  showTable = false;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  showTable = false;
+
   today: Date = new Date();
   minDate: Date = new Date(2000, 0, 1); // Setar no dia em que colocar em produção
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
+
   displayedColumns: Array<any> = ['id', 'date'];
-  tableSize: number = dataElement.length;
-  dataSource: TurbineDataSourceComunicationAPI;
+  dataSource: TurbineDataSourceComunicationAPI | null;
+
   private elements_model: ElementTableModel[];
 
   frequency = [
-    { value: 'horaemhora', viewValue: 'De hora em hora' },
-    { value: 'diaemdia', viewValue: 'Diário' },
-    { value: 'semanaemsemana', viewValue: 'Semanalmente' }
+    { value: 'segundoemsegundo', viewValue: 'De segundo em segundo (60/s)' },
+    { value: 'minutosemminutos', viewValue: 'De minuto em minuto (60/mim)' },
+    { value: 'horaemhora', viewValue: 'De hora em hora (24/hrs)' },
+    { value: 'diaemdia', viewValue: 'Diário (7 dias)' },
+    { value: 'semanaemsemana', viewValue: 'Semanalmente (Semanas no mes)' },
+    { value: 'mesemmes', viewValue: 'Mensalmente (12 mêses)' },
+    { value: 'anual', viewValue: 'Anual' }
   ];
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
+    this.firstFormGroup = this.formBuilder.group({
       firstCtrl: ['', Validators.required],
       vento: new FormControl(),
       electric_voltage: new FormControl(),
       electric_current: new FormControl(),
       mppt: new FormControl()
     });
-    this.secondFormGroup = this._formBuilder.group({
+    this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    this.thirdFormGroup = this._formBuilder.group({
+    this.thirdFormGroup = this.formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-    this.fourthFormGroup = this._formBuilder.group({
+    this.fourthFormGroup = this.formBuilder.group({
       fourthCtrl: ['', Validators.required]
     });
   }
@@ -97,8 +104,6 @@ export class HistoricComponent implements OnInit {
     this.turbineDataService.getTurbineDataByCompleteDate(this.displayedColumns).retry(4).subscribe(
       res => this.elements_model = res
     );
-    console.log('Elements_model:::::');
-    console.log(this.elements_model);
     dataElement = this.elements_model;
     this.formatData();
     this.dataSource = new TurbineDataSourceComunicationAPI();
@@ -111,13 +116,16 @@ export class HistoricComponent implements OnInit {
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: true,
-      showTitle: false,
+      showTitle: true,
       headers: (header),
       title: this.maxDate.toString()
     };
+    console.log(header);
+    console.log(this.elements_model);
     // tslint:disable-next-line:no-unused-expression
-    new Angular2Csv(dataExample
-      , 'turbine_data' + (this.maxDate.getFullYear().toString())
+    new Angular2Csv(
+      this.elements_model
+      , 'turbine_data_' + (this.maxDate.getFullYear().toString())
       , options
     );
   }
