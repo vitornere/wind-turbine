@@ -40,11 +40,8 @@ def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, f
                 labels.update({'electric_current': 'Corrente'})
             if (i=='mppt'):
                 labels.update({'mppt': 'Potência'})
-
-        print("#############Context##################")        
         context = list(turbineData.values(*selected_values))
         context.insert(0, labels)
-        print(context)
         return Response(context, status.HTTP_200_OK)        
     else:
         return Response({}, status.HTTP_404_OK)
