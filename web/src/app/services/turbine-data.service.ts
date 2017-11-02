@@ -24,8 +24,13 @@ export class TurbineDataService {
       .catch(err => Observable.throw(err.message));
   }
 
-  public getTurbineDataByCompleteDate(selected_values: Array<any>): Observable<any> {
-    const apiUrl = environment.apiURL + '/start:2017-01-27&&finish:2017-12-27::' + selected_values.toString();
+  public getTurbineDataByCompleteDate(selected_values: Array<any>, firstDate: Date, secondDate: Date): Observable<any> {
+
+    const startYear: string = firstDate.getFullYear() + '-' + (firstDate.getUTCMonth() + 1) + '-' + firstDate.getDate();
+    const finishYear: string = secondDate.getFullYear() + '-' + (secondDate.getUTCMonth() + 1) + '-' + secondDate.getDate();
+
+    const apiUrl = environment.apiURL + '/start:' + startYear + '&&finish:' + finishYear + '::' + selected_values.toString();
+
     return this.http.get(apiUrl, '')
       .map(res => res.json())
       .catch(err => Observable.throw(err.message));

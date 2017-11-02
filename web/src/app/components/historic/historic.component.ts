@@ -56,10 +56,12 @@ export class HistoricComponent implements OnInit {
       mppt: new FormControl()
     });
     this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['', Validators.required],
+      firstDate: new FormControl()
     });
     this.thirdFormGroup = this.formBuilder.group({
-      thirdCtrl: ['', Validators.required]
+      thirdCtrl: ['', Validators.required],
+      secondDate: new FormControl()
     });
     this.fourthFormGroup = this.formBuilder.group({
       fourthCtrl: ['', Validators.required]
@@ -96,16 +98,18 @@ export class HistoricComponent implements OnInit {
       const idx = this.displayedColumns.indexOf('mppt');
       this.displayedColumns.splice(idx, 1);
     }
+  }
 
-    // Colocar no lugar correto ao Final da Busca
+  fourthFormButton() {
+    const firstDate = new Date(this.secondFormGroup.value.firstDate);
+    const secondDate = new Date(this.thirdFormGroup.value.secondDate);
     this.showTable = true;
-    this.turbineDataService.getTurbineDataByCompleteDate(this.displayedColumns).retry(4).subscribe(
+    this.turbineDataService.getTurbineDataByCompleteDate(this.displayedColumns, firstDate, secondDate).retry(4).subscribe(
       res => this.elements_model = res,
     );
 
     this.dataSource = new DataSourceAPI(this.elements_model);
   }
-
   download() {
     const options = {
       fieldSeparator: ';',

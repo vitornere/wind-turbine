@@ -35,14 +35,14 @@
         <ng-template matStepLabel>Início do período</ng-template>
         <div class="row">
           <mat-form-field class="col l4 m6 s8 offset-s0">
-            <input [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker" placeholder="Selecione o início">
+            <input formControlName="firstDate" [(ngModel)]="firstDate" [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker" placeholder="Selecione o início">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker startView="year" touchUi="true" #picker></mat-datepicker>
           </mat-form-field>
         </div>
         <div>
           <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Próximo</button>
+          <button mat-button matStepperNext >Próximo</button>
         </div>
       </form>
     </mat-step>
@@ -51,7 +51,7 @@
         <ng-template matStepLabel>Fim do período</ng-template>
         <div class="row">
           <mat-form-field class="col l4 m6 s8 offset-s0">
-            <input [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker1" placeholder="Selecione o fim">
+            <input formControlName="secondDate" [(ngModel)]="secondDate" [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker1" placeholder="Selecione o fim">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker startView="year" touchUi="true" #picker1></mat-datepicker>
           </mat-form-field>
@@ -76,7 +76,7 @@
         </div>
         <div>
           <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Próximo</button>
+          <button mat-button matStepperNext (click)="fourthFormButton()">Próximo</button>
         </div>
       </form>
     </mat-step>
@@ -94,7 +94,6 @@
     </mat-step>
   </mat-vertical-stepper>
 </div>
-
 
 <div class="container" [hidden]="!showTable">
   <div class="example-container mat-elevation-z8">
