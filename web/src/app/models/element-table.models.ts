@@ -14,4 +14,8 @@ export class ElementTableModel {
         electric_current = this.electric_current;
         mppt = this.mppt;
     }
+
+    public setDate(date: string): void {
+        this.date = date;
+    }
 }

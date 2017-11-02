@@ -11,9 +11,6 @@ import 'rxjs/Rx';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { TurbineDataService } from '../../services/turbine-data.service';
 
-
-let dataElement: ElementTableModel[] = [];
-
 @Component({
   selector: 'app-historic',
   templateUrl: './historic.component.html',
@@ -66,7 +63,7 @@ export class HistoricComponent implements OnInit {
     });
     this.fourthFormGroup = this.formBuilder.group({
       fourthCtrl: ['', Validators.required]
-    });;
+    });
   }
 
   // Alguém refatora
@@ -105,43 +102,23 @@ export class HistoricComponent implements OnInit {
     this.turbineDataService.getTurbineDataByCompleteDate(this.displayedColumns).retry(4).subscribe(
       res => this.elements_model = res,
     );
+
     this.dataSource = new DataSourceAPI(this.elements_model);
-    console.log('This.elements_model:::');
-    console.log(this.elements_model);
-    console.log('This.dataSource:::');
-    console.log(this.dataSource);
-    console.log(typeof this.dataSource);
   }
 
   download() {
-    const header = this.displayedColumns;
     const options = {
       fieldSeparator: ';',
       quoteStrings: '"',
       decimalseparator: '.',
-      showLabels: true,
-      showTitle: true,
-      headers: (header),
       title: this.maxDate.toString()
     };
-    console.log(header);
-    console.log(this.elements_model);
+
     // tslint:disable-next-line:no-unused-expression
     new Angular2Csv(
       this.elements_model
       , 'turbine_data_' + (this.maxDate.getFullYear().toString())
       , options
-    );
-  }
-
-  formatData() {
-    let value = 1;
-    this.elements_model.map(
-      ret => {
-        ret.id = value;
-        ret.date = ret.date.substr(0, 19);
-        value++;
-      }
     );
   }
 }
@@ -151,11 +128,6 @@ export class DataSourceAPI extends DataSource<any> {
     super();
   }
   connect(): Observable<any> {
-
-    console.log('Chegou no Observable');
-    console.log(this.database);
-    console.log(typeof this.database);
-
     return Observable.of(this.database)
       .retry(3);
   }

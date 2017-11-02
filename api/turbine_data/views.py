@@ -28,7 +28,24 @@ def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, f
         )
     )
     if turbineData is not None:
-        return Response(turbineData.values(*selected_values), status.HTTP_200_OK)        
+        labels = {'id':''}
+        for i in selected_values:
+            if (i=='date'):
+                labels.update({'date':'Data'})
+            if (i=='wind_speed'):
+                labels.update({'wind_speed': 'Velocidade do Vento'})
+            if (i=='electric_voltage'):
+                labels.update({'electric_voltage' : 'Tensão'})
+            if (i=='electric_current'):
+                labels.update({'electric_current': 'Corrente'})
+            if (i=='mppt'):
+                labels.update({'mppt': 'Potência'})
+
+        print("#############Context##################")        
+        context = list(turbineData.values(*selected_values))
+        context.insert(0, labels)
+        print(context)
+        return Response(context, status.HTTP_200_OK)        
     else:
         return Response({}, status.HTTP_404_OK)
 
