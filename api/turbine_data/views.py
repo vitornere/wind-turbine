@@ -18,15 +18,31 @@ def getLastTurbineData(response):
             return Response({}, status.HTTP_200_OK)
 
 @api_view(['GET'])
-def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day ):
+def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day , selected_values):
+    
+    selected_values = selected_values.split(',')
     turbineData = TurbineData.objects.filter(
-        date__range=(
+        date__range=(   
             datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),
             datetime.datetime(int(finish_year), int(finish_month), int(finish_day), 23, 59, 59) 
         )
     )
     if turbineData is not None:
-        return Response(turbineData.values(), status.HTTP_200_OK)        
+        labels = {'id':''}
+        for i in selected_values:
+            if (i=='date'):
+                labels.update({'date':'Data'})
+            if (i=='wind_speed'):
+                labels.update({'wind_speed': 'Velocidade do Vento'})
+            if (i=='electric_voltage'):
+                labels.update({'electric_voltage' : 'Tensão'})
+            if (i=='electric_current'):
+                labels.update({'electric_current': 'Corrente'})
+            if (i=='mppt'):
+                labels.update({'mppt': 'Potência'})
+        context = list(turbineData.values(*selected_values))
+        context.insert(0, labels)
+        return Response(context, status.HTTP_200_OK)        
     else:
         return Response({}, status.HTTP_404_OK)
 
