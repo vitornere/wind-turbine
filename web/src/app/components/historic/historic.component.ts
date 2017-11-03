@@ -1,3 +1,4 @@
+import { TurbineDataComponent } from './../turbine-data/turbine-data.component';
 import { TurbineDataModel } from './../../../../../mobile/src/models/turbine-data.model';
 import { ElementTableModel } from './../../models/element-table.models';
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
@@ -104,11 +105,15 @@ export class HistoricComponent implements OnInit {
     const firstDate = new Date(this.secondFormGroup.value.firstDate);
     const secondDate = new Date(this.thirdFormGroup.value.secondDate);
     this.showTable = true;
-    this.turbineDataService.getTurbineDataByCompleteDate(this.displayedColumns, firstDate, secondDate).retry(4).subscribe(
-      res => this.elements_model = res,
-    );
-
-    this.dataSource = new DataSourceAPI(this.elements_model);
+    this.turbineDataService.getTurbineDataByCompleteDate(
+      this.displayedColumns, firstDate, secondDate
+    )
+      .retry(4)
+      .subscribe(
+      res => {
+        this.dataSource = new DataSourceAPI(res as [ElementTableModel]);
+        this.elements_model = res;
+      });
   }
   download() {
     const options = {
