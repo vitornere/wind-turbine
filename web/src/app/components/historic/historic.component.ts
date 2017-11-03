@@ -21,6 +21,7 @@ export class HistoricComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private turbineDataService: TurbineDataService) { }
 
+  noData = false;
   isLinear = false;
   showTable = false;
 
@@ -104,7 +105,6 @@ export class HistoricComponent implements OnInit {
   fourthFormButton() {
     const firstDate = new Date(this.secondFormGroup.value.firstDate);
     const secondDate = new Date(this.thirdFormGroup.value.secondDate);
-    this.showTable = true;
     this.turbineDataService.getTurbineDataByCompleteDate(
       this.displayedColumns, firstDate, secondDate
     )
@@ -113,6 +113,13 @@ export class HistoricComponent implements OnInit {
       res => {
         this.dataSource = new DataSourceAPI(res as [ElementTableModel]);
         this.elements_model = res;
+        if (this.elements_model.length > 1) {
+          this.showTable = true;
+          this.noData = false;
+        } else {
+          this.noData = true;
+          this.showTable = false;
+        }
       });
   }
   download() {
@@ -126,7 +133,7 @@ export class HistoricComponent implements OnInit {
     // tslint:disable-next-line:no-unused-expression
     new Angular2Csv(
       this.elements_model
-      , 'turbine_data_' + (this.maxDate.getFullYear().toString())
+      , 'turbine_data'
       , options
     );
   }
@@ -136,7 +143,7 @@ export class DataSourceAPI extends DataSource<any> {
   constructor(private database: ElementTableModel[]) {
     super();
   }
-  connect(): Observable<any> {
+  connect(): Observable<ElementTableModel[]> {
     return Observable.of(this.database)
       .retry(3);
   }
