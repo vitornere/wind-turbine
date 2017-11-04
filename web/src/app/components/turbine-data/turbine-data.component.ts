@@ -36,7 +36,7 @@ export class TurbineDataComponent implements OnInit {
           this.turbine_data[3].subtitle = res.mppt;
         }
         );
-    }, 2000);
+    }, 1000);
   }
 
   newTurbineDataObject(id: number, image_src: string, title: string, subtitle: string, unity: string) {

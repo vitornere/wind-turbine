@@ -1,16 +1,17 @@
 import { TurbineDataComponent } from './../turbine-data/turbine-data.component';
-import { TurbineDataModel } from './../../../../../mobile/src/models/turbine-data.model';
 import { ElementTableModel } from './../../models/element-table.models';
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
 import 'rxjs/Rx';
 
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { TurbineDataService } from '../../services/turbine-data.service';
+
+import { MatPaginator, MatSort } from '@angular/material';
+import { DataSourceAPI } from './turbine-data-source';
 
 @Component({
   selector: 'app-historic',
@@ -21,6 +22,7 @@ export class HistoricComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private turbineDataService: TurbineDataService) { }
 
+  tableSize: number;
   noData = false;
   isLinear = false;
   showTable = false;
@@ -36,6 +38,9 @@ export class HistoricComponent implements OnInit {
 
   displayedColumns: Array<any> = ['id', 'date'];
   dataSource: DataSourceAPI | null;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   private elements_model: ElementTableModel[];
 
@@ -111,9 +116,10 @@ export class HistoricComponent implements OnInit {
       .retry(4)
       .subscribe(
       res => {
-        this.dataSource = new DataSourceAPI(res as [ElementTableModel]);
+        this.dataSource = new DataSourceAPI((res as [ElementTableModel]), this.paginator);
         this.elements_model = res;
         if (this.elements_model.length > 1) {
+          this.tableSize = this.elements_model.length + 1;
           this.showTable = true;
           this.noData = false;
         } else {
@@ -137,15 +143,4 @@ export class HistoricComponent implements OnInit {
       , options
     );
   }
-}
-export class DataSourceAPI extends DataSource<any> {
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  constructor(private database: ElementTableModel[]) {
-    super();
-  }
-  connect(): Observable<ElementTableModel[]> {
-    return Observable.of(this.database)
-      .retry(3);
-  }
-  disconnect() { }
 }
