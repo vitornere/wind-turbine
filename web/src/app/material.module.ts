@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
+  MatIconModule,
   MatCheckboxModule,
   MatDatepickerModule,
   MatNativeDateModule,
@@ -19,6 +20,7 @@ import { CdkTableModule } from '@angular/cdk/table';
  */
 @NgModule({
   exports: [
+    MatIconModule,
     MatTableModule,
     MatSelectModule,
     MatCheckboxModule,

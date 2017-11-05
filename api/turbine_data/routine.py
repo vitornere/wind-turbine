@@ -13,7 +13,7 @@ def create_new_data():
     print("\telectric_current: " + str(electric_current)) 
     print("\tmppt: " + str(mppt))
     print("}")
-    r = requests.post('http://10.0.0.1/turbine-data/', json = { 'wind_speed':wind_speed, 
+    r = requests.post('http://127.0.0.1:8000/turbine-data/', json = { 'wind_speed':wind_speed, 
                                                       'electric_voltage':electric_voltage, 
                                                       'electric_current':electric_current, 
                                                       'mppt':mppt })
