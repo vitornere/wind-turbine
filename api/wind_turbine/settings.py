@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'turbine_data',
-    'corsheaders'
+    'corsheaders',
+    'django_seed',
 ]
 
 REST_FRAMEWORK = {

@@ -18,17 +18,20 @@ def getLastTurbineData(response):
             return Response({}, status.HTTP_200_OK)
 
 @api_view(['GET'])
-def getTurbineDataByCompleteDate(response, start_year, start_month, start_day, finish_year, finish_month, finish_day , selected_values):
-    
+def getTurbineDataByCompleteDate(response, period, start_date, finish_date, selected_values):
     selected_values = selected_values.split(',')
+    init_date = start_date.split('-')
+    end_date = finish_date.split('-')
+
     turbineData = TurbineData.objects.filter(
-        date__range=(   
-            datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),
-            datetime.datetime(int(finish_year), int(finish_month), int(finish_day), 23, 59, 59) 
+        date__range=(
+            datetime.datetime(int(init_date[0]), int(init_date[1]), int(init_date[2]), 0, 0, 0),
+            datetime.datetime(int(end_date[0]), int(end_date[1]), int(end_date[2]), 23, 59, 59)
         )
     )
+    
     if turbineData is not None:
-        labels = {'id':''}
+        labels = {}
         for i in selected_values:
             if (i=='date'):
                 labels.update({'date':'Data'})

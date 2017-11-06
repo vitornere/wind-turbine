@@ -36,7 +36,7 @@
         <ng-template matStepLabel>Início do período</ng-template>
         <div class="row">
           <mat-form-field class="col l4 m6 s8 offset-s0">
-            <input formControlName="firstDate" [(ngModel)]="firstDate" [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker"
+            <input required formControlName="firstDate" [(ngModel)]="firstDate" [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker"
               placeholder="Selecione o início">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker startView="year" touchUi="true" #picker></mat-datepicker>
@@ -53,8 +53,8 @@
         <ng-template matStepLabel>Fim do período</ng-template>
         <div class="row">
           <mat-form-field class="col l4 m6 s8 offset-s0">
-            <input formControlName="secondDate" [(ngModel)]="secondDate" [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker1"
-              placeholder="Selecione o fim">
+            <input required formControlName="secondDate" [(ngModel)]="secondDate" [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker1"
+              placeholder="Selecione o fim" >
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker startView="year" touchUi="true" #picker1></mat-datepicker>
           </mat-form-field>
@@ -70,7 +70,7 @@
         <ng-template matStepLabel>Frequência dos dados</ng-template>
         <div class="row">
           <mat-form-field class="col l4 m6 s8 offset-s0">
-            <mat-select placeholder="Informa a frequência">
+            <mat-select formControlName="period" placeholder="Informa a frequência" required>
               <mat-option *ngFor="let frequency of frequency" [value]="frequency.value">
                 {{ frequency.viewValue }}
               </mat-option>
@@ -96,7 +96,7 @@
 
 <div class="container" [hidden]="!showTable">
   <div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource" class="striped">
 
       <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
