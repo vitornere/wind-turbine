@@ -7,16 +7,16 @@ def create_new_data():
     electric_voltage = random.uniform(0, 100)
     electric_current = random.uniform(0, 5)
     mppt = electric_voltage * electric_current
-    print("\nMaking a post request with data = {");
-    print("\twind_speed: " + str(wind_speed))
-    print("\telectric_voltage: "+ str(electric_voltage)) 
-    print("\telectric_current: " + str(electric_current)) 
-    print("\tmppt: " + str(mppt))
-    print("}")
-    r = requests.post('http://127.0.0.1:8000/turbine-data/', json = { 'wind_speed':wind_speed, 
-                                                      'electric_voltage':electric_voltage, 
-                                                      'electric_current':electric_current, 
-                                                      'mppt':mppt })
+    print('\nMaking a post request with data = {');
+    print('\twind_speed: {0:.4f}'.format(wind_speed))
+    print('\telectric_voltage: {0:.4f}'.format(electric_voltage)) 
+    print('\telectric_current: {0:.4f}'.format(electric_current)) 
+    print('\tmppt: {0:.4f}'.format(mppt))
+    print('}')
+    r = requests.post('http://127.0.0.1:8000/turbine-data/', json = { 'wind_speed':'{0:.4f}'.format(wind_speed), 
+                                                      'electric_voltage':'{0:.4f}'.format(electric_voltage), 
+                                                      'electric_current':'{0:.4f}'.format(electric_current), 
+                                                      'mppt':'{0:.4f}'.format(mppt) })
     print(r.json())
 
 while True:
