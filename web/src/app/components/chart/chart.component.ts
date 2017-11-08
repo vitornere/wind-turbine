@@ -1,7 +1,9 @@
 import { Component, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { TurbineDataService } from './../../services/turbine-data.service';
 
 const Highcharts = require('highcharts/highcharts.src');
 import 'highcharts/adapters/standalone-framework.src';
+import { TurbineDataModel } from '../../models/turbine-data.models';
 
 Highcharts.setOptions({
   height: ['300px']
@@ -24,6 +26,19 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
   private chartCorrente: any;
   private chartPotencia: any;
 
+  updateData: any;
+  turbine_data: [number] = [
+    0,
+    0,
+    0,
+    0
+  ];
+
+  constructor(private turbineDataService: TurbineDataService) {
+    const currentChart = this;
+    this.updateData = this.setUpdateData(currentChart);
+  }
+
   public ngAfterViewInit() {
 
     const legend: any = {
@@ -34,7 +49,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
       formatter: function () {
           return '<b>' + this.series.name + '</b><br/>' +
               Highcharts.numberFormat(this.y, 2) + '<br/>' +
-              Highcharts.dateFormat('%d-%m-%Y %H:%M:%S', this.x); 
+              Highcharts.dateFormat('%d-%m-%Y %H:%M:%S', this.x);
       }
   };
 
@@ -237,29 +252,42 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     return Math.floor(Math.random() * 10) + 0;
   }
 
-  constructor() {
-    const currentChart = this;
-/*
+  setUpdateData(currentChart) {
+    setInterval(() => {
+      this.turbineDataService.getLastTurbineData()
+        .subscribe(
+        res => {
+          currentChart.turbine_data[0] = +res.wind_speed;
+          currentChart.turbine_data[1] = +res.electric_voltage;
+          currentChart.turbine_data[2] = +res.electric_current;
+          currentChart.turbine_data[3] = +res.mppt;
+        }
+        );
+    }, 1000);
+
     setInterval(function () {
       if (currentChart.chartVento) {
-        currentChart.chartVento['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
+        currentChart.chartVento['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[0]], true, true);
       }
-    }, 2000);
+    }, 1000);
     setInterval(function () {
       if (currentChart.chartTensao) {
-        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValueTension()], true, true);
+        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[1]], true, true);
       }
-    }, 2000);
+    }, 1000);
     setInterval(function () {
       if (currentChart.chartCorrente) {
-        currentChart.chartCorrente['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
+        currentChart.chartCorrente['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[2]], true, true);
       }
-    }, 2000);
+    }, 1000);
     setInterval(function () {
       if (currentChart.chartPotencia) {
-        currentChart.chartPotencia['series'][0].addPoint([(new Date()).getTime(), currentChart.randomValue()], true, true);
+        currentChart.chartPotencia['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[3]], true, true);
       }
-    }, 2000);
-  */
+    }, 1000);
+  }
+
+  newTurbineDataObject(id: number, image_src: string, title: string, subtitle: string, unity: string) {
+    return new TurbineDataModel(id, image_src, title, subtitle, unity);
   }
 }
