@@ -22,29 +22,26 @@ export class TurbineDataComponent implements OnDestroy {
     private loadingCtrl: LoadindScreenProvider
   ) {
     this.loadingCtrl.showLoading('Procurando servidor... Entre no Wifi da Bancada Online. Senha: aerogerador.');
-    this.turbine_datas = null;
+    this.turbine_datas = [
+      this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', '', ' m/s'),
+      this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', '', ' m/s'),
+      this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', '', ' m/s'),
+      this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', '', ' m/s')
+    ];
+
     this.updateData = this.setUpdateData();
   }
   setUpdateData() {
     setInterval(() => {
       this.turbineDataService.getLastTurbineData()
-        .then(res => {
+        .subscribe(res => {
           if (res != null) {
-            if (this.turbine_datas != null) {
               this.turbine_datas[0].subtitle = res.wind_speed;
               this.turbine_datas[1].subtitle = res.electric_voltage;
               this.turbine_datas[2].subtitle = res.electric_current;
               this.turbine_datas[3].subtitle = res.mppt;
-            } else {
-              this.turbine_datas = [
-                this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', 0, ' m/s'),
-                this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', 0, ' m/s'),
-                this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', 0, ' m/s'),
-                this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', 0, ' m/s')
-              ]
-            }
 
-            if (this.loadingCtrl.isLoading()) {
+              if (this.loadingCtrl.isLoading()) {
               this.loadingCtrl.dismiss();
             }
           } else {
@@ -53,7 +50,7 @@ export class TurbineDataComponent implements OnDestroy {
             }
           }
         });
-    }, 2000);
+    }, 1000);
   }
   ngOnDestroy(): void {
     if (this.updateData) {
@@ -61,7 +58,7 @@ export class TurbineDataComponent implements OnDestroy {
     }
   }
 
-  newTurbineDataObject(id: number, image_src: string, title: string, subtitle: number, unity: string) {
+  newTurbineDataObject(id: number, image_src: string, title: string, subtitle: string, unity: string) {
     return new TurbineDataModel(id, image_src, title, subtitle, unity);
   }
 

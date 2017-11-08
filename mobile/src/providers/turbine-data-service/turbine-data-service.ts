@@ -1,8 +1,11 @@
 import { TurbineDataModel } from './../../models/turbine-data.model';
+import { ElementTableModel } from './../../models/element-table.model';
+
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
-import { Observable } from 'rxjs/Rx';
+
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { environment } from "../../environment/environment.dev";
 
 /*
@@ -17,16 +20,29 @@ export class TurbineDataService {
   constructor(public http: Http) {
   }
 
-  public getLastTurbineData() {
+  public getLastTurbineData(): Observable<ElementTableModel> {
     const apiUrl = environment.apiURL + '/last';
 
     return this.http.get(apiUrl)
-      .toPromise()
-      .then(res => res.json() as TurbineDataModel)
-      .catch(() => null);
-  }
-
+    .map(res => res.json())
+    .catch(err => Observable.throw(err.message));
+}
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+
+  public getTurbineDataByCompleteDate(period: String, selected_values: Array<any>, firstDate: Date, secondDate: Date): Observable<any> {
+    
+        // /period:second&&start:2000-1-1&&finish:2017-11-6::id,date,wind_speed
+        const apiUrl = environment.apiURL
+          + '/period:' + period.toString()
+          + '&&start:' + firstDate
+          + '&&finish:' + secondDate
+          + '::' + selected_values.toString();
+    
+        return this.http.get(apiUrl, '')
+          .map(res => res.json())
+          .catch(err => Observable.throw(err.message));
+      }
 }
