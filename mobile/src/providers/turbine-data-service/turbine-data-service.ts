@@ -34,14 +34,11 @@ export class TurbineDataService {
 
   public getTurbineDataByCompleteDate(period: String, selected_values: Array<any>, firstDate: Date, secondDate: Date): Observable<any> {
     
-        const startYear: string = firstDate.getFullYear() + '-' + (firstDate.getUTCMonth() + 1) + '-' + firstDate.getDate();
-        const finishYear: string = secondDate.getFullYear() + '-' + (secondDate.getUTCMonth() + 1) + '-' + secondDate.getDate();
-    
         // /period:second&&start:2000-1-1&&finish:2017-11-6::id,date,wind_speed
         const apiUrl = environment.apiURL
           + '/period:' + period.toString()
-          + '&&start:' + startYear
-          + '&&finish:' + finishYear
+          + '&&start:' + firstDate
+          + '&&finish:' + secondDate
           + '::' + selected_values.toString();
     
         return this.http.get(apiUrl, '')

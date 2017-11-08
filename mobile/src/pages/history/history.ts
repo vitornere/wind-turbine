@@ -38,8 +38,10 @@ export class HistoryPage {
   }
 
   radioButton() {
+    console.log(this.timeStarts);
+    console.log(this.timeEnds);
     if (this.frequency === undefined) {
-      this.showAlert('Selecione a frequência dos dados');
+      this.showAlert('Opps!', 'Selecione a frequência dos dados');
       this.downloadButton = false;
     } else {
       this.turbineDataService.getTurbineDataByCompleteDate(
@@ -53,9 +55,11 @@ export class HistoryPage {
           this.elements_model = res;
           if (this.elements_model.length > 1) {
             this.noData = false;
-            this.format;
+            this.format();
             this.downloadButton = true;
+            this.showAlert('Download', 'Busca realizada com sucesso!')
           } else {
+            this.downloadButton = false;
             this.noData = true;
           }
         });
@@ -65,14 +69,14 @@ export class HistoryPage {
 
   datetimeButton() {
     if (this.timeStarts === undefined || this.timeEnds === undefined) {
-      this.showAlert('Você esqueceu de selecionar as datas');
+      this.showAlert('Opps!', 'Você esqueceu de selecionar as datas');
     } else {
       this.frequencia = true;
     }
   }
   checkboxButton() {
     if (this.wind_speed === false && this.electric_voltage === false && this.electric_current === false && this.mppt === false) {
-      this.showAlert('Selecione pelo menos um item');
+      this.showAlert('Opps!', 'Selecione pelo menos um item');
       this.showPeriodo = false;
     } else {
 
@@ -107,9 +111,9 @@ export class HistoryPage {
       this.showPeriodo = true;
     }
   }
-  showAlert(msg: string) {
+  showAlert(title: string, msg: string) {
     let alert = this.alertCtrl.create({
-      title: 'Opps!',
+      title: title,
       subTitle: msg,
       buttons: ['OK']
     });
