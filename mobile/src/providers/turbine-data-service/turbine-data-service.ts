@@ -24,8 +24,7 @@ export class TurbineDataService {
     const apiUrl = environment.apiURL + '/last';
 
     return this.http.get(apiUrl)
-    .map(res => res.json())
-    .catch(err => Observable.throw(err.message));
+    .map(res => res.json());
 }
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -33,14 +32,14 @@ export class TurbineDataService {
 
 
   public getTurbineDataByCompleteDate(period: String, selected_values: Array<any>, firstDate: Date, secondDate: Date): Observable<any> {
-    
+
         // /period:second&&start:2000-1-1&&finish:2017-11-6::id,date,wind_speed
         const apiUrl = environment.apiURL
           + '/period:' + period.toString()
           + '&&start:' + firstDate
           + '&&finish:' + secondDate
           + '::' + selected_values.toString();
-    
+
         return this.http.get(apiUrl, '')
           .map(res => res.json())
           .catch(err => Observable.throw(err.message));

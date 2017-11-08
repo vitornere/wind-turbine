@@ -36,12 +36,12 @@ export class TurbineDataComponent implements OnDestroy {
       this.turbineDataService.getLastTurbineData()
         .subscribe(res => {
           if (res != null) {
-              this.turbine_datas[0].subtitle = res.wind_speed;
-              this.turbine_datas[1].subtitle = res.electric_voltage;
-              this.turbine_datas[2].subtitle = res.electric_current;
-              this.turbine_datas[3].subtitle = res.mppt;
+            this.turbine_datas[0].subtitle = res.wind_speed;
+            this.turbine_datas[1].subtitle = res.electric_voltage;
+            this.turbine_datas[2].subtitle = res.electric_current;
+            this.turbine_datas[3].subtitle = res.mppt;
 
-              if (this.loadingCtrl.isLoading()) {
+            if (this.loadingCtrl.isLoading()) {
               this.loadingCtrl.dismiss();
             }
           } else {
