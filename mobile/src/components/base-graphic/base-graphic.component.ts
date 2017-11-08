@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { HistoryPage } from '../../pages/history/history';
 
 /**
  * Generated class for the HistoryGraphicComponent component.
@@ -19,8 +21,12 @@ export class BaseGraphicComponent {
   @Input()  
   imageSrc: string;
 
-  constructor() {
+  constructor(private navCtrl: NavController) {
     console.log("Esta no history grafic");
+  }
+
+  goToHistory() {
+    this.navCtrl.parent.select(1);
   }
 
 }
