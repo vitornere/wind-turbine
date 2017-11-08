@@ -113,9 +113,14 @@
 
   <div [hidden]="!downloadButton">
     <div text-center>
-      <button ion-button color="secondary" icon-left round (click)="download()">
+      <button ion-button icon-left round (click)="download()">
         <ion-icon name="md-download"></ion-icon>Download</button>
     </div>
   </div>
 
+  <div [hidden]="!noData">
+    <div text-center>
+      <h3>Sem dados neste período!!</h3>
+    </div>
+  </div>
 </ion-content>
