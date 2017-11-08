@@ -32,11 +32,15 @@ export class HistoricComponent implements OnInit {
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
 
+  period: String;
   today: Date = new Date();
   minDate: Date = new Date(2000, 0, 1); // Setar no dia em que colocar em produção
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
 
-  displayedColumns: Array<any> = ['id', 'date'];
+  firstDate = this.minDate;
+  secondDate = this.maxDate;
+
+  displayedColumns: Array<any> = ['date'];
   dataSource: DataSourceAPI | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,13 +49,13 @@ export class HistoricComponent implements OnInit {
   private elements_model: ElementTableModel[];
 
   frequency = [
-    { value: 'segundoemsegundo', viewValue: 'De segundo em segundo (60/s)' },
-    { value: 'minutosemminutos', viewValue: 'De minuto em minuto (60/mim)' },
-    { value: 'horaemhora', viewValue: 'De hora em hora (24/hrs)' },
-    { value: 'diaemdia', viewValue: 'Diário (7 dias)' },
-    { value: 'semanaemsemana', viewValue: 'Semanalmente (Semanas no mes)' },
-    { value: 'mesemmes', viewValue: 'Mensalmente (12 mêses)' },
-    { value: 'anual', viewValue: 'Anual' }
+    { value: 'second', viewValue: 'Valor real de segundo em segundo.' },
+    { value: 'minute', viewValue: 'Média de minuto em minuto.' },
+    { value: 'hour', viewValue: 'Média de De hora em hora.' },
+    { value: 'day', viewValue: 'Média Diária.' },
+    { value: 'week', viewValue: 'Média Semanal.' },
+    { value: 'month', viewValue: 'Média de mensal.' },
+    { value: 'year', viewValue: 'Média de anual.' }
   ];
 
   ngOnInit() {
@@ -63,15 +67,16 @@ export class HistoricComponent implements OnInit {
       mppt: new FormControl()
     });
     this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required],
+      secondCtrl: ['firstDate', Validators.required],
       firstDate: new FormControl()
     });
     this.thirdFormGroup = this.formBuilder.group({
-      thirdCtrl: ['', Validators.required],
+      thirdCtrl: ['secondDate', Validators.required],
       secondDate: new FormControl()
     });
     this.fourthFormGroup = this.formBuilder.group({
-      fourthCtrl: ['', Validators.required]
+      fourthCtrl: ['', Validators.required],
+      period: new FormControl()
     });
   }
 
@@ -108,16 +113,22 @@ export class HistoricComponent implements OnInit {
   }
 
   fourthFormButton() {
-    const firstDate = new Date(this.secondFormGroup.value.firstDate);
-    const secondDate = new Date(this.thirdFormGroup.value.secondDate);
+    this.firstDate = new Date(this.secondFormGroup.value.firstDate);
+    this.secondDate = new Date(this.thirdFormGroup.value.secondDate);
+    this.period = this.fourthFormGroup.value.period;
+
     this.turbineDataService.getTurbineDataByCompleteDate(
-      this.displayedColumns, firstDate, secondDate
+      this.period,
+      this.displayedColumns,
+      this.firstDate,
+      this.secondDate
     )
       .retry(4)
       .subscribe(
       res => {
         this.dataSource = new DataSourceAPI((res as [ElementTableModel]), this.paginator);
         this.elements_model = res;
+        this.format();
         if (this.elements_model.length > 1) {
           this.tableSize = this.elements_model.length + 1;
           this.showTable = true;
@@ -141,6 +152,13 @@ export class HistoricComponent implements OnInit {
       this.elements_model
       , 'turbine_data'
       , options
+    );
+  }
+  format(): void {
+    this.elements_model.map(
+      res => {
+        res.date = res.date.slice(0, 19).replace('T', ' ');
+      }
     );
   }
 }
