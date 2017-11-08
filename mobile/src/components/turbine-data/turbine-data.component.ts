@@ -24,9 +24,9 @@ export class TurbineDataComponent implements OnDestroy {
     this.loadingCtrl.showLoading('Procurando servidor... Entre no Wifi da Bancada Online. Senha: aerogerador.');
     this.turbine_datas = [
       this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', '', ' m/s'),
-      this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', '', ' m/s'),
-      this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', '', ' m/s'),
-      this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', '', ' m/s')
+      this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', '', ' A'),
+      this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', '', ' v'),
+      this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', '', ' W')
     ];
 
     this.updateData = this.setUpdateData();
