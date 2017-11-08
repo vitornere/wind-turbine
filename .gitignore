@@ -43,8 +43,8 @@ UserInterfaceState.xcuserstate
 
 # dependencies
 /node_modules
-../../web/package-lock.json
-../../mobile/package-lock.json
+web/package-lock.json
+mobile/package-lock.json
 
 # IDEs and editors
 /.idea
