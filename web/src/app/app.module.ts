@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TurbineDataService } from './services/turbine-data.service';
 import { CustomMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { NgModule } from '@angular/core';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NoConflictStyleCompatibilityMode} from '@angular/material';
@@ -20,7 +19,6 @@ import { HttpModule } from '@angular/http';
   declarations: [
     AppComponent,
     TurbineDataComponent,
-    SideBarComponent,
     ChartComponent,
     HistoricComponent,
     AboutComponent,
