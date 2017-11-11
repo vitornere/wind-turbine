@@ -57,6 +57,10 @@ export class HistoricComponent implements OnInit {
     { value: 'month', viewValue: 'Média de mensal.' },
     { value: 'year', viewValue: 'Média de anual.' }
   ];
+  vento;
+  electric_voltage;
+  electric_current;
+  mppt;
 
   ngOnInit() {
     this.firstFormGroup = this.formBuilder.group({
