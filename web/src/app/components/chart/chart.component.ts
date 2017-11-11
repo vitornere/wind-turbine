@@ -34,6 +34,8 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     0
   ];
 
+  turbine_data_time: Date;
+
   constructor(private turbineDataService: TurbineDataService) {
     const currentChart = this;
     this.updateData = this.setUpdateData(currentChart);
@@ -56,47 +58,66 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     const credits: any = {
         enabled: false
     };
+
     const title: any = {
         text: '',
     };
+
     const yAxis: any = {
         title: {
           enabled: false
         }
     };
+
     const xAxis: any = {
         type: 'datetime',
         tickPixelInterval: 150
     };
+
+    const data: any = (function () {
+      let data = [],
+          time = (new Date()).getTime(), i;
+      for (i = 0; i <= 5; i += 1) {
+          data.push({
+              x: time,
+              y: 0
+          });
+      }
+      return data;
+    }());
+
+    const name: [string] = [
+      'Velocidade (M/S)',
+      'Volts (V)',
+      'Ampere (A)',
+      'Watts (W)',
+    ];
+
+    function buildSerie(metric: [string]) {
+      const series: any = [{
+        name: metric,
+        data,
+      }];
+      return series;
+    }
+
+    const series: any = 0;
 
     const opts1: any = {
       credits,
       title,
       yAxis: {
         title: {
-            text: 'Velocidade (M/S)'
+            text: name[0]
         }
       },
       xAxis,
       tooltip,
       legend,
       series: [{
-        name: 'Velocidade (M/S)',
-        data: (function () {
-            // generate an array of random data
-            // tslint:disable-next-line:prefer-const
-            let data = [],
-                // tslint:disable-next-line:prefer-const
-                time = (new Date()).getTime(), i;
-            for (i = -19; i <= 0; i += 1) {
-                data.push({
-                    x: time + i * 1000,
-                    y: Math.floor(Math.random() * 10) + 0
-                });
-            }
-            return data;
-        }())
-      }]
+        name: name[0],
+        data,
+      }],
     };
 
     const opts2: any = {
@@ -104,29 +125,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
       title,
       yAxis: {
         title: {
-            text: 'Volts (V)'
+            text: name[1]
         }
       },
       xAxis,
       tooltip,
       legend,
       series: [{
-        name: 'Volts (V)',
-        data: (function () {
-            // generate an array of random data
-            // tslint:disable-next-line:prefer-const
-            let data = [],
-                // tslint:disable-next-line:prefer-const
-                time2 = (new Date()).getTime(), i;
-            for (i = -19; i <= 0; i += 1) {
-                data.push({
-                    x: time2 + i * 1000,
-                    y: Math.floor(Math.random() * 120) + 0
-                });
-            }
-            return data;
-        }())
-      }]
+        name: name[1],
+        data,
+      }],
     };
 
     const opts3: any = {
@@ -134,29 +142,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
       title,
       yAxis: {
         title: {
-            text: 'Ampere (A)'
+            text: name[2]
         }
       },
       xAxis,
       tooltip,
       legend,
       series: [{
-        name: 'Ampere (A)',
-        data: (function () {
-            // generate an array of random data
-            // tslint:disable-next-line:prefer-const
-            let data = [],
-                // tslint:disable-next-line:prefer-const
-                time2 = (new Date()).getTime(), i;
-            for (i = -19; i <= 0; i += 1) {
-                data.push({
-                    x: time2 + i * 1000,
-                    y: Math.floor(Math.random() * 10) + 0
-                });
-            }
-            return data;
-        }())
-      }]
+        name: name[2],
+        data,
+      }],
     };
 
     const opts4: any = {
@@ -164,29 +159,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
       title,
       yAxis: {
         title: {
-            text: 'Watts (W)'
+            text: name[3]
         }
       },
       xAxis,
-      legend,
       tooltip,
+      legend,
       series: [{
-        name: 'Watts (W)',
-        data: (function () {
-            // generate an array of random data
-            // tslint:disable-next-line:prefer-const
-            let data = [],
-                // tslint:disable-next-line:prefer-const
-                time2 = (new Date()).getTime(), i;
-            for (i = -19; i <= 0; i += 1) {
-                data.push({
-                    x: time2 + i * 1000,
-                    y: Math.floor(Math.random() * 10) + 0
-                });
-            }
-            return data;
-        }())
-      }]
+        name: name[3],
+        data,
+      }],
     };
 
   const charOpt: any = [
@@ -244,14 +226,6 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     this.chartPotencia.destroy();
   }
 
-  private randomValue() {
-    return Math.floor(Math.random() * 10) + 0;
-  }
-
-  private randomValueTension() {
-    return Math.floor(Math.random() * 10) + 0;
-  }
-
   setUpdateData(currentChart) {
     setInterval(() => {
       this.turbineDataService.getLastTurbineData()
@@ -261,28 +235,30 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
           currentChart.turbine_data[1] = +res.electric_voltage;
           currentChart.turbine_data[2] = +res.electric_current;
           currentChart.turbine_data[3] = +res.mppt;
+          currentChart.turbine_data_time = new Date(res.date).getTime();
+          console.log(currentChart.turbine_data_time);
         }
         );
     }, 1000);
 
     setInterval(function () {
       if (currentChart.chartVento) {
-        currentChart.chartVento['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[0]], true, true);
+        currentChart.chartVento['series'][0].addPoint([currentChart.turbine_data_time, currentChart.turbine_data[0]], true, true);
       }
     }, 1000);
     setInterval(function () {
       if (currentChart.chartTensao) {
-        currentChart.chartTensao['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[1]], true, true);
+        currentChart.chartTensao['series'][0].addPoint([currentChart.turbine_data_time, currentChart.turbine_data[1]], true, true);
       }
     }, 1000);
     setInterval(function () {
       if (currentChart.chartCorrente) {
-        currentChart.chartCorrente['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[2]], true, true);
+        currentChart.chartCorrente['series'][0].addPoint([currentChart.turbine_data_time, currentChart.turbine_data[2]], true, true);
       }
     }, 1000);
     setInterval(function () {
       if (currentChart.chartPotencia) {
-        currentChart.chartPotencia['series'][0].addPoint([(new Date()).getTime(), currentChart.turbine_data[3]], true, true);
+        currentChart.chartPotencia['series'][0].addPoint([currentChart.turbine_data_time, currentChart.turbine_data[3]], true, true);
       }
     }, 1000);
   }
