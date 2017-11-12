@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'turbine_data',
     'corsheaders',
-    'django_seed',
 ]
 
 REST_FRAMEWORK = {

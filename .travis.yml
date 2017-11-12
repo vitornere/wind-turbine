@@ -5,7 +5,7 @@ matrix:
       python: 3.6
       before_script:
         - cd api
-        - pip install -r requirements.txt
+        - pip install -r config/requirements.dev.txt
         - python manage.py migrate
       script:
         - python manage.py test
