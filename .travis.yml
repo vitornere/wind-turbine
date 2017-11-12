@@ -6,9 +6,9 @@ matrix:
       before_script:
         - cd api
         - pip install -r config/requirements.dev.txt
-        - python manage.py migrate
+        - python src/manage.py migrate
       script:
-        - python manage.py test
+        - python src/manage.py test
 
     - language: node_js
       env: BUILD_TYPE=mobile
