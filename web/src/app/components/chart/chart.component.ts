@@ -11,7 +11,6 @@ Highcharts.setOptions({
 
 @Component({
   selector: 'app-chart',
-  template: `<div><div #chart></div></div>`,
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
@@ -45,39 +44,41 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
 
     const legend: any = {
       enabled: false
-  };
+    };
 
     const tooltip: any = {
       formatter: function () {
-          return '<b>' + this.series.name + '</b><br/>' +
-              Highcharts.numberFormat(this.y, 2) + '<br/>' +
-              Highcharts.dateFormat('%d-%m-%Y %H:%M:%S', this.x);
+        return '<b>' + this.series.name + '</b><br/>' +
+          Highcharts.numberFormat(this.y, 2) + '<br/>' +
+          Highcharts.dateFormat('%d-%m-%Y %H:%M:%S', this.x);
       }
-  };
+    };
 
     const credits: any = {
-        enabled: false
+      enabled: false
     };
 
     const title: any = {
-        text: '',
+      text: '',
     };
 
     const yAxis: any = {
-        title: {
-          enabled: false
-        }
+      title: {
+        enabled: false
+      }
     };
 
     const xAxis: any = {
-        type: 'datetime',
-        tickPixelInterval: 150
+      type: 'datetime',
+      tickPixelInterval: 150
     };
 
     const data: any = (function () {
+
       let data = [],
-          time = (new Date()).getTime(), i;
-      for (i = 0; i <= 5; i += 1) {
+          // tslint:disable-next-line:prefer-const
+          time = new Date().getTime(), i;
+      for (i = 0; i <= 7; i += 1) {
           data.push({
               x: time,
               y: 0
@@ -92,16 +93,6 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
       'Ampere (A)',
       'Watts (W)',
     ];
-
-    function buildSerie(metric: [string]) {
-      const series: any = [{
-        name: metric,
-        data,
-      }];
-      return series;
-    }
-
-    const series: any = 0;
 
     const opts1: any = {
       credits,
@@ -168,54 +159,55 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
       series: [{
         name: name[3],
         data,
+        allowPointSelect: true
       }],
     };
 
-  const charOpt: any = [
-    opts1,
-    opts2,
-    opts3,
-    opts4
-  ];
+    const charOpt: any = [
+      opts1,
+      opts2,
+      opts3,
+      opts4
+    ];
 
     if (this.chartEl1 && this.chartEl1.nativeElement) {
       charOpt[0].chart = {
-            type: 'spline',
-            renderTo: this.chartEl1.nativeElement,
-            height: 300
-        };
+        type: 'spline',
+        renderTo: this.chartEl1.nativeElement,
+        height: 300
+      };
 
-        this.chartVento = new Highcharts.Chart(charOpt[0]);
+      this.chartVento = new Highcharts.Chart(charOpt[0]);
     }
 
     if (this.chartEl2 && this.chartEl2.nativeElement) {
       charOpt[1].chart = {
-            type: 'spline',
-            renderTo: this.chartEl2.nativeElement,
-            height: 300
-        };
+        type: 'spline',
+        renderTo: this.chartEl2.nativeElement,
+        height: 300
+      };
 
-        this.chartTensao = new Highcharts.Chart(charOpt[1]);
+      this.chartTensao = new Highcharts.Chart(charOpt[1]);
     }
 
     if (this.chartEl3 && this.chartEl3.nativeElement) {
       charOpt[2].chart = {
-            type: 'spline',
-            renderTo: this.chartEl3.nativeElement,
-            height: 300
-        };
+        type: 'spline',
+        renderTo: this.chartEl3.nativeElement,
+        height: 300
+      };
 
-        this.chartCorrente = new Highcharts.Chart(charOpt[2]);
+      this.chartCorrente = new Highcharts.Chart(charOpt[2]);
     }
 
     if (this.chartEl4 && this.chartEl4.nativeElement) {
       charOpt[3].chart = {
-            type: 'spline',
-            renderTo: this.chartEl4.nativeElement,
-            height: 300
-        };
+        type: 'spline',
+        renderTo: this.chartEl4.nativeElement,
+        height: 300
+      };
 
-        this.chartPotencia = new Highcharts.Chart(charOpt[3]);
+      this.chartPotencia = new Highcharts.Chart(charOpt[3]);
     }
   }
 
@@ -236,7 +228,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
           currentChart.turbine_data[2] = +res.electric_current;
           currentChart.turbine_data[3] = +res.mppt;
           currentChart.turbine_data_time = new Date(res.date).getTime();
-          console.log(currentChart.turbine_data_time);
+          console.log(currentChart.turbine_data_time + ' - ' + currentChart.turbine_data[0]);
         }
         );
     }, 1000);
@@ -244,6 +236,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     setInterval(function () {
       if (currentChart.chartVento) {
         currentChart.chartVento['series'][0].addPoint([currentChart.turbine_data_time, currentChart.turbine_data[0]], true, true);
+        console.log(currentChart.turbine_data_time + ' - ' + currentChart.turbine_data[0]);
       }
     }, 1000);
     setInterval(function () {
