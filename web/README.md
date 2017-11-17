@@ -22,3 +22,10 @@ $ ionic serve -l
 ```bash
 $ ionic cordova run --device
 ```
+
+# Docker
+## Construir a imagem
+$ docker build -t turbine .
+
+## Subir o container
+$ docker run -p 80:80 turbine
