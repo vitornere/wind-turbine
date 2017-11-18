@@ -77,8 +77,8 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
 
       let data = [],
           // tslint:disable-next-line:prefer-const
-          time = new Date().getTime(), i;
-      for (i = 0; i <= 7; i += 1) {
+          time = new Date().getTime();
+      for (let i = 0; i <= 15; i ++) {
           data.push({
               x: time,
               y: 0
