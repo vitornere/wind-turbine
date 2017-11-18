@@ -29,7 +29,7 @@ export class TurbineDataComponent implements OnDestroy {
     this.updateData = this.setUpdateData();
   }
   setUpdateData() {
-    const fake_data = true;
+    const fake_data = false; // Only to development
 
     setInterval(() => {
       if (!fake_data) {
