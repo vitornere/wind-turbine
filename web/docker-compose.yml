@@ -1,7 +1,0 @@
-version: '2'
-services:
-  apache:
-    image: httpd:2.4
-    container_name: apache2_turbine
-    ports:
-      - '80:80'
