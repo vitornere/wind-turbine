@@ -28,7 +28,7 @@ export class HistoryPage {
   frequencia: boolean = false;
   downloadButton: boolean
   noData: boolean;
-  frequency = 'hour';
+  frequency = 'second';
 
   private elements_model: ElementTableModel[];
   timeStarts: Date;
@@ -58,12 +58,14 @@ export class HistoryPage {
             this.format();
             this.downloadButton = true;
             this.showAlert('Download', 'Busca realizada com sucesso!')
+            this.download()
           } else {
             this.downloadButton = false;
             this.noData = true;
           }
         });
     }
+    console.log('Frequency');
     console.log(this.frequency);
   }
 
@@ -128,7 +130,7 @@ export class HistoryPage {
       decimalseparator: '.',
       title: this.maxDate.toString()
     };
-
+    console.log(this.elements_model);
     // tslint:disable-next-line:no-unused-expression
     new Angular2Csv(
       this.elements_model
