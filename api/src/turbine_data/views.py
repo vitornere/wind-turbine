@@ -6,6 +6,8 @@ from rest_framework import status
 from rest_framework.response import Response
 import datetime
 
+from django.db.models import Avg
+
 @api_view(['GET'])
 def getLastTurbineData(response):
         turbineData = TurbineData.objects.last()
@@ -49,42 +51,36 @@ def getTurbineDataByCompleteDate(response, period, start_date, finish_date, sele
     else:
         return Response({}, status.HTTP_404_OK)
 
-@api_view(['GET'])
-def getTurbineDataByYear(response, start_year, finish_year ):
-    turbineData = TurbineData.objects.filter(
-        date__year__range=(start_year, finish_year)
-    )
-    if turbineData is not None:
-        return Response(turbineData.values(), status.HTTP_200_OK)        
-    else:
-        return Response({}, status.HTTP_404_OK)
 
 @api_view(['GET'])
-def getTurbineDataByMonth(response, year, start_month, finish_month ):
-    turbineData = TurbineData.objects.filter(
-        date__range=(
-            datetime.datetime(int(year), int(start_month), 1, 1),
-            datetime.datetime(int(year), int(finish_month), 30, 23) 
+def getTurbineDataByYear(response, start_year, finish_year, selected_value):
+    months = [31,28,31,30,31,30,31,31,30,31,30,31]
+    firstYear = []
+    secondYear = []
+
+    for month in range(12):
+        firstYear.append(
+            TurbineData.objects.filter(
+                date__range=(
+                    datetime.datetime(int(start_year),month+1,1),
+                    datetime.datetime(int(start_year),month+1, months[month])
+                )
+            ).aggregate(Avg(selected_value))
         )
-    )
-    if turbineData is not None:
-        return Response(turbineData.values(), status.HTTP_200_OK)        
-    else:
-        return Response({}, status.HTTP_404_OK)
-
-@api_view(['GET'])
-def getTurbineDataByDay(response, start_year, start_month, start_day):
-    turbineData = TurbineData.objects.filter(
-        date__range=(
-            datetime.datetime(int(start_year), int(start_month), int(start_day), 0, 0, 0),
-            datetime.datetime(int(start_year), int(start_month), int(start_day), 23, 59, 59) 
+        secondYear.append(
+            TurbineData.objects.filter(
+                date__range=(
+                    datetime.datetime(int(finish_year),month+1,1),
+                    datetime.datetime(int(finish_year),month+1, months[month])
+                )
+            ).aggregate(Avg(selected_value))
         )
-    )
-    if turbineData is not None:
-        return Response(turbineData.values(), status.HTTP_200_OK)        
+
+    if firstYear and secondYear is not None:
+        context = {'firstYear':firstYear, 'secondYear':secondYear}
+        return Response(context, status.HTTP_200_OK)        
     else:
         return Response({}, status.HTTP_404_OK)
-
 
 class TurbineDataViewSet(viewsets.ModelViewSet):
     """
