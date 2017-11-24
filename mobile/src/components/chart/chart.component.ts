@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TurbineDataService } from '../../providers/turbine-data-service/turbine-data-service';
 
 /**
  * Generated class for the ChartComponent component.
@@ -12,6 +13,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ChartComponent {
 
+  constructor(private turbineDataService: TurbineDataService) {
+  }
   today = new Date();
   showChart = false;
 
@@ -50,6 +53,42 @@ export class ChartComponent {
   public lineChartLabels: Array<any> = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
   public lineChartType: string = 'line';
 
+  public updateYear(): void {
+    let lineChartData: Array<any> = new Array(this.lineChartData.length);
+
+    for (let i = 0; i < this.lineChartData.length; i++) {
+      lineChartData[i] = { 
+        data: new Array(this.lineChartData[i].data.length), 
+        label: this.lineChartData[i].label 
+      };
+      //lineChartData[i].data = [0.12, 1230000, 1130000,1130000, 30000, 930000, 830000, 730000, 630000, 530000, 430000, 330000, 1230000, 3330000]
+      this.turbineDataService.getTurbineDataByYear(
+        this.inputInitYear.toString(), 
+        this.inputFinalYear.toString(), 
+        'mppt'
+      ).retry(3).subscribe(
+        res => {
+          lineChartData[i].data = res.firstYear;
+          console.log(res);
+          console.log(lineChartData[i].data);
+        }
+      );
+    }
+    lineChartData[0].label = this.inputInitYear;
+    lineChartData[1].label = this.inputFinalYear;
+
+    this.firstYear = lineChartData[0];
+    this.secondYear = lineChartData[1];
+
+    this.lineChartData = lineChartData;
+
+    this.firstYear.stats = this.statsChart(this.firstYear);
+    this.secondYear.stats = this.statsChart(this.secondYear);
+
+    this.statsChart(this.secondYear);
+
+    this.showChart = true;
+  }
 
   public chartHovered(e: any): void {
     console.log(e);
@@ -83,29 +122,16 @@ export class ChartComponent {
       }
   }
 
-  public updateYear(): void {
-    let lineChartData: Array<any> = new Array(this.lineChartData.length);
-
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        lineChartData[i].data[j] = Math.floor((Math.random() * 300) + 1);
-      }
-    }
-    lineChartData[0].label = this.inputInitYear;
-    lineChartData[1].label = this.inputFinalYear;
-
-    this.firstYear = lineChartData[0];
-    this.secondYear = lineChartData[1];
-
-    this.lineChartData = lineChartData;
-
-    this.firstYear.stats = this.statsChart(this.firstYear);
-    this.secondYear.stats = this.statsChart(this.secondYear);
-
-    this.statsChart(this.secondYear);
-
-    this.showChart = true;
-  }
-
 } 
+/*
+      this.turbineDataService.getTurbineDataByYear(
+        this.inputInitYear.toString(), 
+        this.inputFinalYear.toString(), 
+        'mppt'
+      ).retry(2).subscribe(
+        res=>{
+          lineChartData[i].data = i===0 ? res.firstYear : res.secondYear;
+          console.log(lineChartData[i].data);
+        }
+      );
+*/
