@@ -16,7 +16,6 @@ import { GraphicPage } from './../pages/graphic/graphic.page';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ChartComponent } from '../components/chart/chart.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { TurbineDataService } from '../providers/turbine-data-service/turbine-data-service';
 import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-screen';
@@ -31,7 +30,6 @@ import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-scree
     TabsPage,
     TurbineDataComponent,
     BaseGraphicComponent,
-    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +48,7 @@ import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-scree
     TabsPage,
     GraphicPage,
     TurbineDataComponent,
-    BaseGraphicComponent,
-    ChartComponent
-  ],
+    BaseGraphicComponent,  ],
   providers: [
     StatusBar,
     SplashScreen,
