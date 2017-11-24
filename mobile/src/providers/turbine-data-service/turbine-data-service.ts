@@ -2,7 +2,7 @@ import { TurbineDataModel } from './../../models/turbine-data.model';
 import { ElementTableModel } from './../../models/element-table.model';
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
@@ -48,7 +48,7 @@ export class TurbineDataService {
     + '::' + selected_value;
 
   return this.http.get(apiUrl)
-    .map(res => res.json())
+    .map((res: Response) => res.json())
     .catch(err => Observable.throw(err.message));
   }
 }
