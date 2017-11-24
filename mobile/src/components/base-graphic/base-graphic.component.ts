@@ -16,12 +16,12 @@ export class BaseGraphicComponent {
 
   @Input()
   id: number;
-  @Input()  
+  @Input()
   titulo: string;
-  @Input()  
+  @Input()
   imageSrc: string;
 
-  constructor(private navCtrl: NavController,private turbineDataService: TurbineDataService) {}
+  constructor(private navCtrl: NavController, private turbineDataService: TurbineDataService) { }
 
   goToHistory() {
     this.navCtrl.parent.select(1);
@@ -56,6 +56,19 @@ export class BaseGraphicComponent {
     }
   }
 
+  public getNameTitle(): String {
+    switch (this.titulo) {
+      case 'Velocidade do Vento':
+        return 'wind_speed';
+      case 'Tensão':
+        return 'electric_voltage';
+      case 'Corrente':
+        return 'electric_current';
+      case 'Máxima Potência':
+        return 'mppt';
+    }
+  }
+
   public lineChartData: Array<any> = [
     this.firstYear,
     this.secondYear
@@ -76,26 +89,26 @@ export class BaseGraphicComponent {
     this.turbineDataService.getTurbineDataByYear(
       this.inputInitYear.toString(),
       this.inputFinalYear.toString(),
-      'mppt'
+      this.getNameTitle()
     ).retry(3).subscribe(
       (res) => {
-          lineChartData[0].data = res.firstYear;
-          lineChartData[1].data = res.secondYear;
-          lineChartData[0].label = this.inputInitYear;
-          lineChartData[1].label = this.inputFinalYear;
+        lineChartData[0].data = res.firstYear;
+        lineChartData[1].data = res.secondYear;
+        lineChartData[0].label = this.inputInitYear;
+        lineChartData[1].label = this.inputFinalYear;
 
-          this.firstYear = lineChartData[0];
-          this.secondYear = lineChartData[1];
+        this.firstYear = lineChartData[0];
+        this.secondYear = lineChartData[1];
 
-          this.lineChartData = lineChartData;
+        this.lineChartData = lineChartData;
 
-          this.firstYear.stats = this.statsChart(this.firstYear);
-          this.secondYear.stats = this.statsChart(this.secondYear);
+        this.firstYear.stats = this.statsChart(this.firstYear);
+        this.secondYear.stats = this.statsChart(this.secondYear);
 
-          this.statsChart(this.secondYear);
+        this.statsChart(this.secondYear);
 
-          this.showChart = true;
-        }
+        this.showChart = true;
+      }
       );
   }
 
