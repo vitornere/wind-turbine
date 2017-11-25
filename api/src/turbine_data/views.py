@@ -59,22 +59,22 @@ def getTurbineDataByYear(response, start_year, finish_year, selected_value):
     secondYear = []
 
     for month in range(12):
-        firstYear.append(
-            TurbineData.objects.filter(
+        valueFirstYear = TurbineData.objects.filter(
                 date__range=(
                     datetime.datetime(int(start_year),month+1,1),
                     datetime.datetime(int(start_year),month+1, months[month])
                 )
             ).aggregate(Avg(selected_value))
-        )
-        secondYear.append(
-            TurbineData.objects.filter(
+
+        valueSecondYear = TurbineData.objects.filter(
                 date__range=(
                     datetime.datetime(int(finish_year),month+1,1),
                     datetime.datetime(int(finish_year),month+1, months[month])
                 )
             ).aggregate(Avg(selected_value))
-        )
+
+        secondYear.append(valueSecondYear[selected_value+'__avg'])
+        firstYear.append(valueFirstYear[selected_value+'__avg'])
 
     if firstYear and secondYear is not None:
         context = {'firstYear':firstYear, 'secondYear':secondYear}
