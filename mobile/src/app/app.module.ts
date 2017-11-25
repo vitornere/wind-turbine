@@ -11,10 +11,13 @@ import { HistoryPage } from './../pages/history/history';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TurbineDataService } from '../providers/turbine-data-service/turbine-data-service';
 import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-screen';
+import { GraphicComponent } from '../components/graphic/graphic';
+import { ChartPage } from '../pages/chart/chart';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-scree
     HistoryPage,
     HomePage,
     TabsPage,
+    ChartPage,
     TurbineDataComponent,
+    GraphicComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(BancadaOnline),
     HttpModule,
+    ChartsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +44,9 @@ import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-scree
     HistoryPage,
     HomePage,
     TabsPage,
+    ChartPage,
     TurbineDataComponent,
+    GraphicComponent
   ],
   providers: [
     StatusBar,

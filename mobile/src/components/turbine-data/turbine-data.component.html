@@ -1,5 +1,5 @@
 <ion-card *ngFor="let item of turbine_datas; let position = index">
-  <button ion-item color="light" outline>
+  <button ion-item color="light" outline (click)="pushPage(item, position)">
 
       <p class="card-subtitle">{{ item.subtitle + ' ' + item.unity }}</p>
 
