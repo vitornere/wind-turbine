@@ -2,7 +2,7 @@ import { LoadindScreenProvider } from './../../providers/loadind-screen/loadind-
 import { Component, OnDestroy } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { GraphicPage } from './../../pages/graphic/graphic.page';
+import { ChartPage } from './../../pages/chart/chart';
 import { TurbineDataModel } from '../../models/turbine-data.model';
 import { TurbineDataService } from '../../providers/turbine-data-service/turbine-data-service';
 
@@ -63,6 +63,6 @@ export class TurbineDataComponent implements OnDestroy {
   }
 
   pushPage(item_turbine: {}, position: number): void {
-    this.navCtrl.push(GraphicPage, item_turbine)
+    this.navCtrl.push(ChartPage, item_turbine)
   }
 }
