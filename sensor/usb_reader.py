@@ -1,23 +1,61 @@
 import serial
 import time
 
-ser = serial.Serial('/dev/ttyACM0')
-#ser = serial.Serial(port='/dev/ttyACM0',timeout=1)
+connected = False
+ser = None
 
-print("connected to: " + ser.name)
-
+while(connected != True):
+    try:
+        ser = serial.Serial('/dev/ttyACM0')
+        #ser = serial.Serial(port='/dev/ttyACM0',timeout=1)
+        connected = True
+    except Exception:
+        print("Procurando conexão usb ttyACM0...")
+        connected = False
+        if connected == False:
+            try:
+                ser = serial.Serial('/dev/ttyACM1')
+                connected = True
+            except Exception:
+                print("Procurando conexão usb ttyACM1...")                
+                connected = False
+        time.sleep(5)        
 while True:
-    char = ser.read()
-    string = ""
+    try:
+        print("connected to: " + ser.name)
 
-    while(char != 'C'):
-        char = ser.read()
+        while True:
+            char = ser.read().decode('utf-8')
+            string = ""
 
-    string = string + char
+            while(char != 'C'):
+                char = ser.read().decode('utf-8')
 
-    while(char != 'E'):
-        char = ser.read()
-        string = string + char
+            string = string + char
 
-    print(string)
-    time.sleep(1)
+            while(char != 'E'):
+                char = ser.read().decode('utf-8')
+                string = string + char
+
+            print(string)
+            time.sleep(1)
+    except Exception:
+        connected = False
+
+        while(connected != True):
+            try:
+                ser = serial.Serial('/dev/ttyACM0')
+                #ser = serial.Serial(port='/dev/ttyACM0',timeout=1)
+                connected = True
+            except Exception:
+                print("Procurando conexão usb ttyACM0...")
+                connected = False
+                if connected == False:
+                    try:
+                        ser = serial.Serial('/dev/ttyACM1')
+                        connected = True
+                    except Exception:
+                        print("Procurando conexão usb ttyACM1...")
+                        connected = False
+                time.sleep(5)
+            
