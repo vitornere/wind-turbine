@@ -1,5 +1,5 @@
+import { TurbineDataModel } from './../../models/turbine-data.model';
 import { TurbineDataService } from './../../providers/turbine-data-service/turbine-data-service';
-import { ElementTableModel } from './../../../../web/src/app/models/element-table.models';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -29,7 +29,7 @@ export class HistoryPage {
   downloadButton: boolean
   noData: boolean;
 
-  private elements_model: ElementTableModel[];
+  private elements_model: TurbineDataModel[];
   timeStarts: Date;
   timeEnds: Date
 

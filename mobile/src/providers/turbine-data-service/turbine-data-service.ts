@@ -1,4 +1,4 @@
-import { ElementTableModel } from './../../models/element-table.model';
+import { TurbineDataModel } from './../../models/turbine-data.model';
 
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
@@ -19,7 +19,7 @@ export class TurbineDataService {
   constructor(public http: Http) {
   }
 
-  public getLastTurbineData(): Observable<ElementTableModel> {
+  public getLastTurbineData(): Observable<TurbineDataModel> {
     const apiUrl = environment.apiURL + '/last';
 
     return this.http.get(apiUrl)
