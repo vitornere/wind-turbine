@@ -1,6 +1,6 @@
+import { RealTimeTurbineModel } from '../../models/real-time-turbine.model';
 import { TurbineDataService } from './../../services/turbine-data.service';
 import { Component, OnInit } from '@angular/core';
-import { TurbineDataModel } from '../../models/turbine-data.models';
 
 @Component({
   selector: 'app-turbine-data',
@@ -9,7 +9,7 @@ import { TurbineDataModel } from '../../models/turbine-data.models';
 })
 export class TurbineDataComponent implements OnInit {
 
-  public turbine_data: [TurbineDataModel];
+  public turbine_data: [RealTimeTurbineModel];
   public updateData: any;
 
   constructor(private turbineDataService: TurbineDataService) {
@@ -40,6 +40,6 @@ export class TurbineDataComponent implements OnInit {
   }
 
   newTurbineDataObject(id: number, image_src: string, title: string, subtitle: string, unity: string) {
-    return new TurbineDataModel(id, image_src, title, subtitle, unity);
+    return new RealTimeTurbineModel(id, image_src, title, subtitle, unity);
   }
 }

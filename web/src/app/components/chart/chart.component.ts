@@ -3,8 +3,8 @@ import { TurbineDataService } from './../../services/turbine-data.service';
 
 const Highcharts = require('highcharts/highcharts.src');
 import 'highcharts/adapters/standalone-framework.src';
-import { TurbineDataModel } from '../../models/turbine-data.models';
 
+import { RealTimeTurbineModel } from './../../models/real-time-turbine.model';
 Highcharts.setOptions({
   height: ['300px']
 });
@@ -257,6 +257,6 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
   }
 
   newTurbineDataObject(id: number, image_src: string, title: string, subtitle: string, unity: string) {
-    return new TurbineDataModel(id, image_src, title, subtitle, unity);
+    return new RealTimeTurbineModel(id, image_src, title, subtitle, unity);
   }
 }

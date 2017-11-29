@@ -18,7 +18,7 @@ urlpatterns = [
         name='turbine-data-year'
     ),
     url(
-        r'^period:(?P<period>\w+)&&start:(?P<start_date>[-\w]+)&&finish:(?P<finish_date>[-\w]+)::(?P<selected_values>[,\w]+)/$', 
+        r'^start:(?P<start_date>[-\w]+)&&finish:(?P<finish_date>[-\w]+)::(?P<selected_values>[,\w]+)/$', 
         views.getTurbineDataByCompleteDate, 
         name='turbine-data-complete'
     ),

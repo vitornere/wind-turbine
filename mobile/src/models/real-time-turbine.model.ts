@@ -1,4 +1,4 @@
-export class TurbineDataModel {
+export class RealTimeTurbineModel {
   id: number;
   image_src: string;
   title: string;

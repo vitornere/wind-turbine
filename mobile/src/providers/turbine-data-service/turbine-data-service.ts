@@ -26,11 +26,10 @@ export class TurbineDataService {
       .map(res => res.json());
   }
 
-  public getTurbineDataByCompleteDate(period: String, selected_values: Array<any>, firstDate: Date, secondDate: Date): Observable<any> {
+  public getTurbineDataByCompleteDate(selected_values: Array<any>, firstDate: Date, secondDate: Date): Observable<any> {
     // period:second&&start:2000-1-1&&finish:2017-11-6::id,date,wind_speed
     const apiUrl = environment.apiURL
-      + '/period:' + period.toString()
-      + '&&start:' + firstDate
+      + '/start:' + firstDate
       + '&&finish:' + secondDate
       + '::' + selected_values.toString();
 
