@@ -30,9 +30,7 @@ export class HistoricComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
 
-  period: String;
   today: Date = new Date();
   minDate: Date = new Date(2000, 0, 1); // Setar no dia em que colocar em produção
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
@@ -78,10 +76,6 @@ export class HistoricComponent implements OnInit {
       thirdCtrl: ['secondDate', Validators.required],
       secondDate: new FormControl()
     });
-    this.fourthFormGroup = this.formBuilder.group({
-      fourthCtrl: ['', Validators.required],
-      period: new FormControl()
-    });
   }
 
   // Alguém refatora
@@ -116,13 +110,11 @@ export class HistoricComponent implements OnInit {
     }
   }
 
-  fourthFormButton() {
+  thirdFormButton() {
     this.firstDate = new Date(this.secondFormGroup.value.firstDate);
     this.secondDate = new Date(this.thirdFormGroup.value.secondDate);
-    this.period = this.fourthFormGroup.value.period;
 
     this.turbineDataService.getTurbineDataByCompleteDate(
-      this.period,
       this.displayedColumns,
       this.firstDate,
       this.secondDate

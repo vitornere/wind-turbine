@@ -20,7 +20,7 @@ def getLastTurbineData(response):
             return Response({}, status.HTTP_200_OK)
 
 @api_view(['GET'])
-def getTurbineDataByCompleteDate(response, period, start_date, finish_date, selected_values):
+def getTurbineDataByCompleteDate(response, start_date, finish_date, selected_values):
     selected_values = selected_values.split(',')
     init_date = start_date.split('-')
     end_date = finish_date.split('-')

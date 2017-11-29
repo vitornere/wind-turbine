@@ -28,7 +28,6 @@ export class HistoryPage {
   frequencia: boolean = false;
   downloadButton: boolean
   noData: boolean;
-  frequency = 'second';
 
   private elements_model: ElementTableModel[];
   timeStarts: Date;
@@ -40,12 +39,8 @@ export class HistoryPage {
   radioButton() {
     console.log(this.timeStarts);
     console.log(this.timeEnds);
-    if (this.frequency === undefined) {
-      this.showAlert('Opps!', 'Selecione a frequência dos dados');
-      this.downloadButton = false;
-    } else {
+    
       this.turbineDataService.getTurbineDataByCompleteDate(
-        this.frequency,
         this.displayedColumns,
         this.timeStarts,
         this.timeEnds
@@ -64,16 +59,13 @@ export class HistoryPage {
             this.noData = true;
           }
         });
-    }
-    console.log('Frequency');
-    console.log(this.frequency);
+    
   }
 
   datetimeButton() {
     if (this.timeStarts === undefined || this.timeEnds === undefined) {
       this.showAlert('Opps!', 'Você esqueceu de selecionar as datas');
     } else {
-      //this.frequencia = true;
       this.downloadButton = true;
     }
   }
