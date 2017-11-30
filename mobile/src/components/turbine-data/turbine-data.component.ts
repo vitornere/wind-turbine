@@ -1,9 +1,9 @@
+import { RealTimeTurbineModel } from './../../models/real-time-turbine.model';
 import { LoadindScreenProvider } from './../../providers/loadind-screen/loadind-screen';
 import { Component, OnDestroy } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { GraphicPage } from './../../pages/graphic/graphic.page';
-import { TurbineDataModel } from '../../models/turbine-data.model';
+import { ChartPage } from './../../pages/chart/chart';
 import { TurbineDataService } from '../../providers/turbine-data-service/turbine-data-service';
 
 @Component({
@@ -12,9 +12,8 @@ import { TurbineDataService } from '../../providers/turbine-data-service/turbine
 })
 export class TurbineDataComponent implements OnDestroy {
 
-  turbine_datas: [TurbineDataModel];
+  turbine_datas: [RealTimeTurbineModel];
   updateData: any;
-  clickMessage = 'Teste';
 
   constructor(
     private navCtrl: NavController,
@@ -59,10 +58,10 @@ export class TurbineDataComponent implements OnDestroy {
   }
 
   newTurbineDataObject(id: number, image_src: string, title: string, subtitle: string, unity: string) {
-    return new TurbineDataModel(id, image_src, title, subtitle, unity);
+    return new RealTimeTurbineModel(id, image_src, title, subtitle, unity);
   }
 
   pushPage(item_turbine: {}, position: number): void {
-    this.navCtrl.push(GraphicPage, item_turbine)
+    this.navCtrl.push(ChartPage, item_turbine)
   }
 }

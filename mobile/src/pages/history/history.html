@@ -45,6 +45,7 @@
     </div>
 
   </ion-card>
+
   <ion-card>
 
     <div [hidden]="!showPeriodo">
@@ -71,49 +72,9 @@
 
   </ion-card>
 
-  <div [hidden]="!frequencia">
-    <ion-card>
-
-      <ion-card-header>
-        Selecione o frequência desejado:
-      </ion-card-header>
-
-      <ion-card-content>
-        <ion-list radio-group no-lines [(ngModel)]="frequency">
-          <ion-item>
-            <ion-label>Hora em hora</ion-label>
-            <ion-radio value="hour"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Diária</ion-label>
-            <ion-radio value="day"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Semanal</ion-label>
-            <ion-radio value="week"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Mensal</ion-label>
-            <ion-radio value="month"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Anual</ion-label>
-            <ion-radio value="year"></ion-radio>
-          </ion-item>
-        </ion-list>
-
-        <div text-center>
-          <button ion-button color="secondary" icon-left round (click)="radioButton()">Confirmar</button>
-        </div>
-
-      </ion-card-content>
-
-    </ion-card>
-  </div>
-
   <div [hidden]="!downloadButton">
     <div text-center>
-      <button ion-button icon-left round (click)="download()">
+      <button ion-button icon-left round (click)="radioButton()">
         <ion-icon name="md-download"></ion-icon>Download</button>
     </div>
   </div>

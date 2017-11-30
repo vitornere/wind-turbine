@@ -1,5 +1,5 @@
+import { TurbineDataModel } from './../../models/turbine-data.models';
 import { TurbineDataComponent } from './../turbine-data/turbine-data.component';
-import { ElementTableModel } from './../../models/element-table.models';
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
@@ -30,9 +30,7 @@ export class HistoricComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
 
-  period: String;
   today: Date = new Date();
   minDate: Date = new Date(2000, 0, 1); // Setar no dia em que colocar em produção
   maxDate: Date = new Date(this.today.getUTCFullYear(), this.today.getUTCMonth(), this.today.getUTCDate());
@@ -46,7 +44,7 @@ export class HistoricComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  private elements_model: ElementTableModel[];
+  private elements_model: TurbineDataModel[];
 
   frequency = [
     { value: 'second', viewValue: 'Valor real de segundo em segundo.' },
@@ -77,10 +75,6 @@ export class HistoricComponent implements OnInit {
     this.thirdFormGroup = this.formBuilder.group({
       thirdCtrl: ['secondDate', Validators.required],
       secondDate: new FormControl()
-    });
-    this.fourthFormGroup = this.formBuilder.group({
-      fourthCtrl: ['', Validators.required],
-      period: new FormControl()
     });
   }
 
@@ -116,13 +110,11 @@ export class HistoricComponent implements OnInit {
     }
   }
 
-  fourthFormButton() {
+  thirdFormButton() {
     this.firstDate = new Date(this.secondFormGroup.value.firstDate);
     this.secondDate = new Date(this.thirdFormGroup.value.secondDate);
-    this.period = this.fourthFormGroup.value.period;
 
     this.turbineDataService.getTurbineDataByCompleteDate(
-      this.period,
       this.displayedColumns,
       this.firstDate,
       this.secondDate
@@ -130,7 +122,7 @@ export class HistoricComponent implements OnInit {
       .retry(4)
       .subscribe(
       res => {
-        this.dataSource = new DataSourceAPI((res as [ElementTableModel]), this.paginator);
+        this.dataSource = new DataSourceAPI((res as [TurbineDataModel]), this.paginator);
         this.elements_model = res;
         this.format();
         if (this.elements_model.length > 1) {

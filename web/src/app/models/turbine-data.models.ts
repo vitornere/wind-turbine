@@ -1,15 +1,21 @@
 export class TurbineDataModel {
-  id: number;
-  image_src: string;
-  title: string;
-  subtitle: string;
-  unity: string;
+    id: number;
+    date: string;
+    wind_speed: string;
+    electric_voltage: string;
+    electric_current: string;
+    mppt: string;
 
-  constructor(id: number, image_src: string, title: string, subtitle: string, unity: string) {
-    this.id = id;
-    this.image_src = image_src;
-    this.title = title;
-    this.subtitle = subtitle;
-    this.unity = unity;
-  }
+    constructor(id: number, date: string, wind_speed: string, electric_voltage: string, electric_current: string, mppt: string) {
+        id = this.id;
+        date = this.date;
+        wind_speed = this.wind_speed;
+        electric_voltage = this.electric_voltage;
+        electric_current = this.electric_current;
+        mppt = this.mppt;
+    }
+
+    public setDate(date: string): void {
+        this.date = date;
+    }
 }

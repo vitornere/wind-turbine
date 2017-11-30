@@ -1,5 +1,5 @@
+import { TurbineDataModel } from './../../models/turbine-data.model';
 import { TurbineDataService } from './../../providers/turbine-data-service/turbine-data-service';
-import { ElementTableModel } from './../../../../web/src/app/models/element-table.models';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -28,9 +28,8 @@ export class HistoryPage {
   frequencia: boolean = false;
   downloadButton: boolean
   noData: boolean;
-  frequency
 
-  private elements_model: ElementTableModel[];
+  private elements_model: TurbineDataModel[];
   timeStarts: Date;
   timeEnds: Date
 
@@ -40,12 +39,8 @@ export class HistoryPage {
   radioButton() {
     console.log(this.timeStarts);
     console.log(this.timeEnds);
-    if (this.frequency === undefined) {
-      this.showAlert('Opps!', 'Selecione a frequência dos dados');
-      this.downloadButton = false;
-    } else {
+    
       this.turbineDataService.getTurbineDataByCompleteDate(
-        this.frequency,
         this.displayedColumns,
         this.timeStarts,
         this.timeEnds
@@ -58,20 +53,20 @@ export class HistoryPage {
             this.format();
             this.downloadButton = true;
             this.showAlert('Download', 'Busca realizada com sucesso!')
+            this.download()
           } else {
             this.downloadButton = false;
             this.noData = true;
           }
         });
-    }
-    console.log(this.frequency);
+    
   }
 
   datetimeButton() {
     if (this.timeStarts === undefined || this.timeEnds === undefined) {
       this.showAlert('Opps!', 'Você esqueceu de selecionar as datas');
     } else {
-      this.frequencia = true;
+      this.downloadButton = true;
     }
   }
   checkboxButton() {
@@ -127,7 +122,7 @@ export class HistoryPage {
       decimalseparator: '.',
       title: this.maxDate.toString()
     };
-
+    console.log(this.elements_model);
     // tslint:disable-next-line:no-unused-expression
     new Angular2Csv(
       this.elements_model
