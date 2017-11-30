@@ -4,19 +4,18 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/Rx';
 
-import { ElementTableModel } from '../../models/element-table.models';
-
+import { TurbineDataModel } from './../../models/turbine-data.models';
 
 export class DataSourceAPI extends DataSource<any> {
     /** Connect function called by the table to retrieve one stream containing the data to render. */
     constructor(
-        private _database: ElementTableModel[],
+        private _database: TurbineDataModel[],
         private _paginator: MatPaginator
     ) {
         super();
     }
 
-    connect(): Observable<ElementTableModel[]> {
+    connect(): Observable<TurbineDataModel[]> {
         const displayDataChanges = [
             this._paginator.page,
             this._database

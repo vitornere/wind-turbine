@@ -1,4 +1,4 @@
-export class ElementTableModel {
+export class TurbineDataModel {
     id: number;
     date: string;
     wind_speed: string;

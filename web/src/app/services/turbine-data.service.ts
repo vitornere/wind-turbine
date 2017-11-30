@@ -6,7 +6,6 @@ import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
 
-import { ElementTableModel } from './../models/element-table.models';
 import { TurbineDataModel } from './../models/turbine-data.models';
 
 @Injectable()
@@ -16,7 +15,7 @@ export class TurbineDataService {
   }
 
   // Object {wind_speed: 11.1, electric_voltage: 11.1, electric_current: 11.1, mppt: 11.1, date: "2017-10-27T00:14:43.831327Z"}
-  public getLastTurbineData(): Observable<ElementTableModel> {
+  public getLastTurbineData(): Observable<TurbineDataModel> {
     const apiUrl = environment.apiURL + '/last';
 
     return this.http.get(apiUrl)
