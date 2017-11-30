@@ -47,7 +47,7 @@ while True:
             else:
                 while(string[i] != 'T'):
                     i += 1
-                electric_voltage = float(string[1:i])/10
+                electric_voltage = float(string[1:i])
 
             j = i+1
             i = j
@@ -57,7 +57,7 @@ while True:
                 while(string[j] != 'E'):
                     j += 1
                 j -= 1
-                electric_current = float(string[i:j])/10
+                electric_current = float(string[i:j])
             
             mppt = electric_voltage * electric_current
             print('\nMaking a post request with data = {')
