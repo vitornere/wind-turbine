@@ -64,8 +64,8 @@ int main(void)
     while(1)
     {
         //ADC COnfig Channel 4 - BIT4
-        ADC10AE0  |= BIT6;                           
-        ADC10CTL1  = INCH_6;
+        ADC10AE0  |= BIT4;                           
+        ADC10CTL1  = INCH_4;
         ADC10CTL0 |= ENC + ADC10SC;  
         //Wait for the value           
         while(ADC10CTL1 & ADC10BUSY);
@@ -74,10 +74,11 @@ int main(void)
         adcVal     = ADC10MEM;     
         print("C");              
         printUart(adcVal);               
-        
+        //print("280");
+
         //ADC COnfig Channel 5 - BIT5
-        ADC10AE0  |= BIT7;                           
-        ADC10CTL1  = INCH_7;
+        ADC10AE0  |= BIT5;                           
+        ADC10CTL1  = INCH_5;
         ADC10CTL0 |= ENC + ADC10SC;  
         //Wait for the value           
         while(ADC10CTL1 & ADC10BUSY);
@@ -85,7 +86,8 @@ int main(void)
         ADC10CTL0 &= ~ENC;
         adcVal     = ADC10MEM;     
         print("T");              
-        printUart(adcVal);          
+        printUart(adcVal);
+        //print("763");
         print("E");   
         
 
