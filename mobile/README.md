@@ -1,30 +1,29 @@
 # Bancada Online
 
-## Install and run
+## Tecnologias necessárias.
+* [Node](https://nodejs.org/en/download/) Latest LTS Version: 8.9.1 (includes npm 5.5.1).
+* [Ionic LTS ](https://ionicframework.com/getting-started/).
 
-Node and npm from https://nodejs.org/en/download/
+## Instalação das dependências.
+1. Instale o [Node](https://nodejs.org/en/download/) de acordo com o seu SO.
+2. `$ cd /wind-turbine/mobile/`
+3. `wind-turbine/mobile$ npm install package.json`
 
-JDK 8 from http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html
+Pronto seu sistema já esta pronto para o desenvolvimento.
 
-SDK from https://developer.android.com/studio/index.html?hl=pt-br
+# Comandos uteis já configurados.
+## Rodar aplicativo direto pelo celular com depuração pelo terminal.
+* `npm runAdroid`
+Execulta o comando `ionic cordova run android -lc --prod`
 
-Visual Studio Code from https://code.visualstudio.com/download
+## Rodar o aplicativo no navegador
+* `npm start`
+ Execulta o comando `ionic serve -l`
 
-## Extensions VSCode recommended
-- vscode-icons from Roberto Huertas
-- TSLint from egamma
-- rxjs-snippets from prashant
-- Angular V4 Typescript from johnpapa
-- Auto Import from steoates
-- Cordova Tools from Visual Studio Mobile Tools
-- Ionic 2
+## gerar apk em mode de debug
+* `npm bdebug`
+ Execulta o comando `ionic cordova build android --prod`
 
-# After git clone
-
-```bash
-$ npm install
-$ ionic serve -l
-```
-```bash
-$ ionic cordova run --device
-```
+## gerar apk em mode de release
+* `npm brelease`
+ Execulta o comando `ionic cordova build android --prod --release`
