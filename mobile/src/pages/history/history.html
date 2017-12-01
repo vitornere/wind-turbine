@@ -22,10 +22,6 @@
     <ion-card-content>
       <ion-list radio-group no-lines>
         <ion-item>
-          <ion-label>Velocidade do Vento</ion-label>
-          <ion-checkbox [(ngModel)]="wind_speed"></ion-checkbox>
-        </ion-item>
-        <ion-item>
           <ion-label>Tensão</ion-label>
           <ion-checkbox [(ngModel)]="electric_voltage"></ion-checkbox>
         </ion-item>
@@ -96,12 +92,6 @@
         <ng-container matColumnDef="electric_current">
           <mat-header-cell *matHeaderCellDef> Corrente </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.electric_current}} </mat-cell>
-        </ng-container>
-  
-        <!-- wind_speed Column -->
-        <ng-container matColumnDef="wind_speed">
-          <mat-header-cell *matHeaderCellDef> Velocidade do Vento </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.wind_speed}} </mat-cell>
         </ng-container>
   
         <!-- Tensão Column -->

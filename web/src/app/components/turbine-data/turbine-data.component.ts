@@ -14,10 +14,9 @@ export class TurbineDataComponent implements OnInit {
 
   constructor(private turbineDataService: TurbineDataService) {
     this.turbine_data = [
-      this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', '', ' m/s'),
-      this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', '', ' v'),
-      this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', '', ' A'),
-      this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', '', ' W')
+      this.newTurbineDataObject(0, 'assets/img/volt.png', 'Tensão', '', ' v'),
+      this.newTurbineDataObject(1, 'assets/img/tension.png', 'Corrente', '', ' A'),
+      this.newTurbineDataObject(2, 'assets/img/mppt.png', 'Máxima Potência', '', ' W')
     ];
     this.updateData = this.setUpdateData();
   }
@@ -30,10 +29,9 @@ export class TurbineDataComponent implements OnInit {
       this.turbineDataService.getLastTurbineData()
         .subscribe(
         res => {
-          this.turbine_data[0].subtitle = res.wind_speed;
-          this.turbine_data[1].subtitle = res.electric_voltage;
-          this.turbine_data[2].subtitle = res.electric_current;
-          this.turbine_data[3].subtitle = res.mppt;
+          this.turbine_data[0].subtitle = res.electric_voltage;
+          this.turbine_data[1].subtitle = res.electric_current;
+          this.turbine_data[2].subtitle = res.mppt;
         }
         );
     }, 1000);
