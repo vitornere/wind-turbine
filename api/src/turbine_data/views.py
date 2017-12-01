@@ -88,3 +88,4 @@ class TurbineDataViewSet(viewsets.ModelViewSet):
     """
     queryset = TurbineData.objects.all()
     serializer_class = TurbineDataSerializer
+

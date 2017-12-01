@@ -29,3 +29,6 @@ Rode as migrações
 Rode o servidor
 
 - ``(wind_turbine) $ python manage.py runserver``
+
+# Deploy
+- docker-compose up
