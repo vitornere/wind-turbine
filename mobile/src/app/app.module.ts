@@ -11,6 +11,8 @@ import { HistoryPage } from './../pages/history/history';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { CustomMaterialModule } from './material.module';
+
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +20,7 @@ import { TurbineDataService } from '../providers/turbine-data-service/turbine-da
 import { LoadindScreenProvider } from '../providers/loadind-screen/loadind-screen';
 import { GraphicComponent } from '../components/graphic/graphic';
 import { ChartPage } from '../pages/chart/chart';
+import { NoConflictStyleCompatibilityMode } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -28,13 +31,15 @@ import { ChartPage } from '../pages/chart/chart';
     TabsPage,
     ChartPage,
     TurbineDataComponent,
-    GraphicComponent
+    GraphicComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(BancadaOnline),
     HttpModule,
+    NoConflictStyleCompatibilityMode,
+    CustomMaterialModule,
     ChartsModule,
   ],
   bootstrap: [IonicApp],
@@ -57,3 +62,4 @@ import { ChartPage } from '../pages/chart/chart';
   ]
 })
 export class AppModule { }
+  

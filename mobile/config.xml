@@ -3,7 +3,7 @@
     <name>BancadaOnline</name>
     <description>Bancada de monitoramento do Aerogerador UnB/FGA.</description>
     <author email="nere.swe@gmail.com" href="https://github.com/vitornere/wind-turbine">Aerogerador UnB/FGA</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://172.18.0.1:8101" />
     <access origin="*" />
     <allow-navigation href="https://github.com/vitornere/wind-turbine/*" />
     <allow-intent href="http://*/*" />
@@ -79,6 +79,8 @@
     </platform>
     <allow-navigation href="*" />
     <allow-navigation href="*" />
+    <allow-navigation href="http://192.168.133.145:8101" />
+    <allow-navigation href="http://172.18.0.1:8101" />
     <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-console" spec="1.1.0" />
     <plugin name="cordova-plugin-device" spec="1.1.6" />
