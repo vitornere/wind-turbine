@@ -68,6 +68,7 @@ export class HistoryPage {
     } else {
       this.downloadButton = true;
     }
+    this.radioButton();
   }
   checkboxButton() {
     if (this.wind_speed === false && this.electric_voltage === false && this.electric_current === false && this.mppt === false) {
