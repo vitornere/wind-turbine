@@ -1,10 +1,13 @@
 import { TurbineDataModel } from './../../models/turbine-data.model';
 import { TurbineDataService } from './../../providers/turbine-data-service/turbine-data-service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { AlertController } from 'ionic-angular';
+
+import { MatPaginator } from '@angular/material';
+import { DataSourceAPI } from './turbine-data-source';
 
 import 'rxjs/Rx';
 
@@ -27,39 +30,50 @@ export class HistoryPage {
   showPeriodo: boolean = false;
   frequencia: boolean = false;
   downloadButton: boolean
+  tableSize: number;
+  showTable = false;
+  isLinear = false;
   noData: boolean;
+  dataSource: DataSourceAPI | null;
+
 
   private elements_model: TurbineDataModel[];
+
   timeStarts: Date;
   timeEnds: Date
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
   constructor(public alertCtrl: AlertController, private turbineDataService: TurbineDataService, public navCtrl: NavController, public navParams: NavParams) {
   }
-
+  ngAfterViewInit() {
+    console.log(this.paginator);
+  }
   radioButton() {
     console.log(this.timeStarts);
     console.log(this.timeEnds);
-    
-      this.turbineDataService.getTurbineDataByCompleteDate(
-        this.displayedColumns,
-        this.timeStarts,
-        this.timeEnds
-      ).retry(3)
-        .subscribe(
-        res => {
-          this.elements_model = res;
-          if (this.elements_model.length > 1) {
-            this.noData = false;
-            this.format();
-            this.downloadButton = true;
-            this.showAlert('Download', 'Busca realizada com sucesso!')
-            this.download()
-          } else {
-            this.downloadButton = false;
-            this.noData = true;
-          }
-        });
-    
+
+    this.turbineDataService.getTurbineDataByCompleteDate(
+      this.displayedColumns,
+      this.timeStarts,
+      this.timeEnds
+    ).retry(3)
+      .subscribe(
+      res => {
+        this.elements_model = res;
+        if (this.elements_model.length > 1) {
+          this.dataSource = new DataSourceAPI((res as [TurbineDataModel]), this.paginator);
+          this.format();
+          this.tableSize = this.elements_model.length + 1;
+          this.showTable = true;
+          this.noData = false;
+        } else {
+          this.noData = true;
+          this.showTable = false;
+        }
+      });
+
   }
 
   datetimeButton() {
@@ -68,6 +82,7 @@ export class HistoryPage {
     } else {
       this.downloadButton = true;
     }
+    this.radioButton();
   }
   checkboxButton() {
     if (this.wind_speed === false && this.electric_voltage === false && this.electric_current === false && this.mppt === false) {

@@ -22,10 +22,9 @@ export class TurbineDataComponent implements OnDestroy {
   ) {
     this.loadingCtrl.showLoading('Procurando servidor... Entre no Wifi da Bancada Online. Senha: aerogerador.');
     this.turbine_datas = [
-      this.newTurbineDataObject(0, 'assets/img/wind.png', 'Velocidade do Vento', '', ' m/s'),
-      this.newTurbineDataObject(1, 'assets/img/volt.png', 'Tensão', '', ' A'),
-      this.newTurbineDataObject(2, 'assets/img/tension.png', 'Corrente', '', ' v'),
-      this.newTurbineDataObject(3, 'assets/img/mppt.png', 'Máxima Potência', '', ' W')
+      this.newTurbineDataObject(0, 'assets/img/volt.png', 'Tensão', '', ' A'),
+      this.newTurbineDataObject(1, 'assets/img/tension.png', 'Corrente', '', ' v'),
+      this.newTurbineDataObject(2, 'assets/img/mppt.png', 'Máxima Potência', '', ' W')
     ];
 
     this.updateData = this.setUpdateData();
@@ -35,10 +34,9 @@ export class TurbineDataComponent implements OnDestroy {
       this.turbineDataService.getLastTurbineData()
         .subscribe(res => {
           if (res != null) {
-            this.turbine_datas[0].subtitle = res.wind_speed;
-            this.turbine_datas[1].subtitle = res.electric_voltage;
-            this.turbine_datas[2].subtitle = res.electric_current;
-            this.turbine_datas[3].subtitle = res.mppt;
+            this.turbine_datas[0].subtitle = res.electric_voltage;
+            this.turbine_datas[1].subtitle = res.electric_current;
+            this.turbine_datas[2].subtitle = res.mppt;
 
             if (this.loadingCtrl.isLoading()) {
               this.loadingCtrl.dismiss();

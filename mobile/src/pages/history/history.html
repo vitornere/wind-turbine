@@ -22,10 +22,6 @@
     <ion-card-content>
       <ion-list radio-group no-lines>
         <ion-item>
-          <ion-label>Velocidade do Vento</ion-label>
-          <ion-checkbox [(ngModel)]="wind_speed"></ion-checkbox>
-        </ion-item>
-        <ion-item>
           <ion-label>Tensão</ion-label>
           <ion-checkbox [(ngModel)]="electric_voltage"></ion-checkbox>
         </ion-item>
@@ -72,12 +68,53 @@
 
   </ion-card>
 
-  <div [hidden]="!downloadButton">
-    <div text-center>
-      <button ion-button icon-left round (click)="radioButton()">
-        <ion-icon name="md-download"></ion-icon>Download</button>
+<!-- Table -->
+  <div class="container" [hidden]="!showTable">
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" class="striped">
+  
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+        <!-- data Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> Nº </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+  
+        <!-- data Column -->
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+  
+        <!-- Corrente Column -->
+        <ng-container matColumnDef="electric_current">
+          <mat-header-cell *matHeaderCellDef> Corrente </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.electric_current}} </mat-cell>
+        </ng-container>
+  
+        <!-- Tensão Column -->
+        <ng-container matColumnDef="electric_voltage">
+          <mat-header-cell *matHeaderCellDef> Tensão </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.electric_voltage}} </mat-cell>
+        </ng-container>
+  
+  
+        <!-- Potência Column -->
+        <ng-container matColumnDef="mppt">
+          <mat-header-cell *matHeaderCellDef> Potência </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.mppt}} </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator [length]="tableSize" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100,tableSize]">
+      </mat-paginator>
     </div>
   </div>
+<!-- Table -->
 
   <div [hidden]="!noData">
     <div text-center>
