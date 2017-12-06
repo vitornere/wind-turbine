@@ -1,7 +1,7 @@
 Algoritmos de Controle
 -------------------------------------------------------
 
-Algoritmos de controle do aerogerador de eixo vertical. Os códigos implementados estão na pasta final_codes.
+Algoritmos de controle do aerogerador de eixo vertical. Os códigos implementados estão na pasta final_codes. A pasta imagens e videos contém alguns dos resultados experimentais obtidos.
 
 
 Microcontrolador: MSP 430g2553 <br/>
