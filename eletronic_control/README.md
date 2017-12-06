@@ -30,6 +30,7 @@ Inputs<br/>
 Outputs<br/>
 1 - p1.6 = PWM<br/>
 
+<img src="images/boost.jpge" />
 
 <br/>
 
