@@ -1,6 +1,15 @@
 # Pré Requisitos
 ## Python 3 e pip3
 - ``$ sudo apt-get install python3 python3-pip``
+- ``$ pip install virtualenvwrapper``
+- Abra o .bashrc ``$ cd ~ && nano .bashrc``    
+
+No final do arquivo insira
+```sh
+# VirtualenvWrapper
+PATH=$PATH:$HOME/.local/bin
+source $HOME/.local/bin/virtualenvwrapper.sh
+```
 
 # Instalação
 - ``$ mkvirtualenv wind_turbine -p python3``
@@ -20,3 +29,6 @@ Rode as migrações
 Rode o servidor
 
 - ``(wind_turbine) $ python manage.py runserver``
+
+# Deploy
+- docker-compose up

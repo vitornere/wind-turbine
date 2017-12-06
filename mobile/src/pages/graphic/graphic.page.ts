@@ -20,7 +20,6 @@ export class GraphicPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.navParams.get('item_turbine');
     this.turbine_datas = navParams.data;
-    console.log(this.turbine_datas); 
   }
 
   ionViewDidLoad() {

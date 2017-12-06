@@ -1,24 +1,29 @@
 # Bancada Online
 
-## Install and run
+## Tecnologias necessárias.
+* [Node](https://nodejs.org/en/download/) Latest LTS Version: 8.9.1 (includes npm 5.5.1).
+* [ Angular](https://angular.io/).
 
-Node and npm from https://nodejs.org/en/download/
 
-Visual Studio Code from https://code.visualstudio.com/download
+### Instalação do Angular
+0. Instale a versão LTS do [Node](https://nodejs.org/en/download/) Latest LTS Version: 8.9.1 (includes npm 5.5.1).
+1. `$ cd /wind-turbine/web`
+2. `wind-turbine/web$ npm install`
 
-## Extensions VSCode recommended
-- vscode-icons from Roberto Huertas
-- TSLint from egamma
-- rxjs-snippets from prashant
-- Angular V4 Typescript from johnpapa
-- Auto Import from steoates
+Pronto seu ambiente já esta pronto para o desenvolvimento.
 
-# After git clone
+# Comandos uteis já configurados
+## Rodar o servidor.
+* `wind-turbine/web$ npm start`
+## gerar build
+* `npm build`
 
-```bash
-$ npm install
-$ ionic serve -l
-```
-```bash
-$ ionic cordova run --device
-```
+### Instalação do docker
+1. Instalar a ultima versão estável do [Docker CE](https://docs.docker.com/engine/installation/linux/docker-ce/debian/), a instalação varia de acordo com o sistema Operacional, siga as instruções de acordo com o seu SO.
+
+### Subir os contêineres gerados pelo _Docker Compose_.
+1. `$ cd /wind-turbine/web$`
+2. `wind-turbine/web$ docker build -t turbina .` Criar uma imagem do diretório atual.
+3. `wind-turbine/web$ docker run -p 8080:80 turbina ` Rodar o contêiner na porta 8080.
+
+Pronto você pode acessar a aplicação web na porta 8080 do seu navegador

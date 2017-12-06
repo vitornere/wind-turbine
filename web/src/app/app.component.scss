@@ -5,15 +5,17 @@
 }
 
 nav .brand-logo {
-  color: #424242;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: bolder;
 }
     
 nav ul a {
-   color: #001B4A;
+   color: #ffffff;
    font-weight: bold;
 } 
 nav {
-  background-color: #F2F2F2;
+  background-color: #2196F3;
 }
 
 .nav-wrapper { 
@@ -21,28 +23,80 @@ nav {
 }
 
 .material-icons {
-  color: black;
+  color: white;
   font-size: 30px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
+.dropdown-content .material-icons {
+  color: black;
+}
 button:focus {
   background-color: #F2F2F2;
 }
 
-
-md-sidenav {
-  width: 300px; 
+#floating-menu {
+  background-color: #2196F3;
 }
 
-@media screen and (max-width: 600px) {
-  md-sidenav {
-    width: 225px; 
+#floating-menu-item {
+  background-color: #001B4A;
+}
+
+@media only screen  and (max-width: 50000px) and (min-width: 993px) {
+  .fixed-action-btn {
+    display: none;
   }
-  
-  button {
-  bottom: 8px;
-  left: -15px;
+
+  .brand-logo {
+    margin-left: 3%;
+  }
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 0px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0px 0 !important;
+  width: 100px;
+  top: 100%;
+  left: 50%; 
+  margin-left: -50px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+#nav-mobile {
+  margin-right: 3%;
+}
+
+@media only screen  and (max-width: 422px) {
+  .brand-logo {
+    font-size: 22px;
+  }
 }

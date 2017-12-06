@@ -1,49 +1,43 @@
-import { AppRoutingModule } from './app-routing.module';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { TurbineDataService } from './services/turbine-data.service';
+import { CustomMaterialModule } from './material.module';
+import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
-import { MatSidenavModule, MdButtonModule, MdCheckboxModule, MatStepperModule, MdDatepickerModule, MdNativeDateModule, MdTableModule, MdSelectModule, MatPaginatorModule } from '@angular/material';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {NoConflictStyleCompatibilityMode} from '@angular/material';
 import { AppComponent } from './app.component';
 import { TurbineDataComponent } from './components/turbine-data/turbine-data.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { HistoricComponent } from './components/historic/historic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CdkTableModule } from '@angular/cdk/table';
+import { AboutComponent } from './components/about/about.component';
+import { HomeComponent } from './components/home/home.component';
+
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     TurbineDataComponent,
-    SideBarComponent,
     ChartComponent,
-    HistoricComponent
+    HistoricComponent,
+    AboutComponent,
+    HomeComponent
   ],
   imports: [
+    NoConflictStyleCompatibilityMode,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    CustomMaterialModule,
     NoopAnimationsModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MatSidenavModule,
-    MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
-    MdDatepickerModule,
-    MdNativeDateModule,
-    CdkTableModule,
-    MdTableModule,
-    MdSelectModule,
-    MatPaginatorModule
+    HttpModule
   ],
   exports: [
-    MdButtonModule,
-    MdCheckboxModule,
-    MatSidenavModule
   ],
-  providers: [],
+  providers: [TurbineDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

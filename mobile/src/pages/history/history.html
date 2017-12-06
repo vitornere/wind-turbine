@@ -13,4 +13,112 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+
+    <ion-card-header>
+      Selecione o dado desejado:
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list radio-group no-lines>
+        <ion-item>
+          <ion-label>Tensão</ion-label>
+          <ion-checkbox [(ngModel)]="electric_voltage"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Corrente</ion-label>
+          <ion-checkbox [(ngModel)]="electric_current"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Máxima Potência</ion-label>
+          <ion-checkbox [(ngModel)]="mppt"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+    <div text-center>
+      <button ion-button color="secondary" icon-left round (click)="checkboxButton()">Confirmar</button>
+    </div>
+
+  </ion-card>
+
+  <ion-card>
+
+    <div [hidden]="!showPeriodo">
+      <ion-card-header>
+        Selecione o período desejado:
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Início</ion-label>
+          <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="timeStarts">{{ timeStarts}}</ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Fim</ion-label>
+          <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="timeEnds"></ion-datetime>
+        </ion-item>
+
+        <div text-center>
+          <button ion-button color="secondary" icon-left round (click)="datetimeButton()">Confirmar</button>
+        </div>
+      </ion-card-content>
+    </div>
+
+  </ion-card>
+
+<!-- Table -->
+  <div class="container" [hidden]="!showTable">
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" class="striped">
+  
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+        <!-- data Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> Nº </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+  
+        <!-- data Column -->
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+  
+        <!-- Corrente Column -->
+        <ng-container matColumnDef="electric_current">
+          <mat-header-cell *matHeaderCellDef> Corrente </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.electric_current}} </mat-cell>
+        </ng-container>
+  
+        <!-- Tensão Column -->
+        <ng-container matColumnDef="electric_voltage">
+          <mat-header-cell *matHeaderCellDef> Tensão </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.electric_voltage}} </mat-cell>
+        </ng-container>
+  
+  
+        <!-- Potência Column -->
+        <ng-container matColumnDef="mppt">
+          <mat-header-cell *matHeaderCellDef> Potência </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.mppt}} </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator [length]="tableSize" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100,tableSize]">
+      </mat-paginator>
+    </div>
+  </div>
+<!-- Table -->
+
+  <div [hidden]="!noData">
+    <div text-center>
+      <h3>Sem dados neste período!!</h3>
+    </div>
+  </div>
 </ion-content>

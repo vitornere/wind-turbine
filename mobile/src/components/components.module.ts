@@ -1,13 +1,10 @@
 import { TurbineDataComponent } from './turbine-data/turbine-data.component';
 import { BaseGraphicComponent } from './base-graphic/base-graphic.component';
 import { NgModule } from '@angular/core';
-import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
-	declarations: [TurbineDataComponent, BaseGraphicComponent,
-    ChartComponent],
+	declarations: [TurbineDataComponent, BaseGraphicComponent],
 	imports: [],
-	exports: [TurbineDataComponent, BaseGraphicComponent,
-    ChartComponent]
+	exports: [TurbineDataComponent, BaseGraphicComponent]
 })
 export class ComponentsModule { }

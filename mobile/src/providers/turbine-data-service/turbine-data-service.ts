@@ -1,8 +1,10 @@
 import { TurbineDataModel } from './../../models/turbine-data.model';
+
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Rx';
+import { Http, Response } from '@angular/http';
+
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { environment } from "../../environment/environment.dev";
 
 /*
@@ -18,9 +20,33 @@ export class TurbineDataService {
   }
 
   public getLastTurbineData(): Observable<TurbineDataModel> {
-    const apiUrl = environment.apiURL + '/turbine-data/last';
+    const apiUrl = environment.apiURL + '/last';
 
     return this.http.get(apiUrl)
       .map(res => res.json());
+  }
+
+  public getTurbineDataByCompleteDate(selected_values: Array<any>, firstDate: Date, secondDate: Date): Observable<any> {
+    // period:second&&start:2000-1-1&&finish:2017-11-6::id,date,wind_speed
+    const apiUrl = environment.apiURL
+      + '/start:' + firstDate
+      + '&&finish:' + secondDate
+      + '::' + selected_values.toString();
+
+    return this.http.get(apiUrl)
+      .map(res => res.json())
+      .catch(err => Observable.throw(err.message));
+  }
+
+  public getTurbineDataByYear(start_year: String, finish_year: String, selected_value:String): Observable<any> {
+    // start_year:2016&&finish_year:2017::wind_speed/
+    const apiUrl = environment.apiURL
+    + '/start_year:' + start_year
+    + '&&finish_year:' + finish_year
+    + '::' + selected_value;
+
+  return this.http.get(apiUrl)
+    .map((res: Response) => res.json())
+    .catch(err => Observable.throw(err.message));
   }
 }
