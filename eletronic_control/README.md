@@ -24,8 +24,8 @@ Inputs--<br/>
 1 - p1.4 = Sensor de Corrente<br/>
 2 - p1.5 = Sensor de Tensão <br/>
 <br/>
-Outputs
-1 - p1.6 = PWM
+Outputs<br/>
+1 - p1.6 = PWM<br/>
 
 
 <br/>
@@ -38,9 +38,9 @@ Recebendo a tensão/corrente do boost o inversor transforma a corrente DC em AC 
 Inputs--<br/>
 1 - p1.4 = Sensor de Tensão AC<br/>
 <br/>
-Outputs
-1 - p1.6 = PWM
-2 - p2.1 = PWM
+Outputs<br/>
+1 - p1.6 = PWM<br/>
+2 - p2.1 = PWM<br/>
 
 
 
