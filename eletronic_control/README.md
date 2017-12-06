@@ -31,6 +31,7 @@ Outputs<br/>
 1 - p1.6 = PWM<br/>
 
 <img src="images/boost.jpeg" />
+Circuito Boost com seu driver, MSP 430 g2553 para controle, placa de sensores e Retificador trifásico
 
 <br/>
 
@@ -45,6 +46,24 @@ Inputs<br/>
 Outputs<br/>
 1 - p1.6 = PWM<br/>
 2 - p2.1 = PWM<br/>
+
+<img src="images/inversor.jpeg" />
+Circuito Inversor Monofásico com seus 2 drivers
+
+<br/>
+
+<img src="images/saida_inversor.jpeg" />
+Saída do circuito inversor seguindo a tensão da rede
+
+
+
+
+
+
+
+
+
+
 
 
 
