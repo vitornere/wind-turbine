@@ -16,7 +16,7 @@ export class TurbineDataService {
 
   // Object {wind_speed: 11.1, electric_voltage: 11.1, electric_current: 11.1, mppt: 11.1, date: "2017-10-27T00:14:43.831327Z"}
   public getLastTurbineData(): Observable<TurbineDataModel> {
-    const apiUrl = environment.apiURL + '/last';
+    const apiUrl = 'http://10.0.0.1:8000' + '/last';
 
     return this.http.get(apiUrl)
       .map(res => res.json())
@@ -29,7 +29,7 @@ export class TurbineDataService {
     const finishYear: string = secondDate.getFullYear() + '-' + (secondDate.getUTCMonth() + 1) + '-' + secondDate.getDate();
 
     // /start:2000-1-1&&finish:2017-11-6::id,date,wind_speed
-    const apiUrl = environment.apiURL
+    const apiUrl = 'http://10.0.0.1:8000'
       + '/start:' + startYear
       + '&&finish:' + finishYear
       + '::' + selected_values.toString();
