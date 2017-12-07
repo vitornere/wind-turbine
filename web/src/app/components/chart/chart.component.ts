@@ -212,10 +212,10 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.chartVento.destroy();
+    /*this.chartVento.destroy();
     this.chartTensao.destroy();
     this.chartCorrente.destroy();
-    this.chartPotencia.destroy();
+    this.chartPotencia.destroy();*/
   }
 
   setUpdateData(currentChart) {

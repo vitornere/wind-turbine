@@ -33,7 +33,7 @@ Outputs<br/>
 <img src="images/boost.jpeg" />
 Circuito Boost com seu driver, MSP 430 g2553 para controle, placa de sensores e Retificador trifásico
 
-<br/>
+<br/><br/>
 
 2 - Inversor Monofásico 
 -------------------------------------------------------
@@ -50,7 +50,7 @@ Outputs<br/>
 <img src="images/inversor.jpeg" />
 Circuito Inversor Monofásico com seus 2 drivers
 
-<br/>
+<br/><br/>
 
 <img src="images/saida_inversor.jpeg" />
 Saída do circuito inversor seguindo a tensão da rede
