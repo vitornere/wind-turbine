@@ -16,7 +16,7 @@ export class TurbineDataComponent implements OnInit {
     this.turbine_data = [
       this.newTurbineDataObject(0, 'assets/img/volt.png', 'Tensão', '', ' v'),
       this.newTurbineDataObject(1, 'assets/img/tension.png', 'Corrente', '', ' A'),
-      this.newTurbineDataObject(2, 'assets/img/mppt.png', 'Máxima Potência', '', ' W')
+      this.newTurbineDataObject(2, 'assets/img/mppt.png', 'Potência', '', ' W')
     ];
     this.updateData = this.setUpdateData();
   }
